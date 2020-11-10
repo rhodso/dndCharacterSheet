@@ -44,7 +44,8 @@ public class dice {
             int total = 0;
             for (int i = 0; i < number; i++) {
                 // Get random number
-                int n = random.nextInt(sides + 1); // Add 1 to "Sides", then 1 to result so that the random number is in
+                int n = random.nextInt(sides + 1); // Add 1 to "Sides", then 1 to result so that the
+                                                   // random number is in
                                                    // range 1-sides
                 n += 1;
 
