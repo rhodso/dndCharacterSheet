@@ -2,7 +2,7 @@ public class CharacterSheet {
     private String sheetFP;
 
     public Player loadSheet() {
-        
+        return null;
     }
 
     /**
