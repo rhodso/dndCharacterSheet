@@ -4,6 +4,10 @@ package com.rhodso.app;
  * template file, choose Tools | Templates and open the template in the editor.
  */
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author rhodso
@@ -210,57 +214,24 @@ public class MainMenu extends javax.swing.JFrame {
         }// GEN-LAST:event_rollDiceButtonActionPerformed
 
         private void loadCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loadCharButtonActionPerformed
-                CharacterSheetUI c = new CharacterSheetUI();
-                c.setVisible(true);
+
+                // Create file choose, filter to JSON, and get the user to pick their JSON file
+                JFileChooser jfc = new JFileChooser();
+                jfc.addChoosableFileFilter(new FileNameExtensionFilter("json files", ".json"));
+                jfc.setCurrentDirectory(new File("."));
+                int result = jfc.showOpenDialog(MainPanel);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                        // If the user has chosen a file that fits, try to load it
+                        File f = jfc.getSelectedFile();
+                        CharacterSheet cs = new CharacterSheet();
+                        cs.loadSheet(f.getAbsolutePath());
+                }
+
         }// GEN-LAST:event_loadCharButtonActionPerformed
 
         private void createCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_createCharButtonActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_createCharButtonActionPerformed
-
-        /**
-         * @param args the command line arguments
-         */
-        public static void main(String args[]) {
-                /* Set the Nimbus look and feel */
-                // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-                // (optional) ">
-                /*
-                 * If Nimbus (introduced in Java SE 6) is not available, stay with the default look
-                 * and feel. For details see
-                 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-                 */
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(MainMenu.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(MainMenu.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(MainMenu.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(MainMenu.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                }
-                // </editor-fold>
-                // </editor-fold>
-
-                /* Create and display the form */
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new MainMenu().setVisible(true);
-                        }
-                });
-        }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel MainPanel;
