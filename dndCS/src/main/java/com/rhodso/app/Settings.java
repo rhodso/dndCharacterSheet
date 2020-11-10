@@ -1,3 +1,5 @@
+package com.rhodso.app;
+
 public class Settings {
     private static boolean critFailsIgnoreMods;
     private static boolean darkMode;

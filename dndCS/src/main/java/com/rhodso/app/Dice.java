@@ -1,3 +1,5 @@
+package com.rhodso.app;
+
 import java.time.Instant;
 import java.util.Random;
 

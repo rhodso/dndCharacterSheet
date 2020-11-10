@@ -1,3 +1,5 @@
+package com.rhodso.app;
+
 import java.util.ArrayList;
 
 public class Player {

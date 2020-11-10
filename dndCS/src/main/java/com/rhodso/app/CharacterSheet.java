@@ -1,3 +1,4 @@
+package com.rhodso.app;
 public class CharacterSheet {
     private String sheetFP;
 

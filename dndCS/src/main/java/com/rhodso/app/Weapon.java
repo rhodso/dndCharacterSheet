@@ -1,3 +1,5 @@
+package com.rhodso.app;
+
 public class Weapon {
     private String name;
     private String hitDR;

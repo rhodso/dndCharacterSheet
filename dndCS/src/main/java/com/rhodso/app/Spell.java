@@ -1,3 +1,5 @@
+package com.rhodso.app;
+
 public class Spell {
     private String name;
     private String hitDR;
