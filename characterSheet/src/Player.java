@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class player {
+public class Player {
     // Vars
 
     // Character attributes
@@ -14,6 +14,11 @@ public class player {
     private int ac;
     private int xp;
     private int lvl;
+    private int weaponProf;
+    private int weaponResource;
+    private int cLevel;
+    private int spellAttack;
+    private int spellDC;
 
     // Base stats
     private int str;
@@ -42,9 +47,19 @@ public class player {
     private int performance;
     private int persuasion;
 
+    // Info
+    int PP;
+    int GP;
+    int SP;
+    int CP;
+    int EP;
+    String background;
+    String alignment;
+    String notes;
+
     // Lists
-    private ArrayList<weapon> weaponsList;
-    private ArrayList<ArrayList<spell>> spellsList;
+    private ArrayList<Weapon> weaponsList;
+    private ArrayList<ArrayList<Spell>> spellsList;
 
     /**
      * @return the persuasion
@@ -54,30 +69,100 @@ public class player {
     }
 
     /**
+     * @return the spellDC
+     */
+    public int getSpellDC() {
+        return spellDC;
+    }
+
+    /**
+     * @param spellDC the spellDC to set
+     */
+    public void setSpellDC(int spellDC) {
+        this.spellDC = spellDC;
+    }
+
+    /**
+     * @return the spellAttack
+     */
+    public int getSpellAttack() {
+        return spellAttack;
+    }
+
+    /**
+     * @param spellAttack the spellAttack to set
+     */
+    public void setSpellAttack(int spellAttack) {
+        this.spellAttack = spellAttack;
+    }
+
+    /**
+     * @return the cLevel
+     */
+    public int getcLevel() {
+        return cLevel;
+    }
+
+    /**
+     * @param cLevel the cLevel to set
+     */
+    public void setcLevel(int cLevel) {
+        this.cLevel = cLevel;
+    }
+
+    /**
+     * @return the weaponResource
+     */
+    public int getWeaponResource() {
+        return weaponResource;
+    }
+
+    /**
+     * @param weaponResource the weaponResource to set
+     */
+    public void setWeaponResource(int weaponResource) {
+        this.weaponResource = weaponResource;
+    }
+
+    /**
+     * @return the weaponProf
+     */
+    public int getWeaponProf() {
+        return weaponProf;
+    }
+
+    /**
+     * @param weaponProf the weaponProf to set
+     */
+    public void setWeaponProf(int weaponProf) {
+        this.weaponProf = weaponProf;
+    }
+
+    /**
      * @return the spellsList
      */
-    public ArrayList<ArrayList<spell>> getSpellsList() {
+    public ArrayList<ArrayList<Spell>> getSpellsList() {
         return spellsList;
     }
 
     /**
      * @param spellsList the spellsList to set
      */
-    public void setSpellsList(ArrayList<ArrayList<spell>> spellsList) {
+    public void setSpellsList(ArrayList<ArrayList<Spell>> spellsList) {
         this.spellsList = spellsList;
     }
 
     /**
      * @return the weaponsList
      */
-    public ArrayList<weapon> getWeaponsList() {
+    public ArrayList<Weapon> getWeaponsList() {
         return weaponsList;
     }
 
     /**
      * @param weaponsList the weaponsList to set
      */
-    public void setWeaponsList(ArrayList<weapon> weaponsList) {
+    public void setWeaponsList(ArrayList<Weapon> weaponsList) {
         this.weaponsList = weaponsList;
     }
 
@@ -511,7 +596,7 @@ public class player {
     /**
      * 
      */
-    public player() {
+    public Player() {
     }
 
     /**
@@ -519,7 +604,7 @@ public class player {
      * @param chrClass
      * @param chrSubclass
      */
-    public player(String name, String chrClass, String chrSubclass) {
+    public Player(String name, String chrClass, String chrSubclass) {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;
@@ -558,7 +643,7 @@ public class player {
      * @param performance
      * @param persuasion
      */
-    public player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
+    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
             int xp, int lvl, int str, int dex, int con, int wis, int cha, int athletics,
             int acrobatics, int sleightOfHand, int stealth, int arcana, int history,
             int investigation, int nature, int religion, int animalHandling, int insight,
@@ -632,13 +717,13 @@ public class player {
      * @param weaponsList
      * @param spellsList
      */
-    public player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
+    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
             int xp, int lvl, int str, int dex, int con, int wis, int cha, int athletics,
             int acrobatics, int sleightOfHand, int stealth, int arcana, int history,
             int investigation, int nature, int religion, int animalHandling, int insight,
             int medicine, int perception, int survival, int deception, int intimidation,
-            int performance, int persuasion, ArrayList<weapon> weaponsList,
-            ArrayList<ArrayList<spell>> spellsList) {
+            int performance, int persuasion, ArrayList<Weapon> weaponsList,
+            ArrayList<ArrayList<Spell>> spellsList) {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;

@@ -1,24 +1,24 @@
 import java.time.Instant;
 import java.util.Random;
 
-public class dice {
+public class Dice {
     private int number;
     private int sides;
     private int modifier;
 
-    public dice(int _sides) { // Assume number of dice is 1 and modifier is 0
+    public Dice(int _sides) { // Assume number of dice is 1 and modifier is 0
         sides = _sides;
         number = 1;
         modifier = 0;
     }
 
-    public dice(int _sides, int _number) { // Assume modifier is 0
+    public Dice(int _sides, int _number) { // Assume modifier is 0
         sides = _sides;
         number = _number;
         modifier = 0;
     }
 
-    public dice(int _sides, int _number, int _modifier) {
+    public Dice(int _sides, int _number, int _modifier) {
         sides = _sides;
         number = _number;
         modifier = _modifier;
@@ -53,7 +53,7 @@ public class dice {
                 total += n;
             }
             // Add modifier and return total
-            if (settings.isCritFailsIgnoreMods() && total == 1) {
+            if (Settings.isCritFailsIgnoreMods() && total == 1) {
                 return total;
             } else {
                 total += modifier;
@@ -65,17 +65,17 @@ public class dice {
     }
 
     public static int roll(int _sides) {
-        dice d = new dice(_sides);
+        Dice d = new Dice(_sides);
         return d.roll();
     }
 
     public static int roll(int _sides, int _number) {
-        dice d = new dice(_sides, _number);
+        Dice d = new Dice(_sides, _number);
         return d.roll();
     }
 
     public static int roll(int _sides, int _number, int _modifier) {
-        dice d = new dice(_sides, _number, _modifier);
+        Dice d = new Dice(_sides, _number, _modifier);
         return d.roll();
     }
 

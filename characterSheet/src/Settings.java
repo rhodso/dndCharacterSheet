@@ -1,4 +1,4 @@
-public class settings {
+public class Settings {
     private static boolean critFailsIgnoreMods;
     private static boolean darkMode;
 

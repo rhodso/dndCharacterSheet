@@ -1,33 +1,18 @@
-public class spell {
+public class Weapon {
     private String name;
     private String hitDR;
     private String dmgDR;
-    private dice hit;
-    private dice dmg;
+    private Dice hit;
+    private Dice dmg;
     private String range;
     private String damageType;
     private int proficiency;
-    private int spellLevel;
 
     /**
      * @return the name
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * @return the spellLevel
-     */
-    public int getSpellLevel() {
-        return spellLevel;
-    }
-
-    /**
-     * @param spellLevel the spellLevel to set
-     */
-    public void setSpellLevel(int spellLevel) {
-        this.spellLevel = spellLevel;
     }
 
     /**
@@ -75,28 +60,28 @@ public class spell {
     /**
      * @return the dmg
      */
-    public dice getDmg() {
+    public Dice getDmg() {
         return dmg;
     }
 
     /**
      * @param dmg the dmg to set
      */
-    public void setDmg(dice dmg) {
+    public void setDmg(Dice dmg) {
         this.dmg = dmg;
     }
 
     /**
      * @return the hit
      */
-    public dice getHit() {
+    public Dice getHit() {
         return hit;
     }
 
     /**
      * @param hit the hit to set
      */
-    public void setHit(dice hit) {
+    public void setHit(Dice hit) {
         this.hit = hit;
     }
 
@@ -138,18 +123,25 @@ public class spell {
     /**
      * 
      */
-    public spell() {
+    public Weapon() {
     }
 
     /**
      * @param name
      * @param hitDR
      * @param dmgDR
+     * @param range
+     * @param damageType
+     * @param proficiency
      */
-    public spell(String name, String hitDR, String dmgDR) {
+    public Weapon(String name, String hitDR, String dmgDR, String range, String damageType,
+            int proficiency) {
         this.name = name;
         this.hitDR = hitDR;
         this.dmgDR = dmgDR;
+        this.range = range;
+        this.damageType = damageType;
+        this.proficiency = proficiency;
     }
 
     /**
@@ -161,10 +153,9 @@ public class spell {
      * @param range
      * @param damageType
      * @param proficiency
-     * @param spellLevel
      */
-    public spell(String name, String hitDR, String dmgDR, dice hit, dice dmg, String range,
-            String damageType, int proficiency, int spellLevel) {
+    public Weapon(String name, String hitDR, String dmgDR, Dice hit, Dice dmg, String range,
+            String damageType, int proficiency) {
         this.name = name;
         this.hitDR = hitDR;
         this.dmgDR = dmgDR;
@@ -173,6 +164,6 @@ public class spell {
         this.range = range;
         this.damageType = damageType;
         this.proficiency = proficiency;
-        this.spellLevel = spellLevel;
     }
+
 }
