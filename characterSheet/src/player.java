@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class player {
     // Vars
 
@@ -40,12 +42,43 @@ public class player {
     private int performance;
     private int persuasion;
 
+    // Lists
+    private ArrayList<weapon> weaponsList;
+    private ArrayList<ArrayList<spell>> spellsList;
 
     /**
      * @return the persuasion
      */
     public int getPersuasion() {
         return persuasion;
+    }
+
+    /**
+     * @return the spellsList
+     */
+    public ArrayList<ArrayList<spell>> getSpellsList() {
+        return spellsList;
+    }
+
+    /**
+     * @param spellsList the spellsList to set
+     */
+    public void setSpellsList(ArrayList<ArrayList<spell>> spellsList) {
+        this.spellsList = spellsList;
+    }
+
+    /**
+     * @return the weaponsList
+     */
+    public ArrayList<weapon> getWeaponsList() {
+        return weaponsList;
+    }
+
+    /**
+     * @param weaponsList the weaponsList to set
+     */
+    public void setWeaponsList(ArrayList<weapon> weaponsList) {
+        this.weaponsList = weaponsList;
     }
 
     /**
@@ -562,5 +595,82 @@ public class player {
         this.intimidation = intimidation;
         this.performance = performance;
         this.persuasion = persuasion;
+    }
+
+    /**
+     * @param name
+     * @param chrClass
+     * @param chrSubclass
+     * @param hp
+     * @param hpMax
+     * @param ac
+     * @param xp
+     * @param lvl
+     * @param str
+     * @param dex
+     * @param con
+     * @param wis
+     * @param cha
+     * @param athletics
+     * @param acrobatics
+     * @param sleightOfHand
+     * @param stealth
+     * @param arcana
+     * @param history
+     * @param investigation
+     * @param nature
+     * @param religion
+     * @param animalHandling
+     * @param insight
+     * @param medicine
+     * @param perception
+     * @param survival
+     * @param deception
+     * @param intimidation
+     * @param performance
+     * @param persuasion
+     * @param weaponsList
+     * @param spellsList
+     */
+    public player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
+            int xp, int lvl, int str, int dex, int con, int wis, int cha, int athletics,
+            int acrobatics, int sleightOfHand, int stealth, int arcana, int history,
+            int investigation, int nature, int religion, int animalHandling, int insight,
+            int medicine, int perception, int survival, int deception, int intimidation,
+            int performance, int persuasion, ArrayList<weapon> weaponsList,
+            ArrayList<ArrayList<spell>> spellsList) {
+        this.name = name;
+        this.chrClass = chrClass;
+        this.chrSubclass = chrSubclass;
+        this.hp = hp;
+        this.hpMax = hpMax;
+        this.ac = ac;
+        this.xp = xp;
+        this.lvl = lvl;
+        this.str = str;
+        this.dex = dex;
+        this.con = con;
+        this.wis = wis;
+        this.cha = cha;
+        this.athletics = athletics;
+        this.acrobatics = acrobatics;
+        this.sleightOfHand = sleightOfHand;
+        this.stealth = stealth;
+        this.arcana = arcana;
+        this.history = history;
+        this.investigation = investigation;
+        this.nature = nature;
+        this.religion = religion;
+        this.animalHandling = animalHandling;
+        this.insight = insight;
+        this.medicine = medicine;
+        this.perception = perception;
+        this.survival = survival;
+        this.deception = deception;
+        this.intimidation = intimidation;
+        this.performance = performance;
+        this.persuasion = persuasion;
+        this.weaponsList = weaponsList;
+        this.spellsList = spellsList;
     }
 }

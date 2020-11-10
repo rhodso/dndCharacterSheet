@@ -53,8 +53,12 @@ public class dice {
                 total += n;
             }
             // Add modifier and return total
-            total += modifier;
-            return total;
+            if (settings.isCritFailsIgnoreMods() && total == 1) {
+                return total;
+            } else {
+                total += modifier;
+                return total;
+            }
         }
         // If something goes wrong, return 0
         return 0;
