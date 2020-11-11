@@ -1,9 +1,8 @@
 package com.rhodso.app;
 
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -156,21 +155,33 @@ public class CharacterSheet {
          * { System.out.println(e.getMessage()); }
          */
         try {
+            // Create string
             JSONObject player = new JSONObject();
-            player.put("name", p.getName());
 
-            File f = new File(sheetFP + ".tmp");
-            BufferedWriter bw = new BufferedWriter(new FileWriter(f)); // temporarily add .tmp
-            if (f.exists()) {
-                f.delete();
-            }
-            System.out.println("Created new file: " + f.createNewFile());
-            System.out.println(f.getAbsolutePath());
+            // Add shit to the class
+            player.put("name", p.getName());
+            player.put("race", p.getRace());
+            player.put("class", p.getChrClass());
+            player.put("subclass", p.getChrSubclass());
+            player.put("hp", p.getHp());
+            
 
             String playerStr = player.toString();
 
-            bw.write(playerStr, 0, playerStr.length());
-            bw.close();
+            File fp = new File(sheetFP);
+            String newfp = fp.getParent();
+            newfp = newfp + "/" + p.getName() + ".json.tmp"; // Add tmp for the moment
+            File newFile = new File(newfp);
+            if (newFile.exists()) {
+                newFile.delete();
+            }
+            newFile.createNewFile();
+
+            FileOutputStream os = new FileOutputStream(newfp);
+            byte[] strToBytes = playerStr.getBytes();
+            os.write(strToBytes);
+            os.close();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
