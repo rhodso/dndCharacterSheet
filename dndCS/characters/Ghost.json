@@ -1,7 +1,7 @@
 {
     "name": "Ghost",
-    "class": "warlock",
-    "subclass": "archfey",
+    "class": "Warlock",
+    "subclass": "Archfey",
     "hp": 18,
     "hpMax": 18,
     "ac": 11,

@@ -10,8 +10,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         /**
          * Creates new form characterSheetForm
          */
-        public CharacterSheetUI() {
+        public CharacterSheetUI(Player p) {
                 initComponents();
+                setComponentValues(p);
         }
 
         /**
@@ -303,7 +304,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 Lvl1SpellMaxLabel = new javax.swing.JLabel();
                 Lvl1UpdateButton = new javax.swing.JButton();
                 informationPanel = new javax.swing.JPanel();
-                infomationCharacterName = new javax.swing.JLabel();
+                informationCharacterName = new javax.swing.JLabel();
                 informationCharacterClass = new javax.swing.JLabel();
                 informationCharacterLevel = new javax.swing.JLabel();
                 levellabelLabel5 = new javax.swing.JLabel();
@@ -5195,8 +5196,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 SheetTabs.addTab("Spells", spellsPanel);
 
-                infomationCharacterName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                infomationCharacterName.setText("CharacterName");
+                informationCharacterName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                informationCharacterName.setText("CharacterName");
 
                 informationCharacterClass.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
                 informationCharacterClass.setText("CharacterClass");
@@ -5824,7 +5825,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(informationPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(infomationCharacterName,
+                                                                                .addComponent(informationCharacterName,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -5857,7 +5858,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addGroup(informationPanelLayout
                                                                 .createParallelGroup(
                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(infomationCharacterName,
+                                                                .addComponent(informationCharacterName,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 46,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5977,6 +5978,63 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
+
+        private void setComponentValues(Player p) {
+                // The stuff that appears on all pages
+                statsCharacterName.setText(p.getName());
+                abilitiesCharacterName.setText(p.getName());
+                weaponsCharacterName.setText(p.getName());
+                spellsCharacterName.setText(p.getName());
+                informationCharacterName.setText(p.getName());
+
+                statsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                abilitiesCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                weaponsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                spellsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                informationCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+
+                statsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                abilitiesCharacterLevel.setText(Integer.toString(p.getLvl()));
+                weaponsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                spellsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                informationCharacterLevel.setText(Integer.toString(p.getLvl()));
+
+                HPValueLabel.setText(Integer.toString(p.getHp()));
+                ACValueLabel.setText(Integer.toString(p.getAc()));
+                SpeedValueLabel.setText("30 ft");
+
+                // Set score values
+                strengthScoreValueLabel.setText(Integer.toString(p.getStr()));
+                strengthModifierValueLabel.setText(Integer.toString(p.getStrMod()));
+                strengthSaveValueLabel.setText(Integer.toString(p.getStrSave()));
+
+                // ability scores
+                charStrengthValueLabel.setText(Integer.toString(p.getStrMod()));
+                charAthleticsValueLabel.setText(Integer.toString(p.getAthletics()));
+                charDexterityValueLabel.setText(Integer.toString(p.getDexMod()));
+                charAcrobaticsValueLabel.setText(Integer.toString(p.getAcrobatics()));
+                charSoHValueLabel.setText(Integer.toString(p.getSleightOfHand()));
+                charStealthValueLabel.setText(Integer.toString(p.getStealth()));
+                charIntelligenceValueLabel.setText(Integer.toString(p.getIntlMod()));
+                charArcanaValueLabel.setText(Integer.toString(p.getArcana()));
+                charHistoryValueLabel.setText(Integer.toString(p.getHistory()));
+                charInvestigationValueLabel.setText(Integer.toString(p.getInvestigation()));
+                charNatureValueLabel.setText(Integer.toString(p.getNature()));
+                charReligionValueLabel.setText(Integer.toString(p.getReligion()));
+                charWisdomLabel.setText(Integer.toString(p.getWisMod()));
+                charAnimalHandlingValueLabel.setText(Integer.toString(p.getAnimalHandling()));
+                charInsightValueLabel.setText(Integer.toString(p.getInsight()));
+                charMedicineValueLabel.setText(Integer.toString(p.getMedicine()));
+                charPerceptionValueLabel.setText(Integer.toString(p.getPerception()));
+                charSurvivalValueLabel.setText(Integer.toString(p.getSurvival()));
+                charCharismaValueLabel.setText(Integer.toString(p.getChaMod()));
+                charDeceptionValueLabel.setText(Integer.toString(p.getDeception()));
+                charIntimidationValueLabel.setText(Integer.toString(p.getIntimidation()));
+                charPerformanceValueLabel.setText(Integer.toString(p.getPerformance()));
+                charPersuasionValueLabel.setText(Integer.toString(p.getPersuasion()));
+
+        }
+
 
         private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
                 // TODO add your handling code here:
@@ -6356,7 +6414,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JTextField infoCharacterClassTextBox5;
         private javax.swing.JTextField infoCharacterClassTextBox6;
         private javax.swing.JPanel infoHeaderPanel;
-        private javax.swing.JLabel infomationCharacterName;
+        private javax.swing.JLabel informationCharacterName;
         private javax.swing.JLabel informationCharacterClass;
         private javax.swing.JLabel informationCharacterLevel;
         private javax.swing.JPanel informationPanel;

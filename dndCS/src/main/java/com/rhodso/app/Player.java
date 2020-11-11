@@ -16,7 +16,7 @@ public class Player {
     private int ac;
     private int xp;
     private int lvl;
-    private int weaponProf;
+    private int prof;
     private int weaponResource;
     private int cLevel;
     private int spellAttack;
@@ -26,8 +26,23 @@ public class Player {
     private int str;
     private int dex;
     private int con;
+    private int intl;
     private int wis;
     private int cha;
+
+    private int strMod;
+    private int dexMod;
+    private int conMod;
+    private int intlMod;
+    private int wisMod;
+    private int chaMod;
+
+    private int strSave;
+    private int dexSave;
+    private int conSave;
+    private int intlSave;
+    private int wisSave;
+    private int chaSave;
 
     // Extra stats
     private int athletics;
@@ -50,24 +65,318 @@ public class Player {
     private int persuasion;
 
     // Info
-    int PP;
-    int GP;
-    int SP;
-    int CP;
-    int EP;
-    String background;
-    String alignment;
-    String notes;
+    private int PP;
+    private int GP;
+    private int SP;
+    private int CP;
+    private int EP;
+    private String background;
+    private String alignment;
+    private String notes;
 
     // Lists
     private ArrayList<Weapon> weaponsList;
-    private ArrayList<ArrayList<Spell>> spellsList;
+    private ArrayList<Spell> spellsList;
 
     /**
      * @return the persuasion
      */
     public int getPersuasion() {
         return persuasion;
+    }
+
+    /**
+     * @return the chaSave
+     */
+    public int getChaSave() {
+        return chaSave;
+    }
+
+    /**
+     * @param chaSave the chaSave to set
+     */
+    public void setChaSave(int chaSave) {
+        this.chaSave = chaSave;
+    }
+
+    /**
+     * @return the wisSave
+     */
+    public int getWisSave() {
+        return wisSave;
+    }
+
+    /**
+     * @param wisSave the wisSave to set
+     */
+    public void setWisSave(int wisSave) {
+        this.wisSave = wisSave;
+    }
+
+    /**
+     * @return the intlSave
+     */
+    public int getIntlSave() {
+        return intlSave;
+    }
+
+    /**
+     * @param intlSave the intlSave to set
+     */
+    public void setIntlSave(int intlSave) {
+        this.intlSave = intlSave;
+    }
+
+    /**
+     * @return the conSave
+     */
+    public int getConSave() {
+        return conSave;
+    }
+
+    /**
+     * @param conSave the conSave to set
+     */
+    public void setConSave(int conSave) {
+        this.conSave = conSave;
+    }
+
+    /**
+     * @return the dexSave
+     */
+    public int getDexSave() {
+        return dexSave;
+    }
+
+    /**
+     * @param dexSave the dexSave to set
+     */
+    public void setDexSave(int dexSave) {
+        this.dexSave = dexSave;
+    }
+
+    /**
+     * @return the strSave
+     */
+    public int getStrSave() {
+        return strSave;
+    }
+
+    /**
+     * @param strSave the strSave to set
+     */
+    public void setStrSave(int strSave) {
+        this.strSave = strSave;
+    }
+
+    /**
+     * @return the chaMod
+     */
+    public int getChaMod() {
+        return chaMod;
+    }
+
+    /**
+     * @param chaMod the chaMod to set
+     */
+    public void setChaMod(int chaMod) {
+        this.chaMod = chaMod;
+    }
+
+    /**
+     * @return the wisMod
+     */
+    public int getWisMod() {
+        return wisMod;
+    }
+
+    /**
+     * @param wisMod the wisMod to set
+     */
+    public void setWisMod(int wisMod) {
+        this.wisMod = wisMod;
+    }
+
+    /**
+     * @return the intlMod
+     */
+    public int getIntlMod() {
+        return intlMod;
+    }
+
+    /**
+     * @param intlMod the intlMod to set
+     */
+    public void setIntlMod(int intlMod) {
+        this.intlMod = intlMod;
+    }
+
+    /**
+     * @return the conMod
+     */
+    public int getConMod() {
+        return conMod;
+    }
+
+    /**
+     * @param conMod the conMod to set
+     */
+    public void setConMod(int conMod) {
+        this.conMod = conMod;
+    }
+
+    /**
+     * @return the dexMod
+     */
+    public int getDexMod() {
+        return dexMod;
+    }
+
+    /**
+     * @param dexMod the dexMod to set
+     */
+    public void setDexMod(int dexMod) {
+        this.dexMod = dexMod;
+    }
+
+    /**
+     * @return the strMod
+     */
+    public int getStrMod() {
+        return strMod;
+    }
+
+    /**
+     * @param strMod the strMod to set
+     */
+    public void setStrMod(int strMod) {
+        this.strMod = strMod;
+    }
+
+    /**
+     * @return the notes
+     */
+    public String getNotes() {
+        return notes;
+    }
+
+    /**
+     * @param notes the notes to set
+     */
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    /**
+     * @return the alignment
+     */
+    public String getAlignment() {
+        return alignment;
+    }
+
+    /**
+     * @param alignment the alignment to set
+     */
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
+
+    /**
+     * @return the background
+     */
+    public String getBackground() {
+        return background;
+    }
+
+    /**
+     * @param background the background to set
+     */
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    /**
+     * @return the eP
+     */
+    public int getEP() {
+        return EP;
+    }
+
+    /**
+     * @param eP the eP to set
+     */
+    public void setEP(int eP) {
+        this.EP = eP;
+    }
+
+    /**
+     * @return the cP
+     */
+    public int getCP() {
+        return CP;
+    }
+
+    /**
+     * @param cP the cP to set
+     */
+    public void setCP(int cP) {
+        this.CP = cP;
+    }
+
+    /**
+     * @return the sP
+     */
+    public int getSP() {
+        return SP;
+    }
+
+    /**
+     * @param sP the sP to set
+     */
+    public void setSP(int sP) {
+        this.SP = sP;
+    }
+
+    /**
+     * @return the gP
+     */
+    public int getGP() {
+        return GP;
+    }
+
+    /**
+     * @param gP the gP to set
+     */
+    public void setGP(int gP) {
+        this.GP = gP;
+    }
+
+    /**
+     * @return the pP
+     */
+    public int getPP() {
+        return PP;
+    }
+
+    /**
+     * @param pP the pP to set
+     */
+    public void setPP(int pP) {
+        this.PP = pP;
+    }
+
+    /**
+     * @return the intl
+     */
+    public int getIntl() {
+        return intl;
+    }
+
+    /**
+     * @param intl the intl to set
+     */
+    public void setIntl(int intl) {
+        this.intl = intl;
     }
 
     /**
@@ -127,30 +436,30 @@ public class Player {
     }
 
     /**
-     * @return the weaponProf
+     * @return the prof
      */
-    public int getWeaponProf() {
-        return weaponProf;
+    public int getProf() {
+        return prof;
     }
 
     /**
-     * @param weaponProf the weaponProf to set
+     * @param prof the prof to set
      */
-    public void setWeaponProf(int weaponProf) {
-        this.weaponProf = weaponProf;
+    public void setProf(int prof) {
+        this.prof = prof;
     }
 
     /**
      * @return the spellsList
      */
-    public ArrayList<ArrayList<Spell>> getSpellsList() {
+    public ArrayList<Spell> getSpellsList() {
         return spellsList;
     }
 
     /**
      * @param spellsList the spellsList to set
      */
-    public void setSpellsList(ArrayList<ArrayList<Spell>> spellsList) {
+    public void setSpellsList(ArrayList<Spell> spellsList) {
         this.spellsList = spellsList;
     }
 
@@ -725,7 +1034,7 @@ public class Player {
             int investigation, int nature, int religion, int animalHandling, int insight,
             int medicine, int perception, int survival, int deception, int intimidation,
             int performance, int persuasion, ArrayList<Weapon> weaponsList,
-            ArrayList<ArrayList<Spell>> spellsList) {
+            ArrayList<Spell> spellsList) {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;

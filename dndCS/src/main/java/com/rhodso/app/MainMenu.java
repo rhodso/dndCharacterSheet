@@ -224,7 +224,9 @@ public class MainMenu extends javax.swing.JFrame {
                         // If the user has chosen a file that fits, try to load it
                         File f = jfc.getSelectedFile();
                         CharacterSheet cs = new CharacterSheet();
-                        cs.loadSheet(f.getAbsolutePath());
+                        System.out.println("Starting");
+                        cs.loadUI(f.getAbsolutePath());
+                        System.out.println("Done");
                 }
 
         }// GEN-LAST:event_loadCharButtonActionPerformed
