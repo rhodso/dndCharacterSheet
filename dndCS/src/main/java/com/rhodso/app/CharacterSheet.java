@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,7 +13,6 @@ public class CharacterSheet {
     private CharacterSheetUI ui;
 
     public Player loadSheet(String sheetFP) {
-        System.out.println("Filepath = " + sheetFP);
         // Settings.setLastFile(sheetFP);
 
         Player p = new Player();
@@ -141,19 +139,6 @@ public class CharacterSheet {
     }
 
     public void SaveSheet(Player p) {
-        /*
-         * try { JSONObject player = new JSONObject(); player.put("name", p.getName());
-         *
-         * File f = new File(sheetFP + ".tmp"); FileWriter fw = new FileWriter(f, true); //
-         * temporarily add .tmp if (f.exists()) { f.delete(); }
-         * System.out.println("Created new file: " + f.createNewFile());
-         * System.out.println(f.getAbsolutePath());
-         *
-         * String playerStr = player.toString();
-         *
-         * fw.write(playerStr); fw.append(playerStr); fw.flush(); fw.close(); } catch (Exception e)
-         * { System.out.println(e.getMessage()); }
-         */
         try {
             // Create string
             JSONObject player = new JSONObject();
@@ -174,30 +159,30 @@ public class CharacterSheet {
             player.put("int", p.getIntl());
             player.put("wis", p.getWis());
             player.put("cha", p.getCha());
-            player.put("athletics", p.getAtlethics());
+            player.put("athletics", p.getAthletics());
             player.put("acrobatics", p.getAcrobatics());
             player.put("sleightOfHand", p.getSleightOfHand());
             player.put("stealth", p.getStealth());
             player.put("arcana", p.getArcana());
             player.put("history", p.getHistory());
             player.put("investigation", p.getInvestigation());
-            player.put("nature",p.getNature());
-            player.put("religion", p.getReligion);
-            player.put("animalHandling", p.getAnimalHandling);
+            player.put("nature", p.getNature());
+            player.put("religion", p.getReligion());
+            player.put("animalHandling", p.getAnimalHandling());
             player.put("insight", p.getInsight());
             player.put("medicine", p.getMedicine());
             player.put("perception", p.getPerception());
-            player.put("survival",p.getSurvival());
-            player.put("deception",p.getDeception());
-            player.put("intimidation",p.getIntimidation());
-            player.put("performance". p.getPerformance());
+            player.put("survival", p.getSurvival());
+            player.put("deception", p.getDeception());
+            player.put("intimidation", p.getIntimidation());
+            player.put("performance", p.getPerformance());
             player.put("persuasion", p.getPersuasion());
             player.put("prof", p.getProf());
-            player.put("hitDieDR", p.getHitDieDRg());
-            player.put("speed",p.getSpeed());
+            player.put("hitDieDR", p.getHitDieDR());
+            player.put("speed", p.getSpeed());
             player.put("weaponResource", p.getWeaponResource());
-            player.put("cLevel", p.getCLevel());
-            player.put("spellAttack",p.getSpellAttack());
+            player.put("cLevel", p.getcLevel());
+            player.put("spellAttack", p.getSpellAttack());
             player.put("spellDC", p.getSpellDC());
 
             // Create array of objects for weapons
@@ -246,7 +231,7 @@ public class CharacterSheet {
 
             File fp = new File(sheetFP);
             String newfp = fp.getParent();
-            newfp = newfp + "/" + p.getName() + ".json.tmp"; // Add tmp for the moment
+            newfp = newfp + "/" + p.getName() + ".json"; // Add tmp for the moment
             File newFile = new File(newfp);
             if (newFile.exists()) {
                 newFile.delete();
@@ -263,7 +248,7 @@ public class CharacterSheet {
         }
     }
 
-    private int getModifier(int base) {
+    public int getModifier(int base) {
         int res = 0;
 
         res = Math.floorDiv(base, 2);
@@ -272,7 +257,7 @@ public class CharacterSheet {
         return res;
     }
 
-    private int getSave(String stat, Player p) {
+    public int getSave(String stat, Player p) {
 
         int res = 0;
         String cls = p.getChrClass();

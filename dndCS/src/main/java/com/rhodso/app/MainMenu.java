@@ -219,15 +219,14 @@ public class MainMenu extends javax.swing.JFrame {
                 JFileChooser jfc = new JFileChooser();
                 jfc.addChoosableFileFilter(new FileNameExtensionFilter("json files", ".json"));
                 // jfc.setCurrentDirectory(new File(Settings.getLastFile()));
+                jfc.setCurrentDirectory(new File("./dndCS/characters/"));
                 int result = jfc.showOpenDialog(MainPanel);
                 if (result == JFileChooser.APPROVE_OPTION) {
                         // If the user has chosen a file that fits, try to load it
                         File f = jfc.getSelectedFile();
                         // Settings.setLastFile(jfc.getSelectedFile().getParent());
                         CharacterSheet cs = new CharacterSheet(f.getAbsolutePath());
-                        System.out.println("Starting");
                         cs.loadUI(f.getAbsolutePath());
-                        System.out.println("Done");
                 }
 
         }// GEN-LAST:event_loadCharButtonActionPerformed

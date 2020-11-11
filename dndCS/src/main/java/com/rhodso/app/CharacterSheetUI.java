@@ -6126,14 +6126,40 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }
 
         private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newStr_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new strength value\nCurrent value is " + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newStr = 0;
                 try {
-                        System.out.println("Stated saving");
-                        c.SaveSheet(p);
-                        System.out.println("Finished saving");
+                        // Try to parse string
+                        newStr = Integer.parseInt(newStr_S);
                 } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
                 }
-        }// GEN-LAST:event_updateStrengthButtonActionPerformed
+                // If it didn't mess up, then set the str, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setStr(newStr);
+                        p.setStrMod(c.getModifier(newStr));
+                        p.setStrSave(newStr);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }
+
+        // GEN-LAST:event_updateStrengthButtonActionPerformed
 
         private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
                 // TODO add your handling code here:

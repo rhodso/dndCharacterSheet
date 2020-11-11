@@ -1,160 +1,14 @@
 {
-    "name": "Ghost",
-    "race": "Tiefling",
-    "class": "Warlock",
-    "subclass": "Archfey",
-    "hp": 18,
-    "hpMax": 18,
-    "ac": 11,
-    "xp": 0,
-    "lvl": 3,
-    "str": 10,
-    "dex": 10,
     "con": 13,
-    "int": 16,
-    "wis": 18,
-    "cha": 20,
-    "athletics": 0,
-    "acrobatics": 0,
+    "hp": 18,
+    "speed": 30,
+    "perception": 4,
+    "hpMax": 18,
+    "spellAttack": 7,
+    "deception": 7,
+    "dex": 10,
     "sleightOfHand": 0,
     "stealth": 0,
-    "arcana": 5,
-    "history": 3,
-    "investigation": 3,
-    "nature": 3,
-    "religion": 5,
-    "animalHandling": 4,
-    "insight": 4,
-    "medicine": 6,
-    "perception": 4,
-    "survival": 4,
-    "deception": 7,
-    "intimidation": 5,
-    "performance": 5,
-    "persuasion": 5,
-    "prof": 2,
-    "hitDieDR": "1d8",
-    "speed": 30,
-    "weaponResource": 0,
-    "cLevel": 0,
-    "spellAttack": 7,
-    "spellDC": 15,
-    "weapons": [
-        {
-            "name": "Crossbow, light",
-            "hitDR": "1d20",
-            "dmgDR": "1d8",
-            "range": "80/320",
-            "damageType": "Piercng",
-            "Proficiency": 2
-        },
-        {
-            "name": "Crossbow, light",
-            "hitDR": "1d20",
-            "dmgDR": "1d8",
-            "range": "80/320",
-            "damageType": "Piercng",
-            "Proficiency": 2
-        },
-        {
-            "name": "Dagger, silvered",
-            "hitDR": "1d20",
-            "dmgDR": "1d4",
-            "range": "20/60",
-            "damageType": "Piercng",
-            "Proficiency": 2
-        }
-    ],
-    "spells": [
-        {
-            "name": "Eldritch Blast",
-            "hitDR": "20",
-            "dmgDR": "1d10 +5",
-            "range": "120",
-            "damageType": "Force",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Guidance",
-            "hitDR": "20",
-            "dmgDR": "1d4",
-            "range": "0",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Mage Hand",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "30",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Prestidigitation",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "10",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Spare the dying",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "0",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Thaumaturgy",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "30",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Vicious Mockery",
-            "hitDR": "20",
-            "dmgDR": "1d4",
-            "range": "60",
-            "damageType": "Psychological",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Faerie Fire",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "60",
-            "damageType": "N/A",
-            "spellLevel": "1"
-        },
-        {
-            "name": "Sleep",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "90",
-            "damageType": "N/A",
-            "spellLevel": "1"
-        },
-        {
-            "name": "Unseen Servant",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "60",
-            "damageType": "0",
-            "spellLevel": "0"
-        },
-        {
-            "name": "Misty Step",
-            "hitDR": "20",
-            "dmgDR": "0",
-            "range": "30",
-            "damageType": "N/A",
-            "spellLevel": "0"
-        }
-    ],
     "currency": [
         2,
         19,
@@ -162,7 +16,153 @@
         0,
         0
     ],
+    "spells": [
+        {
+            "name": "Eldritch Blast",
+            "dmgDR": "1d10 +5",
+            "range": "120",
+            "hitDR": "20",
+            "damageType": "Force",
+            "spellLevel": 0
+        },
+        {
+            "name": "Guidance",
+            "dmgDR": "1d4",
+            "range": "0",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        },
+        {
+            "name": "Mage Hand",
+            "dmgDR": "0",
+            "range": "30",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        },
+        {
+            "name": "Prestidigitation",
+            "dmgDR": "0",
+            "range": "10",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        },
+        {
+            "name": "Spare the dying",
+            "dmgDR": "0",
+            "range": "0",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        },
+        {
+            "name": "Thaumaturgy",
+            "dmgDR": "0",
+            "range": "30",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        },
+        {
+            "name": "Vicious Mockery",
+            "dmgDR": "1d4",
+            "range": "60",
+            "hitDR": "20",
+            "damageType": "Psychological",
+            "spellLevel": 0
+        },
+        {
+            "name": "Faerie Fire",
+            "dmgDR": "0",
+            "range": "60",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 1
+        },
+        {
+            "name": "Sleep",
+            "dmgDR": "0",
+            "range": "90",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 1
+        },
+        {
+            "name": "Unseen Servant",
+            "dmgDR": "0",
+            "range": "60",
+            "hitDR": "20",
+            "damageType": "0",
+            "spellLevel": 0
+        },
+        {
+            "name": "Misty Step",
+            "dmgDR": "0",
+            "range": "30",
+            "hitDR": "20",
+            "damageType": "N\/A",
+            "spellLevel": 0
+        }
+    ],
+    "class": "Warlock",
+    "cha": 20,
+    "info": "Hmm",
+    "wis": 18,
+    "ac": 11,
+    "lvl": 3,
+    "race": "Tiefling",
+    "weaponResource": 0,
+    "nature": 3,
+    "survival": 4,
+    "medicine": 6,
+    "spellDC": 15,
+    "history": 3,
+    "prof": 2,
+    "int": 16,
+    "acrobatics": 0,
+    "religion": 5,
+    "cLevel": 0,
+    "str": 10,
+    "persuasion": 5,
+    "insight": 4,
+    "hitDieDR": "1d8",
+    "performance": 5,
     "background": "Hermit",
-    "alignment": "N/A",
-    "info": "Hmm"
+    "name": "Ghost",
+    "subclass": "Archfey",
+    "xp": 0,
+    "arcana": 5,
+    "investigation": 3,
+    "athletics": 0,
+    "alignment": "N\/A",
+    "intimidation": 5,
+    "weapons": [
+        {
+            "Proficiency": 2,
+            "name": "Crossbow, light",
+            "dmgDR": "1d8",
+            "range": "80\/320",
+            "hitDR": "1d20",
+            "damageType": "Piercng"
+        },
+        {
+            "Proficiency": 2,
+            "name": "Crossbow, light",
+            "dmgDR": "1d8",
+            "range": "80\/320",
+            "hitDR": "1d20",
+            "damageType": "Piercng"
+        },
+        {
+            "Proficiency": 2,
+            "name": "Dagger, silvered",
+            "dmgDR": "1d4",
+            "range": "20\/60",
+            "hitDR": "1d20",
+            "damageType": "Piercng"
+        }
+    ],
+    "animalHandling": 4
 }
