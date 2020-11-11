@@ -6130,26 +6130,26 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 boolean fail = false;
 
                 // Show input dialog
-                String newStr_S = JOptionPane.showInputDialog(updateStrengthButton,
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
                                 "Please enter new strength value\nCurrent value is " + p.getStr(),
                                 "Enter new value", JOptionPane.QUESTION_MESSAGE);
 
                 // Create int to parse string to
-                int newStr = 0;
+                int newVal = 0;
                 try {
                         // Try to parse string
-                        newStr = Integer.parseInt(newStr_S);
+                        newVal = Integer.parseInt(newVal_S);
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
                                         "Input error", JOptionPane.ERROR_MESSAGE);
                         fail = true;
                 }
-                // If it didn't mess up, then set the str, mod, and save, then update form and
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
                 // update the sheet
                 if (!fail) {
-                        p.setStr(newStr);
-                        p.setStrMod(c.getModifier(newStr));
-                        p.setStrSave(newStr);
+                        p.setStr(newVal);
+                        p.setStrMod(c.getModifier(newVal));
+                        p.setStrSave(newVal);
                         try {
                                 setComponentValues(p);
                                 c.SaveSheet(p);
@@ -6162,43 +6162,343 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         // GEN-LAST:event_updateStrengthButtonActionPerformed
 
         private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new proficiency value\nCurrent value is "
+                                                + p.getProf(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setProf(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_proficiencyUpdateButtonActionPerformed
 
         private void HitDiceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HitDiceUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new hit dice value\nCurrent value is "
+                                                + p.getHitDieDR(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setHitDieDR(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_HitDiceUpdateButtonActionPerformed
 
         private void SpeedUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SpeedUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new speed value\nCurrent value is " + p.getSpeed(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpeed(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_SpeedUpdateButtonActionPerformed
 
         private void ACUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ACUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new AC value\nCurrent value is " + p.getAc(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setAc(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_ACUpdateButtonActionPerformed
 
         private void HPUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HPUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                /*
+                 * String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
+                 * " and your max HP is " + p.getHpMax() +
+                 * ".\nIf you enter a negative value, that will be removed from the current value",
+                 * "Enter new value", JOptionPane.QUESTION_MESSAGE);
+                 */
+
+                String[] buttons =
+                                {"Set current hp", "Take from hp", "give to hp", "set to max hp"};
+                Object s = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new hp value\nCurrent value is " + p.getHp()
+                                                + " and your max HP is " + p.getHpMax(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE, null, buttons,
+                                buttons[0]);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt("7");
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        if (newVal > 0) {
+                                p.setHp(newVal);
+                        } else {
+                                p.setHp(p.getHp() - newVal);
+                        }
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_HPUpdateButtonActionPerformed
 
         private void updateIntelligenceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateIntelligenceButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new intelligence value\nCurrent value is "
+                                                + p.getIntl(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setIntl(newVal);
+                        p.setIntlMod(c.getModifier(newVal));
+                        p.setIntlSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_updateIntelligenceButtonActionPerformed
 
         private void updateDexterityButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateDexterityButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new dexterity value\nCurrent value is " + p.getDex(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setDex(newVal);
+                        p.setDexMod(c.getModifier(newVal));
+                        p.setDexSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_updateDexterityButtonActionPerformed
 
         private void updateWisdomButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateWisdomButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new wisdom value\nCurrent value is " + p.getWis(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setWis(newVal);
+                        p.setWisMod(c.getModifier(newVal));
+                        p.setWisSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_updateWisdomButtonActionPerformed
 
         private void updateConstitutionButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateConstitutionButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new constitution value\nCurrent value is "
+                                                + p.getCon(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setCon(newVal);
+                        p.setConMod(c.getModifier(newVal));
+                        p.setConSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_updateConstitutionButtonActionPerformed
 
         private void updateCharismaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateCharismaButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new charisma value\nCurrent value is " + p.getCha(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setCha(newVal);
+                        p.setChaMod(c.getModifier(newVal));
+                        p.setChaSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_updateCharismaButtonActionPerformed
 
         private void strengthCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_strengthCheckButtonActionPerformed
@@ -6321,59 +6621,241 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_persuasionCheckButtonActionPerformed
 
         private void weaponProficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponProficiencyUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new proficiency value\nCurrent value is "
+                                                + p.getProf(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setProf(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_weaponProficiencyUpdateButtonActionPerformed
 
         private void weaponStrengthUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponStrengthUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new strength value\nCurrent value is " + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setStr(newVal);
+                        p.setStrMod(c.getModifier(newVal));
+                        p.setStrSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_weaponStrengthUpdateButtonActionPerformed
 
         private void weaponResourceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponResourceUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new weapon resource value\nCurrent value is "
+                                                + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setWeaponResource(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_weaponResourceUpdateButtonActionPerformed
 
         private void weaponsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponsUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
 
         private void exampleWeaponRollHitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollHitActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_exampleWeaponRollHitActionPerformed
 
         private void exampleWeaponRollDamageActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollDamageActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_exampleWeaponRollDamageActionPerformed
 
         private void spellsCLevelUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsCLevelUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new C Level value\nCurrent value is " + p.getcLevel(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setcLevel(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_spellsCLevelUpdateButtonActionPerformed
 
         private void spellsAttackValueUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsAttackValueUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new spell attack value\nCurrent value is "
+                                                + p.getSpellAttack(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpellAttack(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_spellsAttackValueUpdateButtonActionPerformed
 
         private void spellsDCUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsDCUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new spell DC value\nCurrent value is "
+                                                + p.getSpellDC(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpellDC(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
         }// GEN-LAST:event_spellsDCUpdateButtonActionPerformed
 
         private void spellsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_spellsUpdateButtonActionPerformed
 
         private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_exampleSpellRollButtonActionPerformed
 
         private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cantripsUpdateButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_cantripsUpdateButtonActionPerformed
 
         private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButton1ActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_exampleSpellRollButton1ActionPerformed
 
         private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
 
         private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
