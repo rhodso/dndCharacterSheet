@@ -218,11 +218,12 @@ public class MainMenu extends javax.swing.JFrame {
                 // Create file choose, filter to JSON, and get the user to pick their JSON file
                 JFileChooser jfc = new JFileChooser();
                 jfc.addChoosableFileFilter(new FileNameExtensionFilter("json files", ".json"));
-                jfc.setCurrentDirectory(new File("."));
+                // jfc.setCurrentDirectory(new File(Settings.getLastFile()));
                 int result = jfc.showOpenDialog(MainPanel);
                 if (result == JFileChooser.APPROVE_OPTION) {
                         // If the user has chosen a file that fits, try to load it
                         File f = jfc.getSelectedFile();
+                        // Settings.setLastFile(jfc.getSelectedFile().getParent());
                         CharacterSheet cs = new CharacterSheet(f.getAbsolutePath());
                         System.out.println("Starting");
                         cs.loadUI(f.getAbsolutePath());

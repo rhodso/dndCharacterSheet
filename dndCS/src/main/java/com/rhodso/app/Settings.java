@@ -2,6 +2,7 @@ package com.rhodso.app;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -46,15 +47,14 @@ public class Settings {
     public static void setLastFile(String lastFile) {
         try {
             File f = new File("dndCS/settings/lastFile.txt");
-            FileWriter fw = new FileWriter(f);
+            FileOutputStream os = new FileOutputStream(f.getAbsolutePath());
             if (f.exists()) {
                 f.delete();
             }
             f.createNewFile();
-            File lastFilePath = new File(lastFile);
-            String pathToWrite = lastFilePath.getParent();
-            fw.write(pathToWrite);
-            fw.close();
+            byte[] strBytes = lastFile.getBytes();
+            os.write(strBytes);
+            os.close();
         } catch (Exception e) {
             System.out.println("Uh oh");
             System.out.println(e.getMessage());

@@ -158,12 +158,20 @@ public class CharacterSheet {
             // Create string
             JSONObject player = new JSONObject();
 
-            // Add shit to the class
+            // Add shit to the JSON string
             player.put("name", p.getName());
             player.put("race", p.getRace());
             player.put("class", p.getChrClass());
             player.put("subclass", p.getChrSubclass());
             player.put("hp", p.getHp());
+            player.put("hpMax", p.getHpMax());
+            player.put("ac", p.getAc());
+            player.put("xp", p.getXp());
+            player.put("lvl", p.getLvl());
+            player.put("str", p.getStr());
+            player.put("dex", p.getDex());
+            player.put("con", p.getCon());
+            player.put("int", p.getIntl());
             
 
             String playerStr = player.toString();
