@@ -1,6 +1,9 @@
 package com.rhodso.app;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -138,6 +141,41 @@ public class CharacterSheet {
         return p;
     }
 
+    public void SaveSheet(Player p) {
+        /*
+         * try { JSONObject player = new JSONObject(); player.put("name", p.getName());
+         * 
+         * File f = new File(sheetFP + ".tmp"); FileWriter fw = new FileWriter(f, true); //
+         * temporarily add .tmp if (f.exists()) { f.delete(); }
+         * System.out.println("Created new file: " + f.createNewFile());
+         * System.out.println(f.getAbsolutePath());
+         * 
+         * String playerStr = player.toString();
+         * 
+         * fw.write(playerStr); fw.append(playerStr); fw.flush(); fw.close(); } catch (Exception e)
+         * { System.out.println(e.getMessage()); }
+         */
+        try {
+            JSONObject player = new JSONObject();
+            player.put("name", p.getName());
+
+            File f = new File(sheetFP + ".tmp");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(f)); // temporarily add .tmp
+            if (f.exists()) {
+                f.delete();
+            }
+            System.out.println("Created new file: " + f.createNewFile());
+            System.out.println(f.getAbsolutePath());
+
+            String playerStr = player.toString();
+
+            bw.write(playerStr, 0, playerStr.length());
+            bw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private int getModifier(int base) {
         int res = 0;
 
@@ -205,7 +243,7 @@ public class CharacterSheet {
     }
 
     public void loadUI(String sheetFP) {
-        ui = new CharacterSheetUI(loadSheet(sheetFP));
+        ui = new CharacterSheetUI(loadSheet(sheetFP), this.sheetFP);
         ui.setVisible(true);
     }
 

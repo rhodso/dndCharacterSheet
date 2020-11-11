@@ -223,7 +223,7 @@ public class MainMenu extends javax.swing.JFrame {
                 if (result == JFileChooser.APPROVE_OPTION) {
                         // If the user has chosen a file that fits, try to load it
                         File f = jfc.getSelectedFile();
-                        CharacterSheet cs = new CharacterSheet();
+                        CharacterSheet cs = new CharacterSheet(f.getAbsolutePath());
                         System.out.println("Starting");
                         cs.loadUI(f.getAbsolutePath());
                         System.out.println("Done");

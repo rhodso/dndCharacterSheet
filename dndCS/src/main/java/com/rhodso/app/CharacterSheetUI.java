@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class CharacterSheetUI extends javax.swing.JFrame {
 
         Player p;
-
+        CharacterSheet c;
         /**
         *
         */
@@ -14,8 +14,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         /**
          * Creates new form characterSheetForm
          */
-        public CharacterSheetUI(Player _p) {
+        public CharacterSheetUI(Player _p, String _fp) {
                 this.p = _p;
+                this.c = new CharacterSheet(_fp);
                 initComponents();
                 setComponentValues(p);
         }
@@ -6125,7 +6126,13 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }
 
         private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
-                // TODO add your handling code here
+                try {
+                        System.out.println("Stated saving");
+                        c.SaveSheet(p);
+                        System.out.println("Finished saving");
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_updateStrengthButtonActionPerformed
 
         private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
