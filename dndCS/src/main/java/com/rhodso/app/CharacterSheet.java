@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -133,7 +134,6 @@ public class CharacterSheet {
             p.setChaSave(p.getChaMod() + getSave("cha", p));
 
 
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -143,14 +143,14 @@ public class CharacterSheet {
     public void SaveSheet(Player p) {
         /*
          * try { JSONObject player = new JSONObject(); player.put("name", p.getName());
-         * 
+         *
          * File f = new File(sheetFP + ".tmp"); FileWriter fw = new FileWriter(f, true); //
          * temporarily add .tmp if (f.exists()) { f.delete(); }
          * System.out.println("Created new file: " + f.createNewFile());
          * System.out.println(f.getAbsolutePath());
-         * 
+         *
          * String playerStr = player.toString();
-         * 
+         *
          * fw.write(playerStr); fw.append(playerStr); fw.flush(); fw.close(); } catch (Exception e)
          * { System.out.println(e.getMessage()); }
          */
@@ -173,7 +173,74 @@ public class CharacterSheet {
             player.put("con", p.getCon());
             player.put("int", p.getIntl());
             player.put("wis", p.getWis());
-            
+            player.put("cha", p.getCha());
+            player.put("athletics", p.getAtlethics());
+            player.put("acrobatics", p.getAcrobatics());
+            player.put("sleightOfHand", p.getSleightOfHand());
+            player.put("stealth", p.getStealth());
+            player.put("arcana", p.getArcana());
+            player.put("history", p.getHistory());
+            player.put("investigation", p.getInvestigation());
+            player.put("nature",p.getNature());
+            player.put("religion", p.getReligion);
+            player.put("animalHandling", p.getAnimalHandling);
+            player.put("insight", p.getInsight());
+            player.put("medicine", p.getMedicine());
+            player.put("perception", p.getPerception());
+            player.put("survival",p.getSurvival());
+            player.put("deception",p.getDeception());
+            player.put("intimidation",p.getIntimidation());
+            player.put("performance". p.getPerformance());
+            player.put("persuasion", p.getPersuasion());
+            player.put("prof", p.getProf());
+            player.put("hitDieDR", p.getHitDieDRg());
+            player.put("speed",p.getSpeed());
+            player.put("weaponResource", p.getWeaponResource());
+            player.put("cLevel", p.getCLevel());
+            player.put("spellAttack",p.getSpellAttack());
+            player.put("spellDC", p.getSpellDC());
+
+            // Create array of objects for weapons
+            JSONArray weaponObjects = new JSONArray();
+            for (Weapon w : p.getWeaponsList()) {
+                JSONObject weaponsObject = new JSONObject();
+                weaponsObject.put("name", w.getName());
+                weaponsObject.put("hitDR", w.getHitDR());
+                weaponsObject.put("dmgDR", w.getDmgDR());
+                weaponsObject.put("range", w.getRange());
+                weaponsObject.put("damageType", w.getDamageType());
+                weaponsObject.put("Proficiency", w.getProficiency());
+                weaponObjects.add(weaponsObject);
+            }
+            player.put("weapons", weaponObjects);
+
+            // Create array of objects for spells
+            JSONArray spellObjects = new JSONArray();
+            for (Spell s : p.getSpellsList()) {
+                JSONObject spellsObject = new JSONObject();
+                spellsObject.put("name", s.getName());
+                spellsObject.put("hitDR", s.getHitDR());
+                spellsObject.put("dmgDR", s.getDmgDR());
+                spellsObject.put("range", s.getRange());
+                spellsObject.put("damageType", s.getDamageType());
+                spellsObject.put("spellLevel", s.getSpellLevel());
+                spellObjects.add(spellsObject);
+            }
+            player.put("spells", spellObjects);
+
+            // Create array for currency
+            JSONArray currObject = new JSONArray();
+            currObject.add(0, p.getPP());
+            currObject.add(1, p.getGP());
+            currObject.add(2, p.getSP());
+            currObject.add(3, p.getCP());
+            currObject.add(4, p.getEP());
+            player.put("currency", currObject);
+
+            // Add rest of info
+            player.put("background", p.getBackground());
+            player.put("alignment", p.getAlignment());
+            player.put("info", p.getNotes());
 
             String playerStr = player.toString();
 
@@ -282,7 +349,7 @@ public class CharacterSheet {
     }
 
     /**
-     * 
+     *
      */
     public CharacterSheet() {
     }
