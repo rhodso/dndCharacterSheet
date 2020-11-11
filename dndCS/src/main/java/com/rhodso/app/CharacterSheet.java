@@ -172,6 +172,7 @@ public class CharacterSheet {
             player.put("dex", p.getDex());
             player.put("con", p.getCon());
             player.put("int", p.getIntl());
+            player.put("wis", p.getWis());
             
 
             String playerStr = player.toString();

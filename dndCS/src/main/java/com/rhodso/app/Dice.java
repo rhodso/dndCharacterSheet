@@ -8,6 +8,36 @@ public class Dice {
     private int sides;
     private int modifier;
 
+    /*
+     * @param _strDiceRep the DR to make a dice object from
+     */
+    public Dice(String _strDiceRep) { // Formatted as XXdYY+/-ZZ
+        String[] parts = _strDiceRep.split("d");
+        String[] parts2 = parts[1].split("\\+");
+        String[] parts3 = parts[1].split("-");
+
+        if (parts.length < 2) {
+            // Formatting incorrect, return default
+            number = 1;
+            sides = 20;
+            modifier = 0;
+        } else {
+            number = Integer.parseInt(parts[0]);
+            if (parts2.length == 1) { // Modifier is -ve or doesn't exist
+                sides = Integer.parseInt(parts[1]);
+                if (parts3.length == 1) {// Modifier doesn't exist
+                    modifier = 0;
+                } else { // Modifier is -ve
+                    modifier = Integer.parseInt(parts2[0]);
+                }
+            } else { // Modifier is +ve
+                sides = Integer.parseInt(parts2[0]);
+                modifier = Integer.parseInt(parts2[1]);
+            }
+        }
+
+    }
+
     public Dice(int _sides) { // Assume number of dice is 1 and modifier is 0
         sides = _sides;
         number = 1;
