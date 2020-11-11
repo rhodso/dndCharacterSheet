@@ -31,14 +31,7 @@ public class Dice {
             throw new IllegalArgumentException("Sides too low");
         } else if (number < 1) { // Number of dice too low
             throw new IllegalArgumentException("Too few dice to roll");
-        } else if (number == 1) { // Number is 1
-            // Pick random number
-            // Random random = new Random(Instant.now().getEpochSecond());
-            // int n = random.nextInt(sides + 1);
-            // n += 1;
-            // n += modifier;
-            // return n;
-        } else { // Number > 1
+        } else { // Number >= 1
             // Pick random number seeded by the current time
             Random random = new Random(Instant.now().getEpochSecond());
 
@@ -46,9 +39,9 @@ public class Dice {
             int total = 0;
             for (int i = 0; i < number; i++) {
                 // Get random number
-                int n = random.nextInt(sides + 1); // Add 1 to "Sides", then 1 to result so that the
-                                                   // random number is in
-                                                   // range 1-sides
+                int n = random.nextInt(sides); // Add 1 to "Sides", then 1 to result so that the
+                                               // random number is in
+                                               // range 1-sides
                 n += 1;
 
                 // Add number to total
@@ -62,8 +55,6 @@ public class Dice {
                 return total;
             }
         }
-        // If something goes wrong, return 0
-        return 0;
     }
 
     public static int roll(int _sides) {

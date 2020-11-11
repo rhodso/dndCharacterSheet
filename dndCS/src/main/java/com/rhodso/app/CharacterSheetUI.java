@@ -1,5 +1,7 @@
 package com.rhodso.app;
 
+import javax.swing.JOptionPane;
+
 public class CharacterSheetUI extends javax.swing.JFrame {
 
         Player p;
@@ -249,7 +251,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponStrengthUpdateButton = new javax.swing.JButton();
                 weaponResourcePanel = new javax.swing.JPanel();
                 weaponResourceLabel = new javax.swing.JLabel();
-                weaponResoueceValueLabel = new javax.swing.JLabel();
+                weaponResourceValueLabel = new javax.swing.JLabel();
                 weaponResourceUpdateButton = new javax.swing.JButton();
                 weaponsUpdateButton = new javax.swing.JButton();
                 weaponsListScrollPane = new javax.swing.JScrollPane();
@@ -4062,9 +4064,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponResourceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 weaponResourceLabel.setText("Resource");
 
-                weaponResoueceValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponResoueceValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                weaponResoueceValueLabel.setText("999");
+                weaponResourceValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                weaponResourceValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                weaponResourceValueLabel.setText("999");
 
                 weaponResourceUpdateButton.setText("Update");
                 weaponResourceUpdateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -4092,7 +4094,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 .addGroup(weaponResourcePanelLayout
                                                                                                 .createParallelGroup(
                                                                                                                 javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(weaponResoueceValueLabel,
+                                                                                                .addComponent(weaponResourceValueLabel,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 69,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4108,7 +4110,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(weaponResoueceValueLabel,
+                                                .addComponent(weaponResourceValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
@@ -6051,36 +6053,36 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 charismaSaveValueLabel.setText(formatStr(p.getChaSave()));
 
                 // ability scores
-                charStrengthValueLabel.setText(Integer.toString(p.getStrMod()));
-                charAthleticsValueLabel.setText(Integer.toString(p.getAthletics()));
-                charDexterityValueLabel.setText(Integer.toString(p.getDexMod()));
-                charAcrobaticsValueLabel.setText(Integer.toString(p.getAcrobatics()));
-                charSoHValueLabel.setText(Integer.toString(p.getSleightOfHand()));
-                charStealthValueLabel.setText(Integer.toString(p.getStealth()));
-                charIntelligenceValueLabel.setText(Integer.toString(p.getIntlMod()));
-                charArcanaValueLabel.setText(Integer.toString(p.getArcana()));
-                charHistoryValueLabel.setText(Integer.toString(p.getHistory()));
-                charInvestigationValueLabel.setText(Integer.toString(p.getInvestigation()));
-                charNatureValueLabel.setText(Integer.toString(p.getNature()));
-                charReligionValueLabel.setText(Integer.toString(p.getReligion()));
-                charWisdomValueLabel.setText(Integer.toString(p.getWisMod()));
-                charAnimalHandlingValueLabel.setText(Integer.toString(p.getAnimalHandling()));
-                charInsightValueLabel.setText(Integer.toString(p.getInsight()));
-                charMedicineValueLabel.setText(Integer.toString(p.getMedicine()));
-                charPerceptionValueLabel.setText(Integer.toString(p.getPerception()));
-                charSurvivalValueLabel.setText(Integer.toString(p.getSurvival()));
-                charCharismaValueLabel.setText(Integer.toString(p.getChaMod()));
-                charDeceptionValueLabel.setText(Integer.toString(p.getDeception()));
-                charIntimidationValueLabel.setText(Integer.toString(p.getIntimidation()));
-                charPerformanceValueLabel.setText(Integer.toString(p.getPerformance()));
-                charPersuasionValueLabel.setText(Integer.toString(p.getPersuasion()));
+                charStrengthValueLabel.setText(formatStr(p.getStrMod()));
+                charAthleticsValueLabel.setText(formatStr(p.getAthletics()));
+                charDexterityValueLabel.setText(formatStr(p.getDexMod()));
+                charAcrobaticsValueLabel.setText(formatStr(p.getAcrobatics()));
+                charSoHValueLabel.setText(formatStr(p.getSleightOfHand()));
+                charStealthValueLabel.setText(formatStr(p.getStealth()));
+                charIntelligenceValueLabel.setText(formatStr(p.getIntlMod()));
+                charArcanaValueLabel.setText(formatStr(p.getArcana()));
+                charHistoryValueLabel.setText(formatStr(p.getHistory()));
+                charInvestigationValueLabel.setText(formatStr(p.getInvestigation()));
+                charNatureValueLabel.setText(formatStr(p.getNature()));
+                charReligionValueLabel.setText(formatStr(p.getReligion()));
+                charWisdomValueLabel.setText(formatStr(p.getWisMod()));
+                charAnimalHandlingValueLabel.setText(formatStr(p.getAnimalHandling()));
+                charInsightValueLabel.setText(formatStr(p.getInsight()));
+                charMedicineValueLabel.setText(formatStr(p.getMedicine()));
+                charPerceptionValueLabel.setText(formatStr(p.getPerception()));
+                charSurvivalValueLabel.setText(formatStr(p.getSurvival()));
+                charCharismaValueLabel.setText(formatStr(p.getChaMod()));
+                charDeceptionValueLabel.setText(formatStr(p.getDeception()));
+                charIntimidationValueLabel.setText(formatStr(p.getIntimidation()));
+                charPerformanceValueLabel.setText(formatStr(p.getPerformance()));
+                charPersuasionValueLabel.setText(formatStr(p.getPersuasion()));
 
                 proficiencyValueLabel.setText(formatStr(p.getProf()));
 
                 // weapon info
                 weaponProficiencyValueLabel.setText(formatStr(p.getProf()));
                 weaponStrengthValueLable.setText(Integer.toString(p.getStr()));
-                weaponResoueceValueLabel.setText(Integer.toString(p.getWeaponResource()));
+                weaponResourceValueLabel.setText(Integer.toString(p.getWeaponResource()));
 
                 // spell info
                 spellsCLevelValueLabel.setText(Integer.toString(p.getcLevel()));
@@ -6105,9 +6107,25 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoNotes.setText(p.getNotes());
         }
 
+        String abilityCheck(int mod) {
+                // Create default string
+                String msg = "Rolled a ";
+
+                // Roll dice
+                int res = Dice.roll(20);
+
+                if (res == 1) {
+                        msg += "1, Critical Fail";
+                } else if (res == 20) {
+                        msg += "20 , Critical Success";
+                } else {
+                        msg += (res + " + " + mod + " makes " + (res + mod));
+                }
+                return msg;
+        }
 
         private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
-                // TODO add your handling code here:
+                // TODO add your handling code here
         }// GEN-LAST:event_updateStrengthButtonActionPerformed
 
         private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
@@ -6151,95 +6169,122 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_updateCharismaButtonActionPerformed
 
         private void strengthCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_strengthCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStrMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_strengthCheckButtonActionPerformed
 
         private void athleticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_athleticsCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAthletics()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_athleticsCheckButtonActionPerformed
 
         private void dexterityCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_dexterityCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDexMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_dexterityCheckButtonActionPerformed
 
         private void acrobaticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_acrobaticsCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAcrobatics()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_acrobaticsCheckButtonActionPerformed
 
         private void SoHCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SoHCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getSleightOfHand()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_SoHCheckButtonActionPerformed
 
         private void stealthCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stealthCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStealth()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_stealthCheckActionPerformed
 
         private void intelligenceCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intelligenceCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getIntlMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_intelligenceCheckActionPerformed
 
         private void arcanaCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_arcanaCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getArcana()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_arcanaCheckActionPerformed
 
         private void historyCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_historyCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getHistory()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_historyCheckActionPerformed
 
         private void investigationCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_investigationCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getInvestigation()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_investigationCheckActionPerformed
 
         private void natureCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_natureCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getNature()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_natureCheckActionPerformed
 
         private void religionCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_religionCheckActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getReligion()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_religionCheckActionPerformed
 
         private void wisdomCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wisdomCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getWisMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_wisdomCheckButtonActionPerformed
 
         private void animalHandlingCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_animalHandlingCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getAnimalHandling()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_animalHandlingCheckButtonActionPerformed
 
         private void insightCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_insightCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getInsight()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_insightCheckButtonActionPerformed
 
         private void medicineCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_medicineCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getMedicine()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_medicineCheckButtonActionPerformed
 
         private void perceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_perceptionCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerception()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_perceptionCheckButtonActionPerformed
 
         private void survivalCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_survivalCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getSurvival()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_survivalCheckButtonActionPerformed
 
         private void charismaCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_charismaCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getChaMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_charismaCheckButtonActionPerformed
 
         private void deceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deceptionCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDeception()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_deceptionCheckButtonActionPerformed
 
         private void intimidationCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intimidationCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getIntimidation()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_intimidationCheckButtonActionPerformed
 
         private void performanceCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_performanceCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerformance()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_performanceCheckButtonActionPerformed
 
         private void persuasionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_persuasionCheckButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPersuasion()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
         }// GEN-LAST:event_persuasionCheckButtonActionPerformed
 
         private void weaponProficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponProficiencyUpdateButtonActionPerformed
@@ -6626,7 +6671,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel weaponProficiencyPanel;
         private javax.swing.JButton weaponProficiencyUpdateButton;
         private javax.swing.JLabel weaponProficiencyValueLabel;
-        private javax.swing.JLabel weaponResoueceValueLabel;
+        private javax.swing.JLabel weaponResourceValueLabel;
         private javax.swing.JLabel weaponResourceLabel;
         private javax.swing.JPanel weaponResourcePanel;
         private javax.swing.JButton weaponResourceUpdateButton;
