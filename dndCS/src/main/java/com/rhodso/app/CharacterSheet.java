@@ -30,6 +30,7 @@ public class CharacterSheet {
 
             // Assign player vars
             p.setName(player.get("name").toString());
+            p.setRace(player.get("race").toString());
             p.setChrClass(player.get("class").toString());
             p.setChrSubclass(player.get("subclass").toString());
             p.setHp(Integer.parseInt((player.get("hp").toString())));
@@ -61,7 +62,9 @@ public class CharacterSheet {
             p.setIntimidation(Integer.parseInt((player.get("intimidation")).toString()));
             p.setPerformance(Integer.parseInt((player.get("performance")).toString()));
             p.setPersuasion(Integer.parseInt((player.get("persuasion")).toString()));
-            p.setProf(Integer.parseInt((player.get("weapponProf")).toString()));
+            p.setProf(Integer.parseInt((player.get("prof")).toString()));
+            p.setHitDieDR(player.get("hitDieDR").toString());
+            p.setSpeed(Integer.parseInt((player.get("speed").toString())));
             p.setWeaponResource(Integer.parseInt((player.get("weaponResource")).toString()));
             p.setcLevel(Integer.parseInt((player.get("cLevel")).toString()));
             p.setSpellAttack(Integer.parseInt((player.get("spellAttack")).toString()));

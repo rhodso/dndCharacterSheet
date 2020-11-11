@@ -2,6 +2,8 @@ package com.rhodso.app;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
 
+        Player p;
+
         /**
         *
         */
@@ -10,7 +12,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         /**
          * Creates new form characterSheetForm
          */
-        public CharacterSheetUI(Player p) {
+        public CharacterSheetUI(Player _p) {
+                this.p = _p;
                 initComponents();
                 setComponentValues(p);
         }
@@ -70,61 +73,61 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthLabel2 = new javax.swing.JLabel();
                 strengthSavePanel2 = new javax.swing.JPanel();
                 strengthSaveLabel2 = new javax.swing.JLabel();
-                strengthSaveValueLabel2 = new javax.swing.JLabel();
+                intelligenceSaveValueLabel = new javax.swing.JLabel();
                 strengthModifierPanel1 = new javax.swing.JPanel();
                 strengthModifierLabel1 = new javax.swing.JLabel();
-                strengthModifierValueLabel1 = new javax.swing.JLabel();
+                intelligenceModifierValueLabel = new javax.swing.JLabel();
                 strengthScorePanel1 = new javax.swing.JPanel();
                 strengthScoreLabel1 = new javax.swing.JLabel();
-                strengthScoreValueLabel1 = new javax.swing.JLabel();
+                intelligenceScoreValueLabel = new javax.swing.JLabel();
                 updateIntelligenceButton = new javax.swing.JButton();
                 dexterityPanel = new javax.swing.JPanel();
                 strengthLabel4 = new javax.swing.JLabel();
                 strengthSavePanel4 = new javax.swing.JPanel();
                 strengthSaveLabel4 = new javax.swing.JLabel();
-                strengthSaveValueLabel4 = new javax.swing.JLabel();
+                dexteritySaveValueLabel = new javax.swing.JLabel();
                 strengthModifierPanel3 = new javax.swing.JPanel();
                 strengthModifierLabel3 = new javax.swing.JLabel();
-                strengthModifierValueLabel3 = new javax.swing.JLabel();
+                dexterityModifierValueLabel = new javax.swing.JLabel();
                 strengthScorePanel3 = new javax.swing.JPanel();
                 strengthScoreLabel3 = new javax.swing.JLabel();
-                strengthScoreValueLabel3 = new javax.swing.JLabel();
+                dexterityScoreValueLabel = new javax.swing.JLabel();
                 updateDexterityButton = new javax.swing.JButton();
                 wisdomPanel = new javax.swing.JPanel();
                 strengthLabel3 = new javax.swing.JLabel();
                 strengthSavePanel3 = new javax.swing.JPanel();
                 strengthSaveLabel3 = new javax.swing.JLabel();
-                strengthSaveValueLabel3 = new javax.swing.JLabel();
+                wisdomSaveValueLabel = new javax.swing.JLabel();
                 strengthModifierPanel2 = new javax.swing.JPanel();
                 strengthModifierLabel2 = new javax.swing.JLabel();
-                strengthModifierValueLabel2 = new javax.swing.JLabel();
+                wisdomModifierValueLabel = new javax.swing.JLabel();
                 strengthScorePanel2 = new javax.swing.JPanel();
                 strengthScoreLabel2 = new javax.swing.JLabel();
-                strengthScoreValueLabel2 = new javax.swing.JLabel();
+                wisdomScoreValueLabel = new javax.swing.JLabel();
                 updateWisdomButton = new javax.swing.JButton();
                 constitutionPanel = new javax.swing.JPanel();
                 strengthLabel6 = new javax.swing.JLabel();
                 strengthSavePanel6 = new javax.swing.JPanel();
                 strengthSaveLabel6 = new javax.swing.JLabel();
-                strengthSaveValueLabel6 = new javax.swing.JLabel();
+                constitutionSaveValueLabel = new javax.swing.JLabel();
                 strengthModifierPanel5 = new javax.swing.JPanel();
                 strengthModifierLabel5 = new javax.swing.JLabel();
-                strengthModifierValueLabel5 = new javax.swing.JLabel();
+                constitutionModifierValueLabel = new javax.swing.JLabel();
                 strengthScorePanel5 = new javax.swing.JPanel();
                 strengthScoreLabel5 = new javax.swing.JLabel();
-                strengthScoreValueLabel5 = new javax.swing.JLabel();
+                constitutionScoreValueLabel = new javax.swing.JLabel();
                 updateConstitutionButton = new javax.swing.JButton();
                 charismaPanel = new javax.swing.JPanel();
                 strengthLabel5 = new javax.swing.JLabel();
                 strengthSavePanel5 = new javax.swing.JPanel();
                 strengthSaveLabel5 = new javax.swing.JLabel();
-                strengthSaveValueLabel5 = new javax.swing.JLabel();
+                charismaSaveValueLabel = new javax.swing.JLabel();
                 strengthModifierPanel4 = new javax.swing.JPanel();
                 strengthModifierLabel4 = new javax.swing.JLabel();
-                strengthModifierValueLabel4 = new javax.swing.JLabel();
+                charismaModifierValueLabel = new javax.swing.JLabel();
                 strengthScorePanel4 = new javax.swing.JPanel();
                 strengthScoreLabel4 = new javax.swing.JLabel();
-                strengthScoreValueLabel4 = new javax.swing.JLabel();
+                charismaScoreValueLabel = new javax.swing.JLabel();
                 updateCharismaButton = new javax.swing.JButton();
                 abilitiesPanel = new javax.swing.JPanel();
                 abilitiesCharacterName = new javax.swing.JLabel();
@@ -185,7 +188,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 religionCheck = new javax.swing.JButton();
                 abilitiesWisdomSectionPanel = new javax.swing.JPanel();
                 abilitiesWisdomPanel = new javax.swing.JPanel();
-                charWidomValueLabel = new javax.swing.JLabel();
+                charWisdomValueLabel = new javax.swing.JLabel();
                 charWisdomLabel = new javax.swing.JLabel();
                 wisdomCheckButton = new javax.swing.JButton();
                 abilitiesAnimalHandlingPanel = new javax.swing.JPanel();
@@ -312,41 +315,41 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoHeaderPanel = new javax.swing.JPanel();
                 infoCharacterClassPanel1 = new javax.swing.JPanel();
                 infoCharacterClassLabel1 = new javax.swing.JLabel();
-                infoCharacterClassTextBox1 = new javax.swing.JTextField();
+                infoCharacterClassTextBox = new javax.swing.JTextField();
                 infoCharacterClassPanel3 = new javax.swing.JPanel();
                 infoCharacterClassLabel3 = new javax.swing.JLabel();
-                infoCharacterClassTextBox3 = new javax.swing.JTextField();
+                infoCharacterRaceTextBox = new javax.swing.JTextField();
                 infoCharacterClassPanel4 = new javax.swing.JPanel();
                 infoCharacterClassLabel4 = new javax.swing.JLabel();
-                infoCharacterClassTextBox4 = new javax.swing.JTextField();
+                infoCharacterBackgroundTextBox = new javax.swing.JTextField();
                 infoCharacterClassPanel5 = new javax.swing.JPanel();
                 infoCharacterClassLabel5 = new javax.swing.JLabel();
-                infoCharacterClassTextBox5 = new javax.swing.JTextField();
+                infoCharacterAlignmentTextBox = new javax.swing.JTextField();
                 infoCharacterClassPanel6 = new javax.swing.JPanel();
                 infoCharacterClassLabel6 = new javax.swing.JLabel();
-                infoCharacterClassTextBox6 = new javax.swing.JTextField();
+                infoCharacterXPTextBox = new javax.swing.JTextField();
                 jPanel2 = new javax.swing.JPanel();
                 jPanel3 = new javax.swing.JPanel();
                 jLabel1 = new javax.swing.JLabel();
-                jLabel2 = new javax.swing.JLabel();
+                infoPPValueLabel = new javax.swing.JLabel();
                 jPanel4 = new javax.swing.JPanel();
                 jLabel5 = new javax.swing.JLabel();
-                jLabel6 = new javax.swing.JLabel();
+                infoGPValueLabel = new javax.swing.JLabel();
                 jPanel5 = new javax.swing.JPanel();
                 jLabel7 = new javax.swing.JLabel();
-                jLabel8 = new javax.swing.JLabel();
+                infoSPValueLabel = new javax.swing.JLabel();
                 jPanel6 = new javax.swing.JPanel();
                 jLabel9 = new javax.swing.JLabel();
-                jLabel10 = new javax.swing.JLabel();
+                infoCPValueLabel = new javax.swing.JLabel();
                 jPanel7 = new javax.swing.JPanel();
                 jLabel11 = new javax.swing.JLabel();
-                jLabel12 = new javax.swing.JLabel();
+                infoEPValueLabel = new javax.swing.JLabel();
                 jButton1 = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
-                jTextArea1 = new javax.swing.JTextArea();
+                infoNotes = new javax.swing.JTextArea();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-                setTitle("DCS - Character Sheet");
+                setTitle("dndCS - Character Sheet - " + p.getName());
 
                 headerLabel.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
                 headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -947,9 +950,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthSaveLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthSaveLabel2.setText("Save");
 
-                strengthSaveValueLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthSaveValueLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthSaveValueLabel2.setText("999");
+                intelligenceSaveValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                intelligenceSaveValueLabel
+                                .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                intelligenceSaveValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthSavePanel2Layout =
                                 new javax.swing.GroupLayout(strengthSavePanel2);
@@ -962,7 +966,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthSavePanel2Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthSaveValueLabel2,
+                                                                                .addComponent(intelligenceSaveValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -977,7 +981,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthSaveLabel2)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthSaveValueLabel2,
+                                                .addComponent(intelligenceSaveValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -988,10 +992,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthModifierLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthModifierLabel1.setText("Modifer");
 
-                strengthModifierValueLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthModifierValueLabel1
+                intelligenceModifierValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                intelligenceModifierValueLabel
                                 .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthModifierValueLabel1.setText("999");
+                intelligenceModifierValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthModifierPanel1Layout =
                                 new javax.swing.GroupLayout(strengthModifierPanel1);
@@ -1004,7 +1008,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthModifierPanel1Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthModifierValueLabel1,
+                                                                                .addComponent(intelligenceModifierValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1020,7 +1024,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addComponent(strengthModifierLabel1)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthModifierValueLabel1,
+                                                .addComponent(intelligenceModifierValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1031,9 +1035,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthScoreLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthScoreLabel1.setText("Score");
 
-                strengthScoreValueLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthScoreValueLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthScoreValueLabel1.setText("999");
+                intelligenceScoreValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                intelligenceScoreValueLabel
+                                .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                intelligenceScoreValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthScorePanel1Layout =
                                 new javax.swing.GroupLayout(strengthScorePanel1);
@@ -1046,7 +1051,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthScorePanel1Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthScoreValueLabel1,
+                                                                                .addComponent(intelligenceScoreValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1061,7 +1066,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthScoreLabel1)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthScoreValueLabel1,
+                                                .addComponent(intelligenceScoreValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1160,9 +1165,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthSaveLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthSaveLabel4.setText("Save");
 
-                strengthSaveValueLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthSaveValueLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthSaveValueLabel4.setText("999");
+                dexteritySaveValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                dexteritySaveValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                dexteritySaveValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthSavePanel4Layout =
                                 new javax.swing.GroupLayout(strengthSavePanel4);
@@ -1175,7 +1180,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthSavePanel4Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthSaveValueLabel4,
+                                                                                .addComponent(dexteritySaveValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -1190,7 +1195,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthSaveLabel4)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthSaveValueLabel4,
+                                                .addComponent(dexteritySaveValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1201,10 +1206,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthModifierLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthModifierLabel3.setText("Modifer");
 
-                strengthModifierValueLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthModifierValueLabel3
+                dexterityModifierValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                dexterityModifierValueLabel
                                 .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthModifierValueLabel3.setText("999");
+                dexterityModifierValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthModifierPanel3Layout =
                                 new javax.swing.GroupLayout(strengthModifierPanel3);
@@ -1217,7 +1222,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthModifierPanel3Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthModifierValueLabel3,
+                                                                                .addComponent(dexterityModifierValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1233,7 +1238,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addComponent(strengthModifierLabel3)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthModifierValueLabel3,
+                                                .addComponent(dexterityModifierValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1244,9 +1249,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthScoreLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthScoreLabel3.setText("Score");
 
-                strengthScoreValueLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthScoreValueLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthScoreValueLabel3.setText("999");
+                dexterityScoreValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                dexterityScoreValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                dexterityScoreValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthScorePanel3Layout =
                                 new javax.swing.GroupLayout(strengthScorePanel3);
@@ -1259,7 +1264,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthScorePanel3Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthScoreValueLabel3,
+                                                                                .addComponent(dexterityScoreValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1274,7 +1279,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthScoreLabel3)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthScoreValueLabel3,
+                                                .addComponent(dexterityScoreValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1369,9 +1374,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthSaveLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthSaveLabel3.setText("Save");
 
-                strengthSaveValueLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthSaveValueLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthSaveValueLabel3.setText("999");
+                wisdomSaveValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                wisdomSaveValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                wisdomSaveValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthSavePanel3Layout =
                                 new javax.swing.GroupLayout(strengthSavePanel3);
@@ -1384,7 +1389,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthSavePanel3Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthSaveValueLabel3,
+                                                                                .addComponent(wisdomSaveValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -1399,7 +1404,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthSaveLabel3)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthSaveValueLabel3,
+                                                .addComponent(wisdomSaveValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1410,10 +1415,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthModifierLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthModifierLabel2.setText("Modifer");
 
-                strengthModifierValueLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthModifierValueLabel2
-                                .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthModifierValueLabel2.setText("999");
+                wisdomModifierValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                wisdomModifierValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                wisdomModifierValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthModifierPanel2Layout =
                                 new javax.swing.GroupLayout(strengthModifierPanel2);
@@ -1426,7 +1430,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthModifierPanel2Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthModifierValueLabel2,
+                                                                                .addComponent(wisdomModifierValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1442,7 +1446,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addComponent(strengthModifierLabel2)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthModifierValueLabel2,
+                                                .addComponent(wisdomModifierValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1453,9 +1457,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthScoreLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthScoreLabel2.setText("Score");
 
-                strengthScoreValueLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthScoreValueLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthScoreValueLabel2.setText("999");
+                wisdomScoreValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                wisdomScoreValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                wisdomScoreValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthScorePanel2Layout =
                                 new javax.swing.GroupLayout(strengthScorePanel2);
@@ -1468,7 +1472,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthScorePanel2Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthScoreValueLabel2,
+                                                                                .addComponent(wisdomScoreValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1483,7 +1487,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthScoreLabel2)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthScoreValueLabel2,
+                                                .addComponent(wisdomScoreValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1577,9 +1581,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthSaveLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthSaveLabel6.setText("Save");
 
-                strengthSaveValueLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthSaveValueLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthSaveValueLabel6.setText("999");
+                constitutionSaveValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                constitutionSaveValueLabel
+                                .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                constitutionSaveValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthSavePanel6Layout =
                                 new javax.swing.GroupLayout(strengthSavePanel6);
@@ -1592,7 +1597,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthSavePanel6Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthSaveValueLabel6,
+                                                                                .addComponent(constitutionSaveValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -1607,7 +1612,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthSaveLabel6)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthSaveValueLabel6,
+                                                .addComponent(constitutionSaveValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1618,10 +1623,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthModifierLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthModifierLabel5.setText("Modifer");
 
-                strengthModifierValueLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthModifierValueLabel5
+                constitutionModifierValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                constitutionModifierValueLabel
                                 .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthModifierValueLabel5.setText("999");
+                constitutionModifierValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthModifierPanel5Layout =
                                 new javax.swing.GroupLayout(strengthModifierPanel5);
@@ -1634,7 +1639,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthModifierPanel5Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthModifierValueLabel5,
+                                                                                .addComponent(constitutionModifierValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1650,7 +1655,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addComponent(strengthModifierLabel5)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthModifierValueLabel5,
+                                                .addComponent(constitutionModifierValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1661,9 +1666,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthScoreLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthScoreLabel5.setText("Score");
 
-                strengthScoreValueLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthScoreValueLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthScoreValueLabel5.setText("999");
+                constitutionScoreValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                constitutionScoreValueLabel
+                                .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                constitutionScoreValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthScorePanel5Layout =
                                 new javax.swing.GroupLayout(strengthScorePanel5);
@@ -1676,7 +1682,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthScorePanel5Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthScoreValueLabel5,
+                                                                                .addComponent(constitutionScoreValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1691,7 +1697,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthScoreLabel5)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthScoreValueLabel5,
+                                                .addComponent(constitutionScoreValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1790,9 +1796,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthSaveLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthSaveLabel5.setText("Save");
 
-                strengthSaveValueLabel5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthSaveValueLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthSaveValueLabel5.setText("999");
+                charismaSaveValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                charismaSaveValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                charismaSaveValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthSavePanel5Layout =
                                 new javax.swing.GroupLayout(strengthSavePanel5);
@@ -1805,7 +1811,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthSavePanel5Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthSaveValueLabel5,
+                                                                                .addComponent(charismaSaveValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 Short.MAX_VALUE)
@@ -1820,7 +1826,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthSaveLabel5)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthSaveValueLabel5,
+                                                .addComponent(charismaSaveValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1831,10 +1837,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthModifierLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthModifierLabel4.setText("Modifer");
 
-                strengthModifierValueLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthModifierValueLabel4
+                charismaModifierValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                charismaModifierValueLabel
                                 .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthModifierValueLabel4.setText("999");
+                charismaModifierValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthModifierPanel4Layout =
                                 new javax.swing.GroupLayout(strengthModifierPanel4);
@@ -1847,7 +1853,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthModifierPanel4Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthModifierValueLabel4,
+                                                                                .addComponent(charismaModifierValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1863,7 +1869,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addComponent(strengthModifierLabel4)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthModifierValueLabel4,
+                                                .addComponent(charismaModifierValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -1874,9 +1880,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 strengthScoreLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 strengthScoreLabel4.setText("Score");
 
-                strengthScoreValueLabel4.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                strengthScoreValueLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                strengthScoreValueLabel4.setText("999");
+                charismaScoreValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                charismaScoreValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                charismaScoreValueLabel.setText("999");
 
                 javax.swing.GroupLayout strengthScorePanel4Layout =
                                 new javax.swing.GroupLayout(strengthScorePanel4);
@@ -1889,7 +1895,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 .addGroup(strengthScorePanel4Layout
                                                                                 .createParallelGroup(
                                                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(strengthScoreValueLabel4,
+                                                                                .addComponent(charismaScoreValueLabel,
                                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                                 74,
                                                                                                 Short.MAX_VALUE)
@@ -1904,7 +1910,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .addContainerGap().addComponent(strengthScoreLabel4)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(strengthScoreValueLabel4,
+                                                .addComponent(charismaScoreValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 54, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -3011,9 +3017,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 abilitiesWisdomPanel.setBorder(javax.swing.BorderFactory
                                 .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                charWidomValueLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-                charWidomValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                charWidomValueLabel.setText("99");
+                charWisdomValueLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                charWisdomValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                charWisdomValueLabel.setText("99");
 
                 charWisdomLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                 charWisdomLabel.setText("Wisdom");
@@ -3040,7 +3046,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 Short.MAX_VALUE)
                                                                 .addPreferredGap(
                                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(charWidomValueLabel,
+                                                                .addComponent(charWisdomValueLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 37,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3056,7 +3062,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 38,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(charWidomValueLabel,
+                                                .addComponent(charWisdomValueLabel,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 38,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5225,8 +5231,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterClassLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 infoCharacterClassLabel1.setText("Class");
 
-                infoCharacterClassTextBox1.setText("CharacterClass");
-                infoCharacterClassTextBox1.addActionListener(new java.awt.event.ActionListener() {
+                infoCharacterClassTextBox.setText("CharacterClass");
+                infoCharacterClassTextBox.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 infoCharacterClassTextBox1ActionPerformed(evt);
                         }
@@ -5246,7 +5252,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterClassTextBox1,
+                                                                .addComponent(infoCharacterClassTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -5261,7 +5267,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterClassTextBox1)
+                                                .addComponent(infoCharacterClassTextBox)
                                                 .addContainerGap()));
 
                 infoCharacterClassPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -5271,8 +5277,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterClassLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 infoCharacterClassLabel3.setText("Race");
 
-                infoCharacterClassTextBox3.setText("characterRace");
-                infoCharacterClassTextBox3.addActionListener(new java.awt.event.ActionListener() {
+                infoCharacterRaceTextBox.setText("characterRace");
+                infoCharacterRaceTextBox.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 infoCharacterClassTextBox3ActionPerformed(evt);
                         }
@@ -5292,7 +5298,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterClassTextBox3,
+                                                                .addComponent(infoCharacterRaceTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -5307,7 +5313,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterClassTextBox3,
+                                                .addComponent(infoCharacterRaceTextBox,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 115, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5319,12 +5325,14 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterClassLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 infoCharacterClassLabel4.setText("Background");
 
-                infoCharacterClassTextBox4.setText("characterBackground");
-                infoCharacterClassTextBox4.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                infoCharacterClassTextBox4ActionPerformed(evt);
-                        }
-                });
+                infoCharacterBackgroundTextBox.setText("characterBackground");
+                infoCharacterBackgroundTextBox
+                                .addActionListener(new java.awt.event.ActionListener() {
+                                        public void actionPerformed(
+                                                        java.awt.event.ActionEvent evt) {
+                                                infoCharacterClassTextBox4ActionPerformed(evt);
+                                        }
+                                });
 
                 javax.swing.GroupLayout infoCharacterClassPanel4Layout =
                                 new javax.swing.GroupLayout(infoCharacterClassPanel4);
@@ -5340,7 +5348,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterClassTextBox4,
+                                                                .addComponent(infoCharacterBackgroundTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -5355,7 +5363,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterClassTextBox4,
+                                                .addComponent(infoCharacterBackgroundTextBox,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 115, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5367,12 +5375,14 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterClassLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 infoCharacterClassLabel5.setText("Alignment");
 
-                infoCharacterClassTextBox5.setText("characterAlignment");
-                infoCharacterClassTextBox5.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                infoCharacterClassTextBox5ActionPerformed(evt);
-                        }
-                });
+                infoCharacterAlignmentTextBox.setText("characterAlignment");
+                infoCharacterAlignmentTextBox
+                                .addActionListener(new java.awt.event.ActionListener() {
+                                        public void actionPerformed(
+                                                        java.awt.event.ActionEvent evt) {
+                                                infoCharacterClassTextBox5ActionPerformed(evt);
+                                        }
+                                });
 
                 javax.swing.GroupLayout infoCharacterClassPanel5Layout =
                                 new javax.swing.GroupLayout(infoCharacterClassPanel5);
@@ -5388,7 +5398,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterClassTextBox5,
+                                                                .addComponent(infoCharacterAlignmentTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -5403,7 +5413,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterClassTextBox5,
+                                                .addComponent(infoCharacterAlignmentTextBox,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 115, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5415,8 +5425,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterClassLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 infoCharacterClassLabel6.setText("Experience");
 
-                infoCharacterClassTextBox6.setText("characterExperience");
-                infoCharacterClassTextBox6.addActionListener(new java.awt.event.ActionListener() {
+                infoCharacterXPTextBox.setText("characterExperience");
+                infoCharacterXPTextBox.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 infoCharacterClassTextBox6ActionPerformed(evt);
                         }
@@ -5436,7 +5446,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterClassTextBox6,
+                                                                .addComponent(infoCharacterXPTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -5451,7 +5461,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterClassTextBox6,
+                                                .addComponent(infoCharacterXPTextBox,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 115, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5523,9 +5533,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 jLabel1.setText("Platinum");
 
-                jLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jLabel2.setText("999");
+                infoPPValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                infoPPValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                infoPPValueLabel.setText("999");
 
                 javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
                 jPanel3.setLayout(jPanel3Layout);
@@ -5535,7 +5545,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .createSequentialGroup().addContainerGap()
                                                 .addGroup(jPanel3Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel2,
+                                                                .addComponent(infoPPValueLabel,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
@@ -5553,7 +5563,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel2,
+                                                .addComponent(infoPPValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
@@ -5567,9 +5577,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 jLabel5.setText("Gold");
 
-                jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jLabel6.setText("999");
+                infoGPValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                infoGPValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                infoGPValueLabel.setText("999");
 
                 javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
                 jPanel4.setLayout(jPanel4Layout);
@@ -5579,7 +5589,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .createSequentialGroup().addContainerGap()
                                                 .addGroup(jPanel4Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel6,
+                                                                .addComponent(infoGPValueLabel,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 104,
                                                                                 Short.MAX_VALUE)
@@ -5597,7 +5607,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel6,
+                                                .addComponent(infoGPValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
@@ -5611,9 +5621,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 jLabel7.setText("Silver");
 
-                jLabel8.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jLabel8.setText("999");
+                infoSPValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                infoSPValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                infoSPValueLabel.setText("999");
 
                 javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
                 jPanel5.setLayout(jPanel5Layout);
@@ -5623,7 +5633,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .createSequentialGroup().addContainerGap()
                                                 .addGroup(jPanel5Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel8,
+                                                                .addComponent(infoSPValueLabel,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 104,
                                                                                 Short.MAX_VALUE)
@@ -5641,7 +5651,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel8,
+                                                .addComponent(infoSPValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 62, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5654,9 +5664,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 jLabel9.setText("Copper");
 
-                jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jLabel10.setText("999");
+                infoCPValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                infoCPValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                infoCPValueLabel.setText("999");
 
                 javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
                 jPanel6.setLayout(jPanel6Layout);
@@ -5666,7 +5676,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .createSequentialGroup().addContainerGap()
                                                 .addGroup(jPanel6Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel10,
+                                                                .addComponent(infoCPValueLabel,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 104,
                                                                                 Short.MAX_VALUE)
@@ -5684,7 +5694,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel10,
+                                                .addComponent(infoCPValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 62, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5697,9 +5707,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 jLabel11.setText("Electrum");
 
-                jLabel12.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                jLabel12.setText("999");
+                infoEPValueLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                infoEPValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                infoEPValueLabel.setText("999");
 
                 javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
                 jPanel7.setLayout(jPanel7Layout);
@@ -5709,7 +5719,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 .createSequentialGroup().addContainerGap()
                                                 .addGroup(jPanel7Layout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(jLabel12,
+                                                                .addComponent(infoEPValueLabel,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 104,
                                                                                 Short.MAX_VALUE)
@@ -5727,7 +5737,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel12,
+                                                .addComponent(infoEPValueLabel,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 62, Short.MAX_VALUE)
                                                 .addContainerGap()));
@@ -5803,9 +5813,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 Short.MAX_VALUE)
                                                 .addContainerGap()));
 
-                jTextArea1.setColumns(20);
-                jTextArea1.setRows(5);
-                jScrollPane1.setViewportView(jTextArea1);
+                infoNotes.setColumns(20);
+                infoNotes.setRows(5);
+                jScrollPane1.setViewportView(infoNotes);
 
                 javax.swing.GroupLayout informationPanelLayout =
                                 new javax.swing.GroupLayout(informationPanel);
@@ -5979,6 +5989,17 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        /*
+         * @return the number formatted as a string
+         */
+        public String formatStr(int i) {
+                if (i > 0) {
+                        return "+" + Integer.toString(i);
+                } else {
+                        return Integer.toString(i);
+                }
+        }
+
         private void setComponentValues(Player p) {
                 // The stuff that appears on all pages
                 statsCharacterName.setText(p.getName());
@@ -6001,12 +6022,33 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 HPValueLabel.setText(Integer.toString(p.getHp()));
                 ACValueLabel.setText(Integer.toString(p.getAc()));
-                SpeedValueLabel.setText("30 ft");
+                SpeedValueLabel.setText(Integer.toString(p.getSpeed()) + " ft");
+                HitDiceValueLabel.setText(p.getHitDieDR());
 
                 // Set score values
                 strengthScoreValueLabel.setText(Integer.toString(p.getStr()));
-                strengthModifierValueLabel.setText(Integer.toString(p.getStrMod()));
-                strengthSaveValueLabel.setText(Integer.toString(p.getStrSave()));
+                strengthModifierValueLabel.setText(formatStr(p.getStrMod()));
+                strengthSaveValueLabel.setText(formatStr(p.getStrSave()));
+
+                dexterityScoreValueLabel.setText(Integer.toString(p.getDex()));
+                dexterityModifierValueLabel.setText(formatStr(p.getDexMod()));
+                dexteritySaveValueLabel.setText(formatStr(p.getDexSave()));
+
+                constitutionScoreValueLabel.setText(Integer.toString(p.getCon()));
+                constitutionModifierValueLabel.setText(formatStr(p.getConMod()));
+                constitutionSaveValueLabel.setText(formatStr(p.getConSave()));
+
+                intelligenceScoreValueLabel.setText(Integer.toString(p.getIntl()));
+                intelligenceModifierValueLabel.setText(formatStr(p.getIntlMod()));
+                intelligenceSaveValueLabel.setText(formatStr(p.getIntlSave()));
+
+                wisdomScoreValueLabel.setText(Integer.toString(p.getWis()));
+                wisdomModifierValueLabel.setText(formatStr(p.getWisMod()));
+                wisdomSaveValueLabel.setText(formatStr(p.getWisSave()));
+
+                charismaScoreValueLabel.setText(Integer.toString(p.getCha()));
+                charismaModifierValueLabel.setText(formatStr(p.getChaMod()));
+                charismaSaveValueLabel.setText(formatStr(p.getChaSave()));
 
                 // ability scores
                 charStrengthValueLabel.setText(Integer.toString(p.getStrMod()));
@@ -6021,7 +6063,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 charInvestigationValueLabel.setText(Integer.toString(p.getInvestigation()));
                 charNatureValueLabel.setText(Integer.toString(p.getNature()));
                 charReligionValueLabel.setText(Integer.toString(p.getReligion()));
-                charWisdomLabel.setText(Integer.toString(p.getWisMod()));
+                charWisdomValueLabel.setText(Integer.toString(p.getWisMod()));
                 charAnimalHandlingValueLabel.setText(Integer.toString(p.getAnimalHandling()));
                 charInsightValueLabel.setText(Integer.toString(p.getInsight()));
                 charMedicineValueLabel.setText(Integer.toString(p.getMedicine()));
@@ -6033,6 +6075,34 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 charPerformanceValueLabel.setText(Integer.toString(p.getPerformance()));
                 charPersuasionValueLabel.setText(Integer.toString(p.getPersuasion()));
 
+                proficiencyValueLabel.setText(formatStr(p.getProf()));
+
+                // weapon info
+                weaponProficiencyValueLabel.setText(formatStr(p.getProf()));
+                weaponStrengthValueLable.setText(Integer.toString(p.getStr()));
+                weaponResoueceValueLabel.setText(Integer.toString(p.getWeaponResource()));
+
+                // spell info
+                spellsCLevelValueLabel.setText(Integer.toString(p.getcLevel()));
+                spellsAttackValueLabel.setText(formatStr(p.getSpellAttack()));
+                spellsDCValueLabel.setText(Integer.toString(p.getSpellDC()));
+
+                // info panel
+                infoCharacterClassTextBox.setText(p.getChrSubclass() + " " + p.getChrClass());
+                infoCharacterRaceTextBox.setText(p.getRace());
+                infoCharacterBackgroundTextBox.setText(p.getBackground());
+                infoCharacterAlignmentTextBox.setText(p.getAlignment());
+                infoCharacterXPTextBox.setText(Integer.toString(p.getXp()));
+
+                // Currecy
+                infoPPValueLabel.setText(Integer.toString(p.getPP()));
+                infoGPValueLabel.setText(Integer.toString(p.getGP()));
+                infoSPValueLabel.setText(Integer.toString(p.getSP()));
+                infoCPValueLabel.setText(Integer.toString(p.getCP()));
+                infoEPValueLabel.setText(Integer.toString(p.getEP()));
+
+                // Other info
+                infoNotes.setText(p.getNotes());
         }
 
 
@@ -6367,7 +6437,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JLabel charStrengthValueLabel;
         private javax.swing.JLabel charSurvivalLabel;
         private javax.swing.JLabel charSurvivalValueLabel;
-        private javax.swing.JLabel charWidomValueLabel;
+        private javax.swing.JLabel charWisdomValueLabel;
         private javax.swing.JLabel charWisdomLabel;
         private javax.swing.JPanel characterInformationPanel;
         private javax.swing.JPanel characterSpellsPanel;
@@ -6408,11 +6478,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel infoCharacterClassPanel4;
         private javax.swing.JPanel infoCharacterClassPanel5;
         private javax.swing.JPanel infoCharacterClassPanel6;
-        private javax.swing.JTextField infoCharacterClassTextBox1;
-        private javax.swing.JTextField infoCharacterClassTextBox3;
-        private javax.swing.JTextField infoCharacterClassTextBox4;
-        private javax.swing.JTextField infoCharacterClassTextBox5;
-        private javax.swing.JTextField infoCharacterClassTextBox6;
+        private javax.swing.JTextField infoCharacterClassTextBox;
+        private javax.swing.JTextField infoCharacterRaceTextBox;
+        private javax.swing.JTextField infoCharacterBackgroundTextBox;
+        private javax.swing.JTextField infoCharacterAlignmentTextBox;
+        private javax.swing.JTextField infoCharacterXPTextBox;
         private javax.swing.JPanel infoHeaderPanel;
         private javax.swing.JLabel informationCharacterName;
         private javax.swing.JLabel informationCharacterClass;
@@ -6425,16 +6495,16 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JButton investigationCheck;
         private javax.swing.JButton jButton1;
         private javax.swing.JLabel jLabel1;
-        private javax.swing.JLabel jLabel10;
+        private javax.swing.JLabel infoCPValueLabel;
         private javax.swing.JLabel jLabel11;
-        private javax.swing.JLabel jLabel12;
-        private javax.swing.JLabel jLabel2;
+        private javax.swing.JLabel infoEPValueLabel;
+        private javax.swing.JLabel infoPPValueLabel;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel5;
-        private javax.swing.JLabel jLabel6;
+        private javax.swing.JLabel infoGPValueLabel;
         private javax.swing.JLabel jLabel7;
-        private javax.swing.JLabel jLabel8;
+        private javax.swing.JLabel infoSPValueLabel;
         private javax.swing.JLabel jLabel9;
         private javax.swing.JPanel jPanel2;
         private javax.swing.JPanel jPanel3;
@@ -6443,7 +6513,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel6;
         private javax.swing.JPanel jPanel7;
         private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JTextArea jTextArea1;
+        private javax.swing.JTextArea infoNotes;
         private javax.swing.JPanel levelOneKnownSpellsPanel;
         private javax.swing.JLabel levellabelLabel;
         private javax.swing.JLabel levellabelLabel2;
@@ -6502,11 +6572,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel strengthModifierPanel4;
         private javax.swing.JPanel strengthModifierPanel5;
         private javax.swing.JLabel strengthModifierValueLabel;
-        private javax.swing.JLabel strengthModifierValueLabel1;
-        private javax.swing.JLabel strengthModifierValueLabel2;
-        private javax.swing.JLabel strengthModifierValueLabel3;
-        private javax.swing.JLabel strengthModifierValueLabel4;
-        private javax.swing.JLabel strengthModifierValueLabel5;
+        private javax.swing.JLabel intelligenceModifierValueLabel;
+        private javax.swing.JLabel wisdomModifierValueLabel;
+        private javax.swing.JLabel dexterityModifierValueLabel;
+        private javax.swing.JLabel charismaModifierValueLabel;
+        private javax.swing.JLabel constitutionModifierValueLabel;
         private javax.swing.JPanel strengthPanel;
         private javax.swing.JLabel strengthSaveLabel;
         private javax.swing.JLabel strengthSaveLabel2;
@@ -6521,11 +6591,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel strengthSavePanel5;
         private javax.swing.JPanel strengthSavePanel6;
         private javax.swing.JLabel strengthSaveValueLabel;
-        private javax.swing.JLabel strengthSaveValueLabel2;
-        private javax.swing.JLabel strengthSaveValueLabel3;
-        private javax.swing.JLabel strengthSaveValueLabel4;
-        private javax.swing.JLabel strengthSaveValueLabel5;
-        private javax.swing.JLabel strengthSaveValueLabel6;
+        private javax.swing.JLabel intelligenceSaveValueLabel;
+        private javax.swing.JLabel wisdomSaveValueLabel;
+        private javax.swing.JLabel dexteritySaveValueLabel;
+        private javax.swing.JLabel charismaSaveValueLabel;
+        private javax.swing.JLabel constitutionSaveValueLabel;
         private javax.swing.JLabel strengthScoreLabel;
         private javax.swing.JLabel strengthScoreLabel1;
         private javax.swing.JLabel strengthScoreLabel2;
@@ -6539,11 +6609,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel strengthScorePanel4;
         private javax.swing.JPanel strengthScorePanel5;
         private javax.swing.JLabel strengthScoreValueLabel;
-        private javax.swing.JLabel strengthScoreValueLabel1;
-        private javax.swing.JLabel strengthScoreValueLabel2;
-        private javax.swing.JLabel strengthScoreValueLabel3;
-        private javax.swing.JLabel strengthScoreValueLabel4;
-        private javax.swing.JLabel strengthScoreValueLabel5;
+        private javax.swing.JLabel intelligenceScoreValueLabel;
+        private javax.swing.JLabel wisdomScoreValueLabel;
+        private javax.swing.JLabel dexterityScoreValueLabel;
+        private javax.swing.JLabel charismaScoreValueLabel;
+        private javax.swing.JLabel constitutionScoreValueLabel;
         private javax.swing.JLabel subheadingLabel;
         private javax.swing.JButton survivalCheckButton;
         private javax.swing.JButton updateCharismaButton;

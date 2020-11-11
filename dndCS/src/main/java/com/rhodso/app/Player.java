@@ -7,6 +7,7 @@ public class Player {
 
     // Character attributes
     private String name;
+    private String race;
     private String chrClass;
     private String chrSubclass;
 
@@ -21,6 +22,8 @@ public class Player {
     private int cLevel;
     private int spellAttack;
     private int spellDC;
+    private String hitDieDR;
+    private int speed;
 
     // Base stats
     private int str;
@@ -83,6 +86,48 @@ public class Player {
      */
     public int getPersuasion() {
         return persuasion;
+    }
+
+    /**
+     * @return the race
+     */
+    public String getRace() {
+        return race;
+    }
+
+    /**
+     * @param race the race to set
+     */
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    /**
+     * @return the speed
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed to set
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * @return the hitDieDR
+     */
+    public String getHitDieDR() {
+        return hitDieDR;
+    }
+
+    /**
+     * @param hitDieDR the hitDieDR to set
+     */
+    public void setHitDieDR(String hitDieDR) {
+        this.hitDieDR = hitDieDR;
     }
 
     /**

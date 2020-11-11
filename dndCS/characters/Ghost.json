@@ -1,5 +1,6 @@
 {
     "name": "Ghost",
+    "race": "Tiefling",
     "class": "Warlock",
     "subclass": "Archfey",
     "hp": 18,
@@ -31,7 +32,9 @@
     "intimidation": 5,
     "performance": 5,
     "persuasion": 5,
-    "weapponProf": 2,
+    "prof": 2,
+    "hitDieDR": "1d8",
+    "speed": 30,
     "weaponResource": 0,
     "cLevel": 0,
     "spellAttack": 7,
