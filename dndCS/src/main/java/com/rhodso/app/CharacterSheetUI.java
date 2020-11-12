@@ -6204,7 +6204,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 + p.getHitDieDR(),
                                 "Enter new value", JOptionPane.QUESTION_MESSAGE);
 
-                if (newVal == "") {
+                if (newVal == null || newVal == "") {
                         newVal = p.getHitDieDR();
                 }
 

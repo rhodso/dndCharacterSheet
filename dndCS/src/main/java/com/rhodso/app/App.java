@@ -5,7 +5,6 @@ public class App {
 
         // TODO: Add scroll bars to all windows
         // TODO: Fix HP thing
-        // TODO: Check that hit dice cancelling works correctly
         // TODO: Add level up feature
 
         try {
