@@ -1,6 +1,11 @@
 package com.rhodso.app;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
@@ -20,6 +25,51 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 this.c = new CharacterSheet(_fp);
                 initComponents();
                 setComponentValues(p);
+
+                // Override default close operation
+                this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+                this.addWindowListener(new WindowListener() {
+                        public void windowClosing(WindowEvent e) {
+                                saveNotes();
+                                dispose();
+                        }
+
+                        @Override
+                        public void windowActivated(WindowEvent arg0) {
+                                ;
+                        }
+
+                        @Override
+                        public void windowClosed(WindowEvent arg0) {
+                                ;
+                        }
+
+                        @Override
+                        public void windowDeactivated(WindowEvent arg0) {
+                                ;
+                        }
+
+                        @Override
+                        public void windowDeiconified(WindowEvent arg0) {
+                                ;
+                        }
+
+                        @Override
+                        public void windowIconified(WindowEvent arg0) {
+                                ;
+                        }
+
+                        @Override
+                        public void windowOpened(WindowEvent arg0) {
+                                ;
+                        }
+                });
+        }
+
+        public void saveNotes() {
+                p.setNotes(infoNotes.getText());
+                c.SaveSheet(p);
         }
 
         /**
@@ -29,7 +79,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
         private void initComponents() {
-
                 CSMainPanel = new javax.swing.JPanel();
                 headerLabel = new javax.swing.JLabel();
                 subheadingLabel = new javax.swing.JLabel();
@@ -356,6 +405,23 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponsScrollPane = new javax.swing.JScrollPane();
                 spellsScrollPane = new javax.swing.JScrollPane();
                 infoScrollPane = new javax.swing.JScrollPane();
+
+                infoNotes.addKeyListener(new KeyListener() {
+                        @Override
+                        public void keyPressed(KeyEvent e) {
+
+                                p.setNotes(infoNotes.getText());
+                                c.SaveSheet(p);
+                        }
+
+                        @Override
+                        public void keyTyped(KeyEvent e) {
+                        }
+
+                        @Override
+                        public void keyReleased(KeyEvent e) {
+                        }
+                });
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("dndCS - Character Sheet - " + p.getName());
@@ -5962,6 +6028,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 javax.swing.JScrollPane contentScroll = new javax.swing.JScrollPane(CSMainPanel);
                 setContentPane(contentScroll);
                 pack();
+
+
+
         }// </editor-fold>//GEN-END:initComponents
 
         /*
@@ -6938,6 +7007,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(updateStrengthButton,
                                 "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_jButton1ActionPerformed
+
+
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JLabel ACLabel;
