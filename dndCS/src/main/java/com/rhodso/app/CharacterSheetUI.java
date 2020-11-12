@@ -5,8 +5,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
 
@@ -71,6 +76,1194 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 p.setNotes(infoNotes.getText());
                 c.SaveSheet(p);
         }
+
+        public ArrayList<JPanel> buildWeaponList() {
+                ArrayList<JPanel> weaponPanelList = new ArrayList<>();
+                for (Weapon w : p.getWeaponsList()) {
+                        System.out.println("WeaponName = " + w.getName());
+                        JPanel wpnPanel = new JPanel();
+                        JLabel wpnName = new JLabel();
+                        JLabel wpnRange = new JLabel();
+                        JLabel wpnProficiency = new JLabel();
+                        JLabel wpnDamageType = new JLabel();
+                        JLabel wpnDamageRoll = new JLabel();
+                        JButton wpnRollHit = new JButton();
+                        JButton wpnRollDamage = new JButton();
+
+                        wpnPanel.setBorder(javax.swing.BorderFactory
+                                        .createLineBorder(new java.awt.Color(0, 0, 0)));
+
+                        wpnName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                        wpnName.setText(w.getName());
+
+                        wpnRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnRange.setText(w.getRange() + "ft");
+                        wpnRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        wpnProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnProficiency.setText("+99");
+                        wpnProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                        wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnDamageType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnDamageType.setText("exampleDamageType");
+                        wpnDamageType.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        wpnDamageRoll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnDamageRoll.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnDamageRoll.setText("999d99999");
+                        wpnDamageRoll.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                        wpnRollHit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        wpnRollHit.setText("HIT\n");
+                        wpnRollHit.setMaximumSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.setMinimumSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.setPreferredSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        exampleWeaponRollHitActionPerformed(evt);
+                                }
+                        });
+
+                        wpnRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        wpnRollDamage.setText("DMG");
+                        wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        exampleWeaponRollDamageActionPerformed(evt);
+                                }
+                        });
+
+                        javax.swing.GroupLayout wpnPanelLayout =
+                                        new javax.swing.GroupLayout(wpnPanel);
+                        wpnPanel.setLayout(wpnPanelLayout);
+                        wpnPanelLayout.setHorizontalGroup(wpnPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(wpnPanelLayout.createSequentialGroup()
+                                                        .addContainerGap()
+                                                        .addComponent(wpnName,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        260,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                        false)
+                                                                        .addComponent(wpnProficiency,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addComponent(wpnRange,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE))
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(wpnDamageType,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        162,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addComponent(wpnDamageRoll,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE))
+                                                        .addGap(53, 53, 53)
+                                                        .addComponent(wpnRollHit,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        78,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(9, 9, 9).addComponent(wpnRollDamage)
+                                                        .addContainerGap()));
+                        wpnPanelLayout.setVerticalGroup(wpnPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        wpnPanelLayout.createSequentialGroup()
+                                                                        .addContainerGap()
+                                                                        .addGroup(wpnPanelLayout
+                                                                                        .createParallelGroup(
+                                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(wpnRollDamage,
+                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        Short.MAX_VALUE)
+                                                                                        .addComponent(wpnRollHit,
+                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        Short.MAX_VALUE))
+                                                                        .addContainerGap())
+                                        .addGroup(wpnPanelLayout.createSequentialGroup()
+                                                        .addGap(4, 4, 4)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(wpnName,
+                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addGroup(wpnPanelLayout
+                                                                                        .createSequentialGroup()
+                                                                                        .addGroup(wpnPanelLayout
+                                                                                                        .createParallelGroup(
+                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                        .addComponent(wpnRange,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        29,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(wpnDamageType,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        29,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                        .addPreferredGap(
+                                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                        .addGroup(wpnPanelLayout
+                                                                                                        .createParallelGroup(
+                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                        .addComponent(wpnProficiency,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        20,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(wpnDamageRoll,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        20,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                        .addGap(6, 12, Short.MAX_VALUE)))));
+                        weaponPanelList.add(wpnPanel);
+                }
+                return weaponPanelList;
+        }
+
+        /*
+         * @return the number formatted as a string
+         */
+        public String formatStr(int i) {
+                if (i > 0) {
+                        return "+" + Integer.toString(i);
+                } else {
+                        return Integer.toString(i);
+                }
+        }
+
+        private void setComponentValues(Player p) {
+                // The stuff that appears on all pages
+                statsCharacterName.setText(p.getName());
+                abilitiesCharacterName.setText(p.getName());
+                weaponsCharacterName.setText(p.getName());
+                spellsCharacterName.setText(p.getName());
+                informationCharacterName.setText(p.getName());
+
+                statsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                abilitiesCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                weaponsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                spellsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+                informationCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
+
+                statsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                abilitiesCharacterLevel.setText(Integer.toString(p.getLvl()));
+                weaponsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                spellsCharacterLevel.setText(Integer.toString(p.getLvl()));
+                informationCharacterLevel.setText(Integer.toString(p.getLvl()));
+
+                HPValueLabel.setText(p.getHp() + "/" + p.getHpMax());
+
+                // Low health representation
+                double d = p.getHp();
+                if ((d / p.getHpMax()) <= 0.25) {
+                        HPValueLabel.setForeground(Color.red);
+                } else {
+                        HPValueLabel.setForeground(Color.black);
+                }
+
+                ACValueLabel.setText(Integer.toString(p.getAc()));
+                SpeedValueLabel.setText(Integer.toString(p.getSpeed()) + " ft");
+                HitDiceValueLabel.setText(p.getHitDieDR());
+
+                // Set score values
+                strengthScoreValueLabel.setText(Integer.toString(p.getStr()));
+                strengthModifierValueLabel.setText(formatStr(p.getStrMod()));
+                strengthSaveValueLabel.setText(formatStr(p.getStrSave()));
+
+                dexterityScoreValueLabel.setText(Integer.toString(p.getDex()));
+                dexterityModifierValueLabel.setText(formatStr(p.getDexMod()));
+                dexteritySaveValueLabel.setText(formatStr(p.getDexSave()));
+
+                constitutionScoreValueLabel.setText(Integer.toString(p.getCon()));
+                constitutionModifierValueLabel.setText(formatStr(p.getConMod()));
+                constitutionSaveValueLabel.setText(formatStr(p.getConSave()));
+
+                intelligenceScoreValueLabel.setText(Integer.toString(p.getIntl()));
+                intelligenceModifierValueLabel.setText(formatStr(p.getIntlMod()));
+                intelligenceSaveValueLabel.setText(formatStr(p.getIntlSave()));
+
+                wisdomScoreValueLabel.setText(Integer.toString(p.getWis()));
+                wisdomModifierValueLabel.setText(formatStr(p.getWisMod()));
+                wisdomSaveValueLabel.setText(formatStr(p.getWisSave()));
+
+                charismaScoreValueLabel.setText(Integer.toString(p.getCha()));
+                charismaModifierValueLabel.setText(formatStr(p.getChaMod()));
+                charismaSaveValueLabel.setText(formatStr(p.getChaSave()));
+
+                // ability scores
+                charStrengthValueLabel.setText(formatStr(p.getStrMod()));
+                charAthleticsValueLabel.setText(formatStr(p.getAthletics()));
+                charDexterityValueLabel.setText(formatStr(p.getDexMod()));
+                charAcrobaticsValueLabel.setText(formatStr(p.getAcrobatics()));
+                charSoHValueLabel.setText(formatStr(p.getSleightOfHand()));
+                charStealthValueLabel.setText(formatStr(p.getStealth()));
+                charIntelligenceValueLabel.setText(formatStr(p.getIntlMod()));
+                charArcanaValueLabel.setText(formatStr(p.getArcana()));
+                charHistoryValueLabel.setText(formatStr(p.getHistory()));
+                charInvestigationValueLabel.setText(formatStr(p.getInvestigation()));
+                charNatureValueLabel.setText(formatStr(p.getNature()));
+                charReligionValueLabel.setText(formatStr(p.getReligion()));
+                charWisdomValueLabel.setText(formatStr(p.getWisMod()));
+                charAnimalHandlingValueLabel.setText(formatStr(p.getAnimalHandling()));
+                charInsightValueLabel.setText(formatStr(p.getInsight()));
+                charMedicineValueLabel.setText(formatStr(p.getMedicine()));
+                charPerceptionValueLabel.setText(formatStr(p.getPerception()));
+                charSurvivalValueLabel.setText(formatStr(p.getSurvival()));
+                charCharismaValueLabel.setText(formatStr(p.getChaMod()));
+                charDeceptionValueLabel.setText(formatStr(p.getDeception()));
+                charIntimidationValueLabel.setText(formatStr(p.getIntimidation()));
+                charPerformanceValueLabel.setText(formatStr(p.getPerformance()));
+                charPersuasionValueLabel.setText(formatStr(p.getPersuasion()));
+
+                proficiencyValueLabel.setText(formatStr(p.getProf()));
+
+                // weapon info
+                weaponProficiencyValueLabel.setText(formatStr(p.getProf()));
+                weaponStrengthValueLable.setText(Integer.toString(p.getStr()));
+                weaponResourceValueLabel.setText(Integer.toString(p.getWeaponResource()));
+
+                // spell info
+                spellsCLevelValueLabel.setText(Integer.toString(p.getcLevel()));
+                spellsAttackValueLabel.setText(formatStr(p.getSpellAttack()));
+                spellsDCValueLabel.setText(Integer.toString(p.getSpellDC()));
+
+                // info panel
+                infoCharacterClassTextBox.setText(p.getChrSubclass() + " " + p.getChrClass());
+                infoCharacterRaceTextBox.setText(p.getRace());
+                infoCharacterBackgroundTextBox.setText(p.getBackground());
+                infoCharacterAlignmentTextBox.setText(p.getAlignment());
+                infoCharacterXPTextBox.setText(Integer.toString(p.getXp()));
+
+                // Currecy
+                infoPPValueLabel.setText(Integer.toString(p.getPP()));
+                infoGPValueLabel.setText(Integer.toString(p.getGP()));
+                infoSPValueLabel.setText(Integer.toString(p.getSP()));
+                infoCPValueLabel.setText(Integer.toString(p.getCP()));
+                infoEPValueLabel.setText(Integer.toString(p.getEP()));
+
+                // Other info
+                infoNotes.setText(p.getNotes());
+
+                // weaponList
+                ArrayList<JPanel> weaponsList = buildWeaponList();
+                // javax.swing.GroupLayout weaponsListPanelLayout =
+                // new javax.swing.GroupLayout(weaponsListPanel);
+                // weaponsListPanel.setLayout(weaponsListPanelLayout);
+                // weaponsListPanelLayout.setHorizontalGroup(weaponsListPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(weaponsListPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleWeaponPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addContainerGap(89, Short.MAX_VALUE)));
+                // weaponsListPanelLayout.setVerticalGroup(weaponsListPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(weaponsListPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleWeaponPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addContainerGap(491, Short.MAX_VALUE)));
+
+                javax.swing.GroupLayout weaponsListPanelLayout =
+                                new javax.swing.GroupLayout(weaponsListPanel);
+
+                weaponsListPanelLayout.setAutoCreateGaps(true);
+                weaponsListPanelLayout.setAutoCreateContainerGaps(true);
+                GroupLayout.ParallelGroup parallel = weaponsListPanelLayout.createParallelGroup();
+                weaponsListPanelLayout.setHorizontalGroup(
+                                weaponsListPanelLayout.createSequentialGroup().addGroup(parallel));
+                GroupLayout.SequentialGroup sequential =
+                                weaponsListPanelLayout.createSequentialGroup();
+                weaponsListPanelLayout.setVerticalGroup(sequential);
+                for (JPanel wPnl : weaponsList) {
+                        parallel.addGroup(weaponsListPanelLayout.createSequentialGroup()
+                                        .addComponent(wPnl));
+                        sequential.addGroup(weaponsListPanelLayout
+                                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(wPnl));
+                }
+
+                // TODO: Finish this bit
+
+                // weaponsListScrollPane.setViewportView(weaponsListPanel);
+                weaponsListScrollPane = new javax.swing.JScrollPane(weaponsListPanel);
+        }
+
+        String abilityCheck(int mod) {
+                // Create default string
+                String msg = "Rolled a ";
+
+                // Roll dice
+                int res = Dice.roll(20);
+
+                if (res == 1) {
+                        msg += "1, Critical Fail";
+                } else if (res == 20) {
+                        msg += "20 , Critical Success";
+                } else {
+                        msg += (res + " + " + mod + " makes " + (res + mod));
+                }
+                return msg;
+        }
+
+        private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new strength value\nCurrent value is " + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setStr(newVal);
+                        p.setStrMod(c.getModifier(newVal));
+                        p.setStrSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }
+
+        // GEN-LAST:event_updateStrengthButtonActionPerformed
+
+        private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new proficiency value\nCurrent value is "
+                                                + p.getProf(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setProf(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_proficiencyUpdateButtonActionPerformed
+
+        private void HitDiceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HitDiceUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new hit dice value\nCurrent value is "
+                                                + p.getHitDieDR(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                if (newVal == null || newVal == "") {
+                        newVal = p.getHitDieDR();
+                        fail = true;
+                }
+
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setHitDieDR(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_HitDiceUpdateButtonActionPerformed
+
+        private void SpeedUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SpeedUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new speed value\nCurrent value is " + p.getSpeed(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpeed(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_SpeedUpdateButtonActionPerformed
+
+        private void ACUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ACUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new AC value\nCurrent value is " + p.getAc(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setAc(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_ACUpdateButtonActionPerformed
+
+        private void HPUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HPUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+                boolean affectMax = false;
+                boolean resetHP = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new hp value\nCurrent value is " + p.getHp()
+                                                + " and your max HP is " + p.getHpMax()
+                                                + ".\nIf you enter a negative value, that will be removed from the current value"
+                                                + ".\nIf you don't enter a value, your HP will be set to you current max HP"
+                                                + ".\nType \"max\" after the value to affect the maximum HP instead (Current HP will not be modified)",
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                /*
+                 * String[] buttons = {"Set current hp", "Take from hp", "give to hp",
+                 * "set to max hp"}; Object s = JOptionPane.showInputDialog(updateStrengthButton,
+                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
+                 * " and your max HP is " + p.getHpMax(), "Enter new value",
+                 * JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[0]);
+                 */
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        if (newVal_S.equals("")) {
+                                resetHP = true;
+                        } else if (newVal_S.indexOf("max") == -1) {
+                                // Don't affect the max HP
+                                newVal = Integer.parseInt(newVal_S);
+                        } else {
+                                affectMax = true;
+                                newVal_S = newVal_S.replace("max", "");
+                                newVal_S = newVal_S.replace(" ", "");
+                                newVal = Integer.parseInt(newVal_S);
+                        }
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        if (resetHP) {
+                                // resetHP
+                                p.setHp(p.getHpMax());
+                        } else if (affectMax) {
+                                // Affect Max HP
+                                if (newVal > 0) {
+                                        p.setHpMax(newVal);
+                                } else {
+                                        p.setHpMax(p.getHpMax() + newVal);
+                                }
+                        } else {
+                                // Affect actual HP
+                                if (newVal > 0) {
+                                        p.setHp(newVal);
+                                } else {
+                                        p.setHp(p.getHp() + newVal);
+                                }
+                        }
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_HPUpdateButtonActionPerformed
+
+        private void updateIntelligenceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateIntelligenceButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new intelligence value\nCurrent value is "
+                                                + p.getIntl(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setIntl(newVal);
+                        p.setIntlMod(c.getModifier(newVal));
+                        p.setIntlSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_updateIntelligenceButtonActionPerformed
+
+        private void updateDexterityButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateDexterityButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new dexterity value\nCurrent value is " + p.getDex(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setDex(newVal);
+                        p.setDexMod(c.getModifier(newVal));
+                        p.setDexSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_updateDexterityButtonActionPerformed
+
+        private void updateWisdomButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateWisdomButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new wisdom value\nCurrent value is " + p.getWis(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setWis(newVal);
+                        p.setWisMod(c.getModifier(newVal));
+                        p.setWisSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_updateWisdomButtonActionPerformed
+
+        private void updateConstitutionButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateConstitutionButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new constitution value\nCurrent value is "
+                                                + p.getCon(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setCon(newVal);
+                        p.setConMod(c.getModifier(newVal));
+                        p.setConSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_updateConstitutionButtonActionPerformed
+
+        private void updateCharismaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateCharismaButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new charisma value\nCurrent value is " + p.getCha(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setCha(newVal);
+                        p.setChaMod(c.getModifier(newVal));
+                        p.setChaSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_updateCharismaButtonActionPerformed
+
+        private void strengthCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_strengthCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStrMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_strengthCheckButtonActionPerformed
+
+        private void athleticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_athleticsCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAthletics()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_athleticsCheckButtonActionPerformed
+
+        private void dexterityCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_dexterityCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDexMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_dexterityCheckButtonActionPerformed
+
+        private void acrobaticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_acrobaticsCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAcrobatics()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_acrobaticsCheckButtonActionPerformed
+
+        private void SoHCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SoHCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getSleightOfHand()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_SoHCheckButtonActionPerformed
+
+        private void stealthCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stealthCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStealth()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_stealthCheckActionPerformed
+
+        private void intelligenceCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intelligenceCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getIntlMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_intelligenceCheckActionPerformed
+
+        private void arcanaCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_arcanaCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getArcana()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_arcanaCheckActionPerformed
+
+        private void historyCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_historyCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getHistory()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_historyCheckActionPerformed
+
+        private void investigationCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_investigationCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getInvestigation()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_investigationCheckActionPerformed
+
+        private void natureCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_natureCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getNature()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_natureCheckActionPerformed
+
+        private void religionCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_religionCheckActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getReligion()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_religionCheckActionPerformed
+
+        private void wisdomCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wisdomCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getWisMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_wisdomCheckButtonActionPerformed
+
+        private void animalHandlingCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_animalHandlingCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getAnimalHandling()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_animalHandlingCheckButtonActionPerformed
+
+        private void insightCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_insightCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getInsight()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_insightCheckButtonActionPerformed
+
+        private void medicineCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_medicineCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getMedicine()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_medicineCheckButtonActionPerformed
+
+        private void perceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_perceptionCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerception()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_perceptionCheckButtonActionPerformed
+
+        private void survivalCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_survivalCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getSurvival()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_survivalCheckButtonActionPerformed
+
+        private void charismaCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_charismaCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getChaMod()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_charismaCheckButtonActionPerformed
+
+        private void deceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deceptionCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDeception()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_deceptionCheckButtonActionPerformed
+
+        private void intimidationCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intimidationCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton,
+                                abilityCheck(p.getIntimidation()), "Roll result",
+                                JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_intimidationCheckButtonActionPerformed
+
+        private void performanceCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_performanceCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerformance()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_performanceCheckButtonActionPerformed
+
+        private void persuasionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_persuasionCheckButtonActionPerformed
+                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPersuasion()),
+                                "Roll result", JOptionPane.PLAIN_MESSAGE);
+        }// GEN-LAST:event_persuasionCheckButtonActionPerformed
+
+        private void weaponProficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponProficiencyUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new proficiency value\nCurrent value is "
+                                                + p.getProf(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setProf(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_weaponProficiencyUpdateButtonActionPerformed
+
+        private void weaponStrengthUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponStrengthUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new strength value\nCurrent value is " + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setStr(newVal);
+                        p.setStrMod(c.getModifier(newVal));
+                        p.setStrSave(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_weaponStrengthUpdateButtonActionPerformed
+
+        private void weaponResourceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponResourceUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new weapon resource value\nCurrent value is "
+                                                + p.getStr(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setWeaponResource(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_weaponResourceUpdateButtonActionPerformed
+
+        private void weaponsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponsUpdateButtonActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
+
+        private void exampleWeaponRollHitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollHitActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_exampleWeaponRollHitActionPerformed
+
+        private void exampleWeaponRollDamageActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollDamageActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_exampleWeaponRollDamageActionPerformed
+
+        private void spellsCLevelUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsCLevelUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new C Level value\nCurrent value is " + p.getcLevel(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setcLevel(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_spellsCLevelUpdateButtonActionPerformed
+
+        private void spellsAttackValueUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsAttackValueUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new spell attack value\nCurrent value is "
+                                                + p.getSpellAttack(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpellAttack(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_spellsAttackValueUpdateButtonActionPerformed
+
+        private void spellsDCUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsDCUpdateButtonActionPerformed
+                // Set flag in case the user can't enter a number
+                boolean fail = false;
+
+                // Show input dialog
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
+                                "Please enter new spell DC value\nCurrent value is "
+                                                + p.getSpellDC(),
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
+
+                // Create int to parse string to
+                int newVal = 0;
+                try {
+                        // Try to parse string
+                        newVal = Integer.parseInt(newVal_S);
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
+                                        "Input error", JOptionPane.ERROR_MESSAGE);
+                        fail = true;
+                }
+                // If it didn't mess up, then set the stat, mod, and save, then update form and
+                // update the sheet
+                if (!fail) {
+                        p.setSpellDC(newVal);
+                        try {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                        } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                        }
+                }
+        }// GEN-LAST:event_spellsDCUpdateButtonActionPerformed
+
+        private void spellsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsUpdateButtonActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_spellsUpdateButtonActionPerformed
+
+        private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButtonActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_exampleSpellRollButtonActionPerformed
+
+        private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cantripsUpdateButtonActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_cantripsUpdateButtonActionPerformed
+
+        private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButton1ActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_exampleSpellRollButton1ActionPerformed
+
+        private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
+
+        private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
+                String[] s = infoCharacterClassTextBox.getText().split(" ");
+                String[] bkp = {p.getChrSubclass(), p.getChrClass()};
+                try {
+                        p.setChrSubclass(s[0]);
+                        p.setChrClass(s[1]);
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Class set");
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton,
+                                        "Error, class should be set as \"[subClass] [class]\"\nNo changed made",
+                                        "Error setting value", JOptionPane.ERROR_MESSAGE);
+                        p.setChrSubclass(bkp[0]);
+                        p.setChrClass(bkp[1]);
+                }
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+        }// GEN-LAST:event_infoCharacterClassTextBox1ActionPerformed
+
+        private void infoCharacterClassTextBox3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox3ActionPerformed
+                p.setRace(infoCharacterRaceTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Race set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+        }// GEN-LAST:event_infoCharacterClassTextBox3ActionPerformed
+
+        private void infoCharacterClassTextBox4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox4ActionPerformed
+                p.setBackground(infoCharacterBackgroundTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Background set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+        }// GEN-LAST:event_infoCharacterClassTextBox4ActionPerformed
+
+        private void infoCharacterClassTextBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox5ActionPerformed
+                p.setAlignment(infoCharacterAlignmentTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Alignment set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+        }// GEN-LAST:event_infoCharacterClassTextBox5ActionPerformed
+
+        private void infoCharacterClassTextBox6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox6ActionPerformed
+                p.setXp(Integer.parseInt(infoCharacterXPTextBox.getText()));
+                JOptionPane.showMessageDialog(updateStrengthButton, "Experience set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
+        }// GEN-LAST:event_infoCharacterClassTextBox6ActionPerformed
+
+        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
+        }// GEN-LAST:event_jButton1ActionPerformed
 
         /**
          * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -309,7 +1502,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponsListPanel = new javax.swing.JPanel();
                 exampleWeaponPanel = new javax.swing.JPanel();
                 exampleWeaponName = new javax.swing.JLabel();
-                exampleWeapponRange = new javax.swing.JLabel();
+                exampleWeaponRange = new javax.swing.JLabel();
                 exampleWeaponProficiency = new javax.swing.JLabel();
                 exampleWeaponDamageType = new javax.swing.JLabel();
                 exampleWeaponDamageRoll = new javax.swing.JLabel();
@@ -4268,10 +5461,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 exampleWeaponName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
                 exampleWeaponName.setText("characterWeaponName");
 
-                exampleWeapponRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-                exampleWeapponRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                exampleWeapponRange.setText("999/99999");
-                exampleWeapponRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                exampleWeaponRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                exampleWeaponRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                exampleWeaponRange.setText("999/99999");
+                exampleWeaponRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
                 exampleWeaponProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
                 exampleWeaponProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -4327,7 +5520,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(exampleWeapponRange,
+                                                                .addComponent(exampleWeaponRange,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE))
@@ -4386,7 +5579,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 .addGroup(exampleWeaponPanelLayout
                                                                                                 .createParallelGroup(
                                                                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                .addComponent(exampleWeapponRange,
+                                                                                                .addComponent(exampleWeaponRange,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                                 29,
                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6033,983 +7226,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         }// </editor-fold>//GEN-END:initComponents
 
-        /*
-         * @return the number formatted as a string
-         */
-        public String formatStr(int i) {
-                if (i > 0) {
-                        return "+" + Integer.toString(i);
-                } else {
-                        return Integer.toString(i);
-                }
-        }
-
-        private void setComponentValues(Player p) {
-                // The stuff that appears on all pages
-                statsCharacterName.setText(p.getName());
-                abilitiesCharacterName.setText(p.getName());
-                weaponsCharacterName.setText(p.getName());
-                spellsCharacterName.setText(p.getName());
-                informationCharacterName.setText(p.getName());
-
-                statsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-                abilitiesCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-                weaponsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-                spellsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-                informationCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-
-                statsCharacterLevel.setText(Integer.toString(p.getLvl()));
-                abilitiesCharacterLevel.setText(Integer.toString(p.getLvl()));
-                weaponsCharacterLevel.setText(Integer.toString(p.getLvl()));
-                spellsCharacterLevel.setText(Integer.toString(p.getLvl()));
-                informationCharacterLevel.setText(Integer.toString(p.getLvl()));
-
-                HPValueLabel.setText(p.getHp() + "/" + p.getHpMax());
-
-                // Low health representation
-                double d = p.getHp();
-                if ((d / p.getHpMax()) <= 0.25) {
-                        HPValueLabel.setForeground(Color.red);
-                } else {
-                        HPValueLabel.setForeground(Color.black);
-                }
-
-                ACValueLabel.setText(Integer.toString(p.getAc()));
-                SpeedValueLabel.setText(Integer.toString(p.getSpeed()) + " ft");
-                HitDiceValueLabel.setText(p.getHitDieDR());
-
-                // Set score values
-                strengthScoreValueLabel.setText(Integer.toString(p.getStr()));
-                strengthModifierValueLabel.setText(formatStr(p.getStrMod()));
-                strengthSaveValueLabel.setText(formatStr(p.getStrSave()));
-
-                dexterityScoreValueLabel.setText(Integer.toString(p.getDex()));
-                dexterityModifierValueLabel.setText(formatStr(p.getDexMod()));
-                dexteritySaveValueLabel.setText(formatStr(p.getDexSave()));
-
-                constitutionScoreValueLabel.setText(Integer.toString(p.getCon()));
-                constitutionModifierValueLabel.setText(formatStr(p.getConMod()));
-                constitutionSaveValueLabel.setText(formatStr(p.getConSave()));
-
-                intelligenceScoreValueLabel.setText(Integer.toString(p.getIntl()));
-                intelligenceModifierValueLabel.setText(formatStr(p.getIntlMod()));
-                intelligenceSaveValueLabel.setText(formatStr(p.getIntlSave()));
-
-                wisdomScoreValueLabel.setText(Integer.toString(p.getWis()));
-                wisdomModifierValueLabel.setText(formatStr(p.getWisMod()));
-                wisdomSaveValueLabel.setText(formatStr(p.getWisSave()));
-
-                charismaScoreValueLabel.setText(Integer.toString(p.getCha()));
-                charismaModifierValueLabel.setText(formatStr(p.getChaMod()));
-                charismaSaveValueLabel.setText(formatStr(p.getChaSave()));
-
-                // ability scores
-                charStrengthValueLabel.setText(formatStr(p.getStrMod()));
-                charAthleticsValueLabel.setText(formatStr(p.getAthletics()));
-                charDexterityValueLabel.setText(formatStr(p.getDexMod()));
-                charAcrobaticsValueLabel.setText(formatStr(p.getAcrobatics()));
-                charSoHValueLabel.setText(formatStr(p.getSleightOfHand()));
-                charStealthValueLabel.setText(formatStr(p.getStealth()));
-                charIntelligenceValueLabel.setText(formatStr(p.getIntlMod()));
-                charArcanaValueLabel.setText(formatStr(p.getArcana()));
-                charHistoryValueLabel.setText(formatStr(p.getHistory()));
-                charInvestigationValueLabel.setText(formatStr(p.getInvestigation()));
-                charNatureValueLabel.setText(formatStr(p.getNature()));
-                charReligionValueLabel.setText(formatStr(p.getReligion()));
-                charWisdomValueLabel.setText(formatStr(p.getWisMod()));
-                charAnimalHandlingValueLabel.setText(formatStr(p.getAnimalHandling()));
-                charInsightValueLabel.setText(formatStr(p.getInsight()));
-                charMedicineValueLabel.setText(formatStr(p.getMedicine()));
-                charPerceptionValueLabel.setText(formatStr(p.getPerception()));
-                charSurvivalValueLabel.setText(formatStr(p.getSurvival()));
-                charCharismaValueLabel.setText(formatStr(p.getChaMod()));
-                charDeceptionValueLabel.setText(formatStr(p.getDeception()));
-                charIntimidationValueLabel.setText(formatStr(p.getIntimidation()));
-                charPerformanceValueLabel.setText(formatStr(p.getPerformance()));
-                charPersuasionValueLabel.setText(formatStr(p.getPersuasion()));
-
-                proficiencyValueLabel.setText(formatStr(p.getProf()));
-
-                // weapon info
-                weaponProficiencyValueLabel.setText(formatStr(p.getProf()));
-                weaponStrengthValueLable.setText(Integer.toString(p.getStr()));
-                weaponResourceValueLabel.setText(Integer.toString(p.getWeaponResource()));
-
-                // spell info
-                spellsCLevelValueLabel.setText(Integer.toString(p.getcLevel()));
-                spellsAttackValueLabel.setText(formatStr(p.getSpellAttack()));
-                spellsDCValueLabel.setText(Integer.toString(p.getSpellDC()));
-
-                // info panel
-                infoCharacterClassTextBox.setText(p.getChrSubclass() + " " + p.getChrClass());
-                infoCharacterRaceTextBox.setText(p.getRace());
-                infoCharacterBackgroundTextBox.setText(p.getBackground());
-                infoCharacterAlignmentTextBox.setText(p.getAlignment());
-                infoCharacterXPTextBox.setText(Integer.toString(p.getXp()));
-
-                // Currecy
-                infoPPValueLabel.setText(Integer.toString(p.getPP()));
-                infoGPValueLabel.setText(Integer.toString(p.getGP()));
-                infoSPValueLabel.setText(Integer.toString(p.getSP()));
-                infoCPValueLabel.setText(Integer.toString(p.getCP()));
-                infoEPValueLabel.setText(Integer.toString(p.getEP()));
-
-                // Other info
-                infoNotes.setText(p.getNotes());
-        }
-
-        String abilityCheck(int mod) {
-                // Create default string
-                String msg = "Rolled a ";
-
-                // Roll dice
-                int res = Dice.roll(20);
-
-                if (res == 1) {
-                        msg += "1, Critical Fail";
-                } else if (res == 20) {
-                        msg += "20 , Critical Success";
-                } else {
-                        msg += (res + " + " + mod + " makes " + (res + mod));
-                }
-                return msg;
-        }
-
-        private void updateStrengthButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateStrengthButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new strength value\nCurrent value is " + p.getStr(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setStr(newVal);
-                        p.setStrMod(c.getModifier(newVal));
-                        p.setStrSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }
-
-        // GEN-LAST:event_updateStrengthButtonActionPerformed
-
-        private void proficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_proficiencyUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new proficiency value\nCurrent value is "
-                                                + p.getProf(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setProf(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_proficiencyUpdateButtonActionPerformed
-
-        private void HitDiceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HitDiceUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new hit dice value\nCurrent value is "
-                                                + p.getHitDieDR(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                if (newVal == null || newVal == "") {
-                        newVal = p.getHitDieDR();
-                        fail = true;
-                }
-
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setHitDieDR(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_HitDiceUpdateButtonActionPerformed
-
-        private void SpeedUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SpeedUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new speed value\nCurrent value is " + p.getSpeed(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setSpeed(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_SpeedUpdateButtonActionPerformed
-
-        private void ACUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ACUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new AC value\nCurrent value is " + p.getAc(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setAc(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_ACUpdateButtonActionPerformed
-
-        private void HPUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HPUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-                boolean affectMax = false;
-                boolean resetHP = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new hp value\nCurrent value is " + p.getHp()
-                                                + " and your max HP is " + p.getHpMax()
-                                                + ".\nIf you enter a negative value, that will be removed from the current value"
-                                                + ".\nIf you don't enter a value, your HP will be set to you current max HP"
-                                                + ".\nType \"max\" after the value to affect the maximum HP instead (Current HP will not be modified)",
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                /*
-                 * String[] buttons = {"Set current hp", "Take from hp", "give to hp",
-                 * "set to max hp"}; Object s = JOptionPane.showInputDialog(updateStrengthButton,
-                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
-                 * " and your max HP is " + p.getHpMax(), "Enter new value",
-                 * JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[0]);
-                 */
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        if (newVal_S.equals("")) {
-                                resetHP = true;
-                        } else if (newVal_S.indexOf("max") == -1) {
-                                // Don't affect the max HP
-                                newVal = Integer.parseInt(newVal_S);
-                        } else {
-                                affectMax = true;
-                                newVal_S = newVal_S.replace("max", "");
-                                newVal_S = newVal_S.replace(" ", "");
-                                newVal = Integer.parseInt(newVal_S);
-                        }
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        if (resetHP) {
-                                // resetHP
-                                p.setHp(p.getHpMax());
-                        } else if (affectMax) {
-                                // Affect Max HP
-                                if (newVal > 0) {
-                                        p.setHpMax(newVal);
-                                } else {
-                                        p.setHpMax(p.getHpMax() + newVal);
-                                }
-                        } else {
-                                // Affect actual HP
-                                if (newVal > 0) {
-                                        p.setHp(newVal);
-                                } else {
-                                        p.setHp(p.getHp() + newVal);
-                                }
-                        }
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_HPUpdateButtonActionPerformed
-
-        private void updateIntelligenceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateIntelligenceButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new intelligence value\nCurrent value is "
-                                                + p.getIntl(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setIntl(newVal);
-                        p.setIntlMod(c.getModifier(newVal));
-                        p.setIntlSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_updateIntelligenceButtonActionPerformed
-
-        private void updateDexterityButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateDexterityButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new dexterity value\nCurrent value is " + p.getDex(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setDex(newVal);
-                        p.setDexMod(c.getModifier(newVal));
-                        p.setDexSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_updateDexterityButtonActionPerformed
-
-        private void updateWisdomButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateWisdomButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new wisdom value\nCurrent value is " + p.getWis(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setWis(newVal);
-                        p.setWisMod(c.getModifier(newVal));
-                        p.setWisSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_updateWisdomButtonActionPerformed
-
-        private void updateConstitutionButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateConstitutionButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new constitution value\nCurrent value is "
-                                                + p.getCon(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setCon(newVal);
-                        p.setConMod(c.getModifier(newVal));
-                        p.setConSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_updateConstitutionButtonActionPerformed
-
-        private void updateCharismaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateCharismaButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new charisma value\nCurrent value is " + p.getCha(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setCha(newVal);
-                        p.setChaMod(c.getModifier(newVal));
-                        p.setChaSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_updateCharismaButtonActionPerformed
-
-        private void strengthCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_strengthCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStrMod()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_strengthCheckButtonActionPerformed
-
-        private void athleticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_athleticsCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAthletics()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_athleticsCheckButtonActionPerformed
-
-        private void dexterityCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_dexterityCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDexMod()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_dexterityCheckButtonActionPerformed
-
-        private void acrobaticsCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_acrobaticsCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getAcrobatics()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_acrobaticsCheckButtonActionPerformed
-
-        private void SoHCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SoHCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton,
-                                abilityCheck(p.getSleightOfHand()), "Roll result",
-                                JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_SoHCheckButtonActionPerformed
-
-        private void stealthCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stealthCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getStealth()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_stealthCheckActionPerformed
-
-        private void intelligenceCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intelligenceCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getIntlMod()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_intelligenceCheckActionPerformed
-
-        private void arcanaCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_arcanaCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getArcana()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_arcanaCheckActionPerformed
-
-        private void historyCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_historyCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getHistory()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_historyCheckActionPerformed
-
-        private void investigationCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_investigationCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton,
-                                abilityCheck(p.getInvestigation()), "Roll result",
-                                JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_investigationCheckActionPerformed
-
-        private void natureCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_natureCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getNature()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_natureCheckActionPerformed
-
-        private void religionCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_religionCheckActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getReligion()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_religionCheckActionPerformed
-
-        private void wisdomCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wisdomCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getWisMod()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_wisdomCheckButtonActionPerformed
-
-        private void animalHandlingCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_animalHandlingCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton,
-                                abilityCheck(p.getAnimalHandling()), "Roll result",
-                                JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_animalHandlingCheckButtonActionPerformed
-
-        private void insightCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_insightCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getInsight()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_insightCheckButtonActionPerformed
-
-        private void medicineCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_medicineCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getMedicine()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_medicineCheckButtonActionPerformed
-
-        private void perceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_perceptionCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerception()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_perceptionCheckButtonActionPerformed
-
-        private void survivalCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_survivalCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getSurvival()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_survivalCheckButtonActionPerformed
-
-        private void charismaCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_charismaCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getChaMod()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_charismaCheckButtonActionPerformed
-
-        private void deceptionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deceptionCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getDeception()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_deceptionCheckButtonActionPerformed
-
-        private void intimidationCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_intimidationCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton,
-                                abilityCheck(p.getIntimidation()), "Roll result",
-                                JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_intimidationCheckButtonActionPerformed
-
-        private void performanceCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_performanceCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPerformance()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_performanceCheckButtonActionPerformed
-
-        private void persuasionCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_persuasionCheckButtonActionPerformed
-                JOptionPane.showMessageDialog(strengthCheckButton, abilityCheck(p.getPersuasion()),
-                                "Roll result", JOptionPane.PLAIN_MESSAGE);
-        }// GEN-LAST:event_persuasionCheckButtonActionPerformed
-
-        private void weaponProficiencyUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponProficiencyUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new proficiency value\nCurrent value is "
-                                                + p.getProf(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setProf(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_weaponProficiencyUpdateButtonActionPerformed
-
-        private void weaponStrengthUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponStrengthUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new strength value\nCurrent value is " + p.getStr(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setStr(newVal);
-                        p.setStrMod(c.getModifier(newVal));
-                        p.setStrSave(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_weaponStrengthUpdateButtonActionPerformed
-
-        private void weaponResourceUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponResourceUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new weapon resource value\nCurrent value is "
-                                                + p.getStr(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setWeaponResource(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_weaponResourceUpdateButtonActionPerformed
-
-        private void weaponsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
-
-        private void exampleWeaponRollHitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollHitActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleWeaponRollHitActionPerformed
-
-        private void exampleWeaponRollDamageActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollDamageActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleWeaponRollDamageActionPerformed
-
-        private void spellsCLevelUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsCLevelUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new C Level value\nCurrent value is " + p.getcLevel(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setcLevel(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_spellsCLevelUpdateButtonActionPerformed
-
-        private void spellsAttackValueUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsAttackValueUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new spell attack value\nCurrent value is "
-                                                + p.getSpellAttack(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setSpellAttack(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_spellsAttackValueUpdateButtonActionPerformed
-
-        private void spellsDCUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsDCUpdateButtonActionPerformed
-                // Set flag in case the user can't enter a number
-                boolean fail = false;
-
-                // Show input dialog
-                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                                "Please enter new spell DC value\nCurrent value is "
-                                                + p.getSpellDC(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
-
-                // Create int to parse string to
-                int newVal = 0;
-                try {
-                        // Try to parse string
-                        newVal = Integer.parseInt(newVal_S);
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
-                                        "Input error", JOptionPane.ERROR_MESSAGE);
-                        fail = true;
-                }
-                // If it didn't mess up, then set the stat, mod, and save, then update form and
-                // update the sheet
-                if (!fail) {
-                        p.setSpellDC(newVal);
-                        try {
-                                setComponentValues(p);
-                                c.SaveSheet(p);
-                        } catch (Exception e) {
-                                System.out.println(e.getMessage());
-                        }
-                }
-        }// GEN-LAST:event_spellsDCUpdateButtonActionPerformed
-
-        private void spellsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_spellsUpdateButtonActionPerformed
-
-        private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleSpellRollButtonActionPerformed
-
-        private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cantripsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_cantripsUpdateButtonActionPerformed
-
-        private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButton1ActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleSpellRollButton1ActionPerformed
-
-        private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
-
-        private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
-                String[] s = infoCharacterClassTextBox.getText().split(" ");
-                String[] bkp = {p.getChrSubclass(), p.getChrClass()};
-                try {
-                        p.setChrSubclass(s[0]);
-                        p.setChrClass(s[1]);
-                        JOptionPane.showMessageDialog(updateStrengthButton, "Class set");
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(updateStrengthButton,
-                                        "Error, class should be set as \"[subClass] [class]\"\nNo changed made",
-                                        "Error setting value", JOptionPane.ERROR_MESSAGE);
-                        p.setChrSubclass(bkp[0]);
-                        p.setChrClass(bkp[1]);
-                }
-                try {
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                }
-        }// GEN-LAST:event_infoCharacterClassTextBox1ActionPerformed
-
-        private void infoCharacterClassTextBox3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox3ActionPerformed
-                p.setRace(infoCharacterRaceTextBox.getText());
-                JOptionPane.showMessageDialog(updateStrengthButton, "Race set");
-                try {
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                }
-        }// GEN-LAST:event_infoCharacterClassTextBox3ActionPerformed
-
-        private void infoCharacterClassTextBox4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox4ActionPerformed
-                p.setBackground(infoCharacterBackgroundTextBox.getText());
-                JOptionPane.showMessageDialog(updateStrengthButton, "Background set");
-                try {
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                }
-        }// GEN-LAST:event_infoCharacterClassTextBox4ActionPerformed
-
-        private void infoCharacterClassTextBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox5ActionPerformed
-                p.setAlignment(infoCharacterAlignmentTextBox.getText());
-                JOptionPane.showMessageDialog(updateStrengthButton, "Alignment set");
-                try {
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                }
-        }// GEN-LAST:event_infoCharacterClassTextBox5ActionPerformed
-
-        private void infoCharacterClassTextBox6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox6ActionPerformed
-                p.setXp(Integer.parseInt(infoCharacterXPTextBox.getText()));
-                JOptionPane.showMessageDialog(updateStrengthButton, "Experience set");
-                try {
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                }
-        }// GEN-LAST:event_infoCharacterClassTextBox6ActionPerformed
-
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_jButton1ActionPerformed
-
-
-
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JLabel ACLabel;
         private javax.swing.JPanel ACPanel;
@@ -7153,7 +7369,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JLabel exampleWeaponProficiency;
         private javax.swing.JButton exampleWeaponRollDamage;
         private javax.swing.JButton exampleWeaponRollHit;
-        private javax.swing.JLabel exampleWeapponRange;
+        private javax.swing.JLabel exampleWeaponRange;
         private javax.swing.JLabel headerLabel;
         private javax.swing.JButton historyCheck;
         private javax.swing.JLabel infoCharacterClassLabel1;
