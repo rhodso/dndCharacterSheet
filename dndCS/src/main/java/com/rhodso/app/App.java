@@ -3,7 +3,6 @@ package com.rhodso.app;
 public class App {
     public static void main(String[] args) {
 
-        // TODO: Fix HP thing
         // TODO: Add level up feature
 
         try {

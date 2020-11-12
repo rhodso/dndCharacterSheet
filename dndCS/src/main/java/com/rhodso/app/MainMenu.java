@@ -6,6 +6,7 @@ package com.rhodso.app;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -210,7 +211,7 @@ public class MainMenu extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
         private void rollDiceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rollDiceButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(MainPanel, "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_rollDiceButtonActionPerformed
 
         private void loadCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loadCharButtonActionPerformed
@@ -232,7 +233,7 @@ public class MainMenu extends javax.swing.JFrame {
         }// GEN-LAST:event_loadCharButtonActionPerformed
 
         private void createCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_createCharButtonActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(MainPanel, "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_createCharButtonActionPerformed
 
         // Variables declaration - do not modify//GEN-BEGIN:variables

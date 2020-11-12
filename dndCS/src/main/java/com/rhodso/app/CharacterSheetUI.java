@@ -1,5 +1,6 @@
 package com.rhodso.app;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
@@ -5994,7 +5995,16 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 spellsCharacterLevel.setText(Integer.toString(p.getLvl()));
                 informationCharacterLevel.setText(Integer.toString(p.getLvl()));
 
-                HPValueLabel.setText(Integer.toString(p.getHp()));
+                HPValueLabel.setText(p.getHp() + "/" + p.getHpMax());
+
+                // Low health representation
+                double d = p.getHp();
+                if ((d / p.getHpMax()) <= 0.25) {
+                        HPValueLabel.setForeground(Color.red);
+                } else {
+                        HPValueLabel.setForeground(Color.black);
+                }
+
                 ACValueLabel.setText(Integer.toString(p.getAc()));
                 SpeedValueLabel.setText(Integer.toString(p.getSpeed()) + " ft");
                 HitDiceValueLabel.setText(p.getHitDieDR());
@@ -6260,29 +6270,40 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private void HPUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_HPUpdateButtonActionPerformed
                 // Set flag in case the user can't enter a number
                 boolean fail = false;
+                boolean affectMax = false;
+                boolean resetHP = false;
 
                 // Show input dialog
-                /*
-                 * String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
-                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
-                 * " and your max HP is " + p.getHpMax() +
-                 * ".\nIf you enter a negative value, that will be removed from the current value",
-                 * "Enter new value", JOptionPane.QUESTION_MESSAGE);
-                 */
-
-                String[] buttons =
-                                {"Set current hp", "Take from hp", "give to hp", "set to max hp"};
-                Object s = JOptionPane.showInputDialog(updateStrengthButton,
+                String newVal_S = JOptionPane.showInputDialog(updateStrengthButton,
                                 "Please enter new hp value\nCurrent value is " + p.getHp()
-                                                + " and your max HP is " + p.getHpMax(),
-                                "Enter new value", JOptionPane.QUESTION_MESSAGE, null, buttons,
-                                buttons[0]);
+                                                + " and your max HP is " + p.getHpMax()
+                                                + ".\nIf you enter a negative value, that will be removed from the current value"
+                                                + ".\nIf you don't enter a value, your HP will be set to you current max HP"
+                                                + ".\nType \"max\" after the value to affect the maximum HP instead (Current HP will not be modified)",
+                                "Enter new value", JOptionPane.QUESTION_MESSAGE);
 
+                /*
+                 * String[] buttons = {"Set current hp", "Take from hp", "give to hp",
+                 * "set to max hp"}; Object s = JOptionPane.showInputDialog(updateStrengthButton,
+                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
+                 * " and your max HP is " + p.getHpMax(), "Enter new value",
+                 * JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[0]);
+                 */
                 // Create int to parse string to
                 int newVal = 0;
                 try {
                         // Try to parse string
-                        newVal = Integer.parseInt("7");
+                        if (newVal_S.equals("")) {
+                                resetHP = true;
+                        } else if (newVal_S.indexOf("max") == -1) {
+                                // Don't affect the max HP
+                                newVal = Integer.parseInt(newVal_S);
+                        } else {
+                                affectMax = true;
+                                newVal_S = newVal_S.replace("max", "");
+                                newVal_S = newVal_S.replace(" ", "");
+                                newVal = Integer.parseInt(newVal_S);
+                        }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(updateStrengthButton, "Please enter a number",
                                         "Input error", JOptionPane.ERROR_MESSAGE);
@@ -6291,10 +6312,23 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 // If it didn't mess up, then set the stat, mod, and save, then update form and
                 // update the sheet
                 if (!fail) {
-                        if (newVal > 0) {
-                                p.setHp(newVal);
+                        if (resetHP) {
+                                // resetHP
+                                p.setHp(p.getHpMax());
+                        } else if (affectMax) {
+                                // Affect Max HP
+                                if (newVal > 0) {
+                                        p.setHpMax(newVal);
+                                } else {
+                                        p.setHpMax(p.getHpMax() + newVal);
+                                }
                         } else {
-                                p.setHp(p.getHp() - newVal);
+                                // Affect actual HP
+                                if (newVal > 0) {
+                                        p.setHp(newVal);
+                                } else {
+                                        p.setHp(p.getHp() + newVal);
+                                }
                         }
                         try {
                                 setComponentValues(p);
@@ -6835,27 +6869,74 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
 
         private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
-                // TODO add your handling code here:
+                String[] s = infoCharacterClassTextBox.getText().split(" ");
+                String[] bkp = {p.getChrSubclass(), p.getChrClass()};
+                try {
+                        p.setChrSubclass(s[0]);
+                        p.setChrClass(s[1]);
+                        JOptionPane.showMessageDialog(updateStrengthButton, "Class set");
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(updateStrengthButton,
+                                        "Error, class should be set as \"[subClass] [class]\"\nNo changed made",
+                                        "Error setting value", JOptionPane.ERROR_MESSAGE);
+                        p.setChrSubclass(bkp[0]);
+                        p.setChrClass(bkp[1]);
+                }
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_infoCharacterClassTextBox1ActionPerformed
 
         private void infoCharacterClassTextBox3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox3ActionPerformed
-                // TODO add your handling code here:
+                p.setRace(infoCharacterRaceTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Race set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_infoCharacterClassTextBox3ActionPerformed
 
         private void infoCharacterClassTextBox4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox4ActionPerformed
-                // TODO add your handling code here:
+                p.setBackground(infoCharacterBackgroundTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Background set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_infoCharacterClassTextBox4ActionPerformed
 
         private void infoCharacterClassTextBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox5ActionPerformed
-                // TODO add your handling code here:
+                p.setAlignment(infoCharacterAlignmentTextBox.getText());
+                JOptionPane.showMessageDialog(updateStrengthButton, "Alignment set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_infoCharacterClassTextBox5ActionPerformed
 
         private void infoCharacterClassTextBox6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox6ActionPerformed
-                // TODO add your handling code here:
+                p.setXp(Integer.parseInt(infoCharacterXPTextBox.getText()));
+                JOptionPane.showMessageDialog(updateStrengthButton, "Experience set");
+                try {
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                }
         }// GEN-LAST:event_infoCharacterClassTextBox6ActionPerformed
 
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-                // TODO add your handling code here:
+                JOptionPane.showMessageDialog(updateStrengthButton,
+                                "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_jButton1ActionPerformed
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
