@@ -350,6 +350,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jButton1 = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 infoNotes = new javax.swing.JTextArea();
+                statsScrollPane = new javax.swing.JScrollPane();
+                abilitiesScrollPane = new javax.swing.JScrollPane();
+                weaponsScrollPane = new javax.swing.JScrollPane();
+                spellsScrollPane = new javax.swing.JScrollPane();
+                infoScrollPane = new javax.swing.JScrollPane();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("dndCS - Character Sheet - " + p.getName());
@@ -5952,43 +5957,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(SheetTabs).addContainerGap()));
 
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                getContentPane().setLayout(layout);
-                layout.setHorizontalGroup(layout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 908, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                layout.createSequentialGroup()
-                                                                                .addContainerGap(
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE)
-                                                                                .addComponent(CSMainPanel,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addContainerGap(
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE))));
-                layout.setVerticalGroup(layout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 918, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                layout.createSequentialGroup()
-                                                                                .addContainerGap(
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE)
-                                                                                .addComponent(CSMainPanel,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addContainerGap(
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE))));
 
+                javax.swing.JScrollPane contentScroll = new javax.swing.JScrollPane(CSMainPanel);
+                setContentPane(contentScroll);
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
@@ -6206,6 +6177,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 if (newVal == null || newVal == "") {
                         newVal = p.getHitDieDR();
+                        fail = true;
                 }
 
                 // If it didn't mess up, then set the stat, mod, and save, then update form and
@@ -7208,5 +7180,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JButton weaponsUpdateButton;
         private javax.swing.JButton wisdomCheckButton;
         private javax.swing.JPanel wisdomPanel;
+        private javax.swing.JScrollPane statsScrollPane;
+        private javax.swing.JScrollPane abilitiesScrollPane;
+        private javax.swing.JScrollPane weaponsScrollPane;
+        private javax.swing.JScrollPane spellsScrollPane;
+        private javax.swing.JScrollPane infoScrollPane;
         // End of variables declaration//GEN-END:variables
 }
