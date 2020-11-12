@@ -14,6 +14,12 @@
             "type": "shell",
             "command": "mvn -B test",
             "group": "test"
+        },
+        {
+            "label": "mkPkg",
+            "type": "shell",
+            "command": "cd dndCS && mvn clean compile assembly:single",
+            "group": "build"
         }
     ]
 }

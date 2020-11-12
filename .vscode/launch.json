@@ -23,6 +23,17 @@
             "request": "launch",
             "mainClass": "com.rhodso.app.MainMenu",
             "projectName": "dndCS"
+        },
+        {
+            "type": "java",
+            "name": "Make Jar",
+            "request": "launch",
+            "mainClass": "com.rhodso.app.App",
+            "projectName": "dndCS",
+            "preLaunchTask": {
+                "task": "mkPkg",
+                "type": "shell"
+            }
         }
     ]
 }

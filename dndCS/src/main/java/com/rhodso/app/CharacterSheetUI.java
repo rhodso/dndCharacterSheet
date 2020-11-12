@@ -6204,6 +6204,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 + p.getHitDieDR(),
                                 "Enter new value", JOptionPane.QUESTION_MESSAGE);
 
+                if (newVal == "") {
+                        newVal = p.getHitDieDR();
+                }
+
                 // If it didn't mess up, then set the stat, mod, and save, then update form and
                 // update the sheet
                 if (!fail) {

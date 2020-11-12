@@ -3,6 +3,11 @@ package com.rhodso.app;
 public class App {
     public static void main(String[] args) {
 
+        // TODO: Add scroll bars to all windows
+        // TODO: Fix HP thing
+        // TODO: Check that hit dice cancelling works correctly
+        // TODO: Add level up feature
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
                     .getInstalledLookAndFeels()) {
