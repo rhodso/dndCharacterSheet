@@ -95,14 +95,30 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         public JPanel buildSpellsListPanel(ArrayList<JPanel> _spellsList) {
                 JPanel panel = new JPanel();
 
-                // Convert list of all known spells into spell slots
-                ArrayList<ArrayList<JPanel>> actualSpellsList;
+                //Sort all spells into specific levels
+                ArrayList<Spell> spells = p.getSpellsList();
+                ArrayList<ArrayList<Spell>> sortedSpells = new ArrayList<ArrayList<Spell>>();
+                for(int i = 0; i < 10; i++){
+                        sortedSpells.add(new ArrayList<Spell>());
+                }
+                for(Spell s : spells){
+                        sortedSpells.get(s.getSpellLevel()).add(s);
+                }
 
+                //Create the stuff to add to the panel
+                for(ArrayList<Spell> groupedSpellList : sortedSpells){
+                        //Check if we need to bother
+                        if(groupedSpellList.size() == 0){
+                                continue;
+                        }
+                        //Leveled slot has more than one spell in the slot, add header
+                        //TODO add header
+                        
+                        //Add the spells
+                        for(Spell s : groupedSpellList){
 
-
-                panel.setLayout(new java.awt.GridLayout(_spellsList.size() + 9, 1));
-
-
+                        }
+                }
 
                 return panel;
         }
