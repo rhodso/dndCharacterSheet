@@ -257,7 +257,7 @@ public class CharacterSheet {
             JSONArray ssL = new JSONArray();
             int[] spellSlotsLeft = p.getSpellSlotsLeft();
             for (int i = 0; i < 9; i++) {
-                ss.add(i, spellSlotsLeft[i]);
+                ssL.add(i, spellSlotsLeft[i]);
             }
             player.put("spellSlotsLeft", ssL);
 
