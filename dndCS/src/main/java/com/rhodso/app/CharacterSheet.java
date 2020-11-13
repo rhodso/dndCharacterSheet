@@ -24,6 +24,8 @@ public class CharacterSheet {
         JSONParser jsonParser = new JSONParser();
         JSONArray weaponList;
         JSONArray spellList;
+        JSONArray spellSlots;
+        JSONArray spellSlotsLeft;
         JSONArray curr;
 
         // Populate player with data from JSON
@@ -110,6 +112,21 @@ public class CharacterSheet {
                 spellsList.add(s);
             }
             p.setSpellsList(spellsList);
+
+            // player spell slots
+            spellSlots = (JSONArray) player.get("spellSlots");
+            int[] ss = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+            for (int i = 0; i < 9; i++) {
+                ss[i] = Integer.parseInt(spellSlots.get(i).toString());
+            }
+            p.setSpellSlots(ss);
+
+            spellSlotsLeft = (JSONArray) player.get("spellSlotsLeft");
+            int[] ssL = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+            for (int i = 0; i < 9; i++) {
+                ssL[i] = Integer.parseInt(spellSlotsLeft.get(i).toString());
+            }
+            p.setSpellSlotsLeft(ssL);
 
             // Player currency
             curr = (JSONArray) player.get("currency");
@@ -223,6 +240,22 @@ public class CharacterSheet {
             currObject.add(3, p.getCP());
             currObject.add(4, p.getEP());
             player.put("currency", currObject);
+
+            // Spell slots
+            JSONArray ss = new JSONArray();
+            int[] spellSlots = p.getSpellSlots();
+            for (int i = 0; i < 9; i++) {
+                ss.add(i, spellSlots[i]);
+            }
+            player.put("spellSlots", ss);
+
+            JSONArray ssL = new JSONArray();
+            int[] spellSlotsLeft = p.getSpellSlotsLeft();
+            for (int i = 0; i < 9; i++) {
+                ss.add(i, spellSlotsLeft[i]);
+            }
+            player.put("spellSlotsLeft", ssL);
+
 
             // Add rest of info
             player.put("background", p.getBackground());

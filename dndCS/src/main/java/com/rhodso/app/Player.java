@@ -80,12 +80,42 @@ public class Player {
     // Lists
     private ArrayList<Weapon> weaponsList;
     private ArrayList<Spell> spellsList;
+    private int[] spellSlots;
+    private int[] spellSlotsLeft;
 
     /**
      * @return the persuasion
      */
     public int getPersuasion() {
         return persuasion;
+    }
+
+    /**
+     * @return the spellSlotsLeft
+     */
+    public int[] getSpellSlotsLeft() {
+        return spellSlotsLeft;
+    }
+
+    /**
+     * @param spellSlotsLeft the spellSlotsLeft to set
+     */
+    public void setSpellSlotsLeft(int[] spellSlotsLeft) {
+        this.spellSlotsLeft = spellSlotsLeft;
+    }
+
+    /**
+     * @return the spellSlots
+     */
+    public int[] getSpellSlots() {
+        return spellSlots;
+    }
+
+    /**
+     * @param spellSlots the spellSlots to set
+     */
+    public void setSpellSlots(int[] spellSlots) {
+        this.spellSlots = spellSlots;
     }
 
     /**
@@ -953,6 +983,8 @@ public class Player {
      * 
      */
     public Player() {
+        spellSlots = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        spellSlotsLeft = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
     }
 
     /**

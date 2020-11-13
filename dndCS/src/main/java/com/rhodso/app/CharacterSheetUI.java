@@ -16,6 +16,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         Player p;
         CharacterSheet c;
+        ArrayList<JPanel> weaponsList;
         /**
         *
         */
@@ -76,11 +77,29 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 c.SaveSheet(p);
         }
 
-        public JPanel buildWeaponsListPanel(ArrayList<Weapons> _weaponsList) {
+        public JPanel buildWeaponsListPanel(ArrayList<JPanel> _weaponsList) {
                 JPanel panel = new JPanel();
 
-                JLabel fuckingLabel = new JLabel("Label");
-                panel.add(fuckingLabel);
+                panel.setLayout(new java.awt.GridLayout(_weaponsList.size(), 1));
+
+                for (JPanel wpnPanel : _weaponsList) {
+                        panel.add(wpnPanel, c);
+                }
+
+                return panel;
+        }
+
+        public JPanel buildSpellsListPanel(ArrayList<JPanel> _spellsList) {
+                JPanel panel = new JPanel();
+
+                // Convert list of all known spells into spell slots
+                ArrayList<ArrayList<JPanel>> actualSpellsList;
+
+
+
+                panel.setLayout(new java.awt.GridLayout(_spellsList.size() + 9, 1));
+
+
 
                 return panel;
         }
@@ -210,7 +229,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoNotes.setText(p.getNotes());
 
                 // weaponList
-                ArrayList<JPanel> weaponsList = buildWeaponList();
+                weaponsList = buildWeaponList();
                 JPanel weaponsListPanel = buildWeaponsListPanel(weaponsList);
 
                 weaponsListScrollPane.setViewportView(weaponsListPanel);
@@ -1098,22 +1117,22 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                         wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
                         wpnDamageType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnDamageType.setText("exampleDamageType");
+                        wpnDamageType.setText(w.getDamageType());
                         wpnDamageType.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
                         wpnDamageRoll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
                         wpnDamageRoll.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnDamageRoll.setText("999d99999");
+                        wpnDamageRoll.setText(w.getDmgDR());
                         wpnDamageRoll.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
                         wpnRollHit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                         wpnRollHit.setText("HIT\n");
-                        wpnRollHit.setMaximumSize(new java.awt.Dimension(76, 33));
-                        wpnRollHit.setMinimumSize(new java.awt.Dimension(76, 33));
-                        wpnRollHit.setPreferredSize(new java.awt.Dimension(76, 33));
                         wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        exampleWeaponRollHitActionPerformed(evt);
+                                        Dice d = new Dice(20); //TODO: Need to find a way of keeping a copy of the weapon object
+                                        JOptionPane.showMessageDialog(strengthCheckButton,
+                                                        "Rolled: " + d.roll(), "Rolling to hit",
+                                                        JOptionPane.OK_OPTION);
                                 }
                         });
 
@@ -1121,7 +1140,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         wpnRollDamage.setText("DMG");
                         wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        exampleWeaponRollDamageActionPerformed(evt);
+                                        Dice d = new Dice(20); //TODO: Need to find a way of keeping a copy of the weapon object
+                                        JOptionPane.showMessageDialog(strengthCheckButton,
+                                                        "Rolled: " + d.roll(), "Rolling to hit",
+                                                        JOptionPane.OK_OPTION);
                                 }
                         });
 
@@ -1173,20 +1195,17 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         wpnPanelLayout.setVerticalGroup(wpnPanelLayout
                                         .createParallelGroup(
                                                         javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
                                                         wpnPanelLayout.createSequentialGroup()
                                                                         .addContainerGap()
                                                                         .addGroup(wpnPanelLayout
                                                                                         .createParallelGroup(
                                                                                                         javax.swing.GroupLayout.Alignment.LEADING)
                                                                                         .addComponent(wpnRollDamage,
-                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                       
-                                                                                                        .addComponent(wpnRollHit,
-                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        Short.MAX_VALUE))
+                                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+
+                                                                                        .addComponent(wpnRollHit,
+                                                                                                        javax.swing.GroupLayout.Alignment.LEADING))
                                                                         .addContainerGap())
                                         .addGroup(wpnPanelLayout.createSequentialGroup()
                                                         .addGap(4, 4, 4)
@@ -1194,7 +1213,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                         .createParallelGroup(
                                                                                         javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(wpnName,
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
                                                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                         javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                         Short.MAX_VALUE)
