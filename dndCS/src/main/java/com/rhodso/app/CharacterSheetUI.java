@@ -882,16 +882,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                 "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
 
-        private void exampleWeaponRollHitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollHitActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleWeaponRollHitActionPerformed
-
-        private void exampleWeaponRollDamageActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleWeaponRollDamageActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_exampleWeaponRollDamageActionPerformed
-
         private void spellsCLevelUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsCLevelUpdateButtonActionPerformed
                 // Set flag in case the user can't enter a number
                 boolean fail = false;
@@ -996,23 +986,19 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_spellsUpdateButtonActionPerformed
 
         private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                ;
         }// GEN-LAST:event_exampleSpellRollButtonActionPerformed
 
         private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cantripsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                ;
         }// GEN-LAST:event_cantripsUpdateButtonActionPerformed
 
         private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButton1ActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                ;
         }// GEN-LAST:event_exampleSpellRollButton1ActionPerformed
 
         private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                ;
         }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
 
         private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
@@ -1129,7 +1115,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         wpnRollHit.setText("HIT\n");
                         wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        Dice d = new Dice(20); //TODO: Need to find a way of keeping a copy of the weapon object
+                                        Dice d = new Dice(20); // TODO: Need to find a way of
+                                                               // keeping a copy of the weapon
+                                                               // object
                                         JOptionPane.showMessageDialog(strengthCheckButton,
                                                         "Rolled: " + d.roll(), "Rolling to hit",
                                                         JOptionPane.OK_OPTION);
@@ -1140,7 +1128,9 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         wpnRollDamage.setText("DMG");
                         wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        Dice d = new Dice(20); //TODO: Need to find a way of keeping a copy of the weapon object
+                                        Dice d = new Dice(20); // TODO: Need to find a way of
+                                                               // keeping a copy of the weapon
+                                                               // object
                                         JOptionPane.showMessageDialog(strengthCheckButton,
                                                         "Rolled: " + d.roll(), "Rolling to hit",
                                                         JOptionPane.OK_OPTION);
@@ -1578,11 +1568,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jButton1 = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 infoNotes = new javax.swing.JTextArea();
-                statsScrollPane = new javax.swing.JScrollPane();
-                abilitiesScrollPane = new javax.swing.JScrollPane();
-                weaponsScrollPane = new javax.swing.JScrollPane();
-                spellsScrollPane = new javax.swing.JScrollPane();
-                infoScrollPane = new javax.swing.JScrollPane();
 
                 infoNotes.addKeyListener(new KeyListener() {
                         @Override
@@ -5473,7 +5458,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 exampleWeaponRollHit.setPreferredSize(new java.awt.Dimension(76, 33));
                 exampleWeaponRollHit.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                exampleWeaponRollHitActionPerformed(evt);
+                                ;
                         }
                 });
 
@@ -5481,7 +5466,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 exampleWeaponRollDamage.setText("DMG");
                 exampleWeaponRollDamage.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                exampleWeaponRollDamageActionPerformed(evt);
+                                ;
                         }
                 });
 
@@ -7533,10 +7518,5 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JButton weaponsUpdateButton;
         private javax.swing.JButton wisdomCheckButton;
         private javax.swing.JPanel wisdomPanel;
-        private javax.swing.JScrollPane statsScrollPane;
-        private javax.swing.JScrollPane abilitiesScrollPane;
-        private javax.swing.JScrollPane weaponsScrollPane;
-        private javax.swing.JScrollPane spellsScrollPane;
-        private javax.swing.JScrollPane infoScrollPane;
         // End of variables declaration//GEN-END:variables
 }

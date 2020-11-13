@@ -1,12 +1,9 @@
 package com.rhodso.app;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -157,6 +154,9 @@ public class CharacterSheet {
         return p;
     }
 
+    // Suppress unchecked warning about some haskmap thing. If it's stupid but it works then it's
+    // not stupid. Probably
+    @SuppressWarnings("unchecked")
     public void SaveSheet(Player p) {
         try {
             // Create string
