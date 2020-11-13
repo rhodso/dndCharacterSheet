@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,10 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
-
+        Map<JButton, Weapon> buttonWeaponMap = new HashMap<JButton, Weapon>();
         Player p;
         CharacterSheet c;
         ArrayList<JPanel> weaponsList;
+
         /**
         *
         */
@@ -1098,7 +1101,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                         wpnProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
                         wpnProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnProficiency.setText("+99");
+                        wpnProficiency.setText(formatStr(w.getProficiency()));
                         wpnProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
                         wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -1115,27 +1118,28 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         wpnRollHit.setText("HIT\n");
                         wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        Dice d = new Dice(20); // TODO: Need to find a way of
-                                                               // keeping a copy of the weapon
-                                                               // object
+                                        Weapon thisWeapon = buttonWeaponMap.get(evt.getSource());
+                                        Dice d = thisWeapon.getHit();
                                         JOptionPane.showMessageDialog(strengthCheckButton,
                                                         "Rolled: " + d.roll(), "Rolling to hit",
-                                                        JOptionPane.OK_OPTION);
+                                                        JOptionPane.INFORMATION_MESSAGE, null);
                                 }
                         });
+                        buttonWeaponMap.put(wpnRollHit, w);
 
                         wpnRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                         wpnRollDamage.setText("DMG");
                         wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        Dice d = new Dice(20); // TODO: Need to find a way of
-                                                               // keeping a copy of the weapon
-                                                               // object
+                                        Weapon thisWeapon = buttonWeaponMap.get(evt.getSource());
+                                        Dice d = thisWeapon.getDmg();
+                                        int res = d.roll();
                                         JOptionPane.showMessageDialog(strengthCheckButton,
-                                                        "Rolled: " + d.roll(), "Rolling to hit",
-                                                        JOptionPane.OK_OPTION);
+                                                        "Rolled: " + res, "Rolling damage",
+                                                        JOptionPane.INFORMATION_MESSAGE, null);
                                 }
                         });
+                        buttonWeaponMap.put(wpnRollDamage, w);
 
                         javax.swing.GroupLayout wpnPanelLayout =
                                         new javax.swing.GroupLayout(wpnPanel);

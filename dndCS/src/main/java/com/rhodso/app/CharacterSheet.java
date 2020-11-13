@@ -90,6 +90,11 @@ public class CharacterSheet {
                 w.setRange(wpn.get("range").toString());
                 w.setDamageType(wpn.get("damageType").toString());
                 w.setProficiency(Integer.parseInt((wpn.get("Proficiency").toString()).toString()));
+
+                // Calculated fields
+                w.setHit(new Dice(w.getHitDR()));
+                w.setDmg(new Dice(w.getDmgDR()));
+
                 wl.add(w);
             }
             p.setWeaponsList(wl);

@@ -2,6 +2,7 @@ package com.rhodso.app;
 
 import java.time.Instant;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Dice {
     private int number;
@@ -62,17 +63,16 @@ public class Dice {
         } else if (number < 1) { // Number of dice too low
             throw new IllegalArgumentException("Too few dice to roll");
         } else { // Number >= 1
-            // Pick random number seeded by the current time
-            Random random = new Random(Instant.now().getEpochSecond());
 
             // Set total to 0
             int total = 0;
             for (int i = 0; i < number; i++) {
                 // Get random number
-                int n = random.nextInt(sides); // Add 1 to "Sides", then 1 to result so that the
-                                               // random number is in
-                                               // range 1-sides
-                n += 1;
+
+                // Found a better way of doing RNG
+                int n = ThreadLocalRandom.current().nextInt(1, sides + 1);
+
+                // Plus it seemed to fix a but in weapon damage rolls, for soem reaon
 
                 // Add number to total
                 total += n;
