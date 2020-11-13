@@ -6,7 +6,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -77,169 +76,13 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 c.SaveSheet(p);
         }
 
-        public ArrayList<JPanel> buildWeaponList() {
-                ArrayList<JPanel> weaponPanelList = new ArrayList<>();
-                for (Weapon w : p.getWeaponsList()) {
-                        System.out.println("WeaponName = " + w.getName());
-                        JPanel wpnPanel = new JPanel();
-                        JLabel wpnName = new JLabel();
-                        JLabel wpnRange = new JLabel();
-                        JLabel wpnProficiency = new JLabel();
-                        JLabel wpnDamageType = new JLabel();
-                        JLabel wpnDamageRoll = new JLabel();
-                        JButton wpnRollHit = new JButton();
-                        JButton wpnRollDamage = new JButton();
+        public JPanel buildWeaponsListPanel(ArrayList<Weapons> _weaponsList) {
+                JPanel panel = new JPanel();
 
-                        wpnPanel.setBorder(javax.swing.BorderFactory
-                                        .createLineBorder(new java.awt.Color(0, 0, 0)));
+                JLabel fuckingLabel = new JLabel("Label");
+                panel.add(fuckingLabel);
 
-                        wpnName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                        wpnName.setText(w.getName());
-
-                        wpnRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-                        wpnRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnRange.setText(w.getRange() + "ft");
-                        wpnRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-                        wpnProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-                        wpnProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnProficiency.setText("+99");
-                        wpnProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-                        wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-                        wpnDamageType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnDamageType.setText("exampleDamageType");
-                        wpnDamageType.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-                        wpnDamageRoll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-                        wpnDamageRoll.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnDamageRoll.setText("999d99999");
-                        wpnDamageRoll.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-                        wpnRollHit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-                        wpnRollHit.setText("HIT\n");
-                        wpnRollHit.setMaximumSize(new java.awt.Dimension(76, 33));
-                        wpnRollHit.setMinimumSize(new java.awt.Dimension(76, 33));
-                        wpnRollHit.setPreferredSize(new java.awt.Dimension(76, 33));
-                        wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
-                                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        exampleWeaponRollHitActionPerformed(evt);
-                                }
-                        });
-
-                        wpnRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-                        wpnRollDamage.setText("DMG");
-                        wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
-                                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        exampleWeaponRollDamageActionPerformed(evt);
-                                }
-                        });
-
-                        javax.swing.GroupLayout wpnPanelLayout =
-                                        new javax.swing.GroupLayout(wpnPanel);
-                        wpnPanel.setLayout(wpnPanelLayout);
-                        wpnPanelLayout.setHorizontalGroup(wpnPanelLayout
-                                        .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(wpnPanelLayout.createSequentialGroup()
-                                                        .addContainerGap()
-                                                        .addComponent(wpnName,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        260,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addGroup(wpnPanelLayout
-                                                                        .createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        false)
-                                                                        .addComponent(wpnProficiency,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                        .addComponent(wpnRange,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE))
-                                                        .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addGroup(wpnPanelLayout
-                                                                        .createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(wpnDamageType,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        162,
-                                                                                        Short.MAX_VALUE)
-                                                                        .addComponent(wpnDamageRoll,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE))
-                                                        .addGap(53, 53, 53)
-                                                        .addComponent(wpnRollHit,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        78,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(9, 9, 9).addComponent(wpnRollDamage)
-                                                        .addContainerGap()));
-                        wpnPanelLayout.setVerticalGroup(wpnPanelLayout
-                                        .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                        wpnPanelLayout.createSequentialGroup()
-                                                                        .addContainerGap()
-                                                                        .addGroup(wpnPanelLayout
-                                                                                        .createParallelGroup(
-                                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(wpnRollDamage,
-                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        Short.MAX_VALUE)
-                                                                                        .addComponent(wpnRollHit,
-                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        Short.MAX_VALUE))
-                                                                        .addContainerGap())
-                                        .addGroup(wpnPanelLayout.createSequentialGroup()
-                                                        .addGap(4, 4, 4)
-                                                        .addGroup(wpnPanelLayout
-                                                                        .createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(wpnName,
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                        .addGroup(wpnPanelLayout
-                                                                                        .createSequentialGroup()
-                                                                                        .addGroup(wpnPanelLayout
-                                                                                                        .createParallelGroup(
-                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                        .addComponent(wpnRange,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                        29,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addComponent(wpnDamageType,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                        29,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addPreferredGap(
-                                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(wpnPanelLayout
-                                                                                                        .createParallelGroup(
-                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                                                        .addComponent(wpnProficiency,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                        20,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addComponent(wpnDamageRoll,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                                        20,
-                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                        .addGap(6, 12, Short.MAX_VALUE)))));
-                        weaponPanelList.add(wpnPanel);
-                }
-                return weaponPanelList;
+                return panel;
         }
 
         /*
@@ -368,51 +211,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 // weaponList
                 ArrayList<JPanel> weaponsList = buildWeaponList();
-                // javax.swing.GroupLayout weaponsListPanelLayout =
-                // new javax.swing.GroupLayout(weaponsListPanel);
-                // weaponsListPanel.setLayout(weaponsListPanelLayout);
-                // weaponsListPanelLayout.setHorizontalGroup(weaponsListPanelLayout
-                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                // .addGroup(weaponsListPanelLayout.createSequentialGroup()
-                // .addContainerGap()
-                // .addComponent(exampleWeaponPanel,
-                // javax.swing.GroupLayout.PREFERRED_SIZE,
-                // javax.swing.GroupLayout.DEFAULT_SIZE,
-                // javax.swing.GroupLayout.PREFERRED_SIZE)
-                // .addContainerGap(89, Short.MAX_VALUE)));
-                // weaponsListPanelLayout.setVerticalGroup(weaponsListPanelLayout
-                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                // .addGroup(weaponsListPanelLayout.createSequentialGroup()
-                // .addContainerGap()
-                // .addComponent(exampleWeaponPanel,
-                // javax.swing.GroupLayout.PREFERRED_SIZE,
-                // javax.swing.GroupLayout.DEFAULT_SIZE,
-                // javax.swing.GroupLayout.PREFERRED_SIZE)
-                // .addContainerGap(491, Short.MAX_VALUE)));
+                JPanel weaponsListPanel = buildWeaponsListPanel(weaponsList);
 
-                javax.swing.GroupLayout weaponsListPanelLayout =
-                                new javax.swing.GroupLayout(weaponsListPanel);
+                weaponsListScrollPane.setViewportView(weaponsListPanel);
 
-                weaponsListPanelLayout.setAutoCreateGaps(true);
-                weaponsListPanelLayout.setAutoCreateContainerGaps(true);
-                GroupLayout.ParallelGroup parallel = weaponsListPanelLayout.createParallelGroup();
-                weaponsListPanelLayout.setHorizontalGroup(
-                                weaponsListPanelLayout.createSequentialGroup().addGroup(parallel));
-                GroupLayout.SequentialGroup sequential =
-                                weaponsListPanelLayout.createSequentialGroup();
-                weaponsListPanelLayout.setVerticalGroup(sequential);
-                for (JPanel wPnl : weaponsList) {
-                        parallel.addGroup(weaponsListPanelLayout.createSequentialGroup()
-                                        .addComponent(wPnl));
-                        sequential.addGroup(weaponsListPanelLayout
-                                        .createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(wPnl));
-                }
-
-                // TODO: Finish this bit
-
-                // weaponsListScrollPane.setViewportView(weaponsListPanel);
-                weaponsListScrollPane = new javax.swing.JScrollPane(weaponsListPanel);
         }
 
         String abilityCheck(int mod) {
@@ -1264,6 +1066,170 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(updateStrengthButton,
                                 "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_jButton1ActionPerformed
+
+        public ArrayList<JPanel> buildWeaponList() {
+                ArrayList<JPanel> weaponPanelList = new ArrayList<>();
+                for (Weapon w : p.getWeaponsList()) {
+                        // System.out.println("WeaponName = " + w.getName());
+                        JPanel wpnPanel = new JPanel();
+                        JLabel wpnName = new JLabel();
+                        JLabel wpnRange = new JLabel();
+                        JLabel wpnProficiency = new JLabel();
+                        JLabel wpnDamageType = new JLabel();
+                        JLabel wpnDamageRoll = new JLabel();
+                        JButton wpnRollHit = new JButton();
+                        JButton wpnRollDamage = new JButton();
+
+                        wpnPanel.setBorder(javax.swing.BorderFactory
+                                        .createLineBorder(new java.awt.Color(0, 0, 0)));
+
+                        wpnName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                        wpnName.setText(w.getName());
+
+                        wpnRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnRange.setText(w.getRange() + "ft");
+                        wpnRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        wpnProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnProficiency.setText("+99");
+                        wpnProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                        wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnDamageType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnDamageType.setText("exampleDamageType");
+                        wpnDamageType.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        wpnDamageRoll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                        wpnDamageRoll.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                        wpnDamageRoll.setText("999d99999");
+                        wpnDamageRoll.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                        wpnRollHit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        wpnRollHit.setText("HIT\n");
+                        wpnRollHit.setMaximumSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.setMinimumSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.setPreferredSize(new java.awt.Dimension(76, 33));
+                        wpnRollHit.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        exampleWeaponRollHitActionPerformed(evt);
+                                }
+                        });
+
+                        wpnRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        wpnRollDamage.setText("DMG");
+                        wpnRollDamage.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        exampleWeaponRollDamageActionPerformed(evt);
+                                }
+                        });
+
+                        javax.swing.GroupLayout wpnPanelLayout =
+                                        new javax.swing.GroupLayout(wpnPanel);
+                        wpnPanel.setLayout(wpnPanelLayout);
+                        wpnPanelLayout.setHorizontalGroup(wpnPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(wpnPanelLayout.createSequentialGroup()
+                                                        .addContainerGap()
+                                                        .addComponent(wpnName,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        260,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                        false)
+                                                                        .addComponent(wpnProficiency,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addComponent(wpnRange,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE))
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(wpnDamageType,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        162,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addComponent(wpnDamageRoll,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE))
+                                                        .addGap(53, 53, 53)
+                                                        .addComponent(wpnRollHit,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        78,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(9, 9, 9).addComponent(wpnRollDamage)
+                                                        .addContainerGap()));
+                        wpnPanelLayout.setVerticalGroup(wpnPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        wpnPanelLayout.createSequentialGroup()
+                                                                        .addContainerGap()
+                                                                        .addGroup(wpnPanelLayout
+                                                                                        .createParallelGroup(
+                                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(wpnRollDamage,
+                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                       
+                                                                                                        .addComponent(wpnRollHit,
+                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                        Short.MAX_VALUE))
+                                                                        .addContainerGap())
+                                        .addGroup(wpnPanelLayout.createSequentialGroup()
+                                                        .addGap(4, 4, 4)
+                                                        .addGroup(wpnPanelLayout
+                                                                        .createParallelGroup(
+                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(wpnName,
+                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addGroup(wpnPanelLayout
+                                                                                        .createSequentialGroup()
+                                                                                        .addGroup(wpnPanelLayout
+                                                                                                        .createParallelGroup(
+                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                        .addComponent(wpnRange,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        29,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(wpnDamageType,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        29,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                        .addPreferredGap(
+                                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                        .addGroup(wpnPanelLayout
+                                                                                                        .createParallelGroup(
+                                                                                                                        javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                        .addComponent(wpnProficiency,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        20,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(wpnDamageRoll,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                        20,
+                                                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                        .addGap(6, 12, Short.MAX_VALUE)))));
+                        weaponPanelList.add(wpnPanel);
+                }
+                return weaponPanelList;
+        }
+
 
         /**
          * This method is called from within the constructor to initialize the form. WARNING: Do NOT
