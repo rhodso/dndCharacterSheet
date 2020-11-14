@@ -113,10 +113,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         }
                         //Leveled slot has more than one spell in the slot, add header
                         //TODO add header
-                        
+
                         //Add the spells
                         for(Spell s : groupedSpellList){
-
+                                
                         }
                 }
 
