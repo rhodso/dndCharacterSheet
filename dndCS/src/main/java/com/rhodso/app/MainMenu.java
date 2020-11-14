@@ -211,7 +211,8 @@ public class MainMenu extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
         private void rollDiceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rollDiceButtonActionPerformed
-                JOptionPane.showMessageDialog(MainPanel, "This feature is not yet implimented"); // TODO
+                DiceRoller d = new DiceRoller();
+                d.setVisible(true);
         }// GEN-LAST:event_rollDiceButtonActionPerformed
 
         private void loadCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loadCharButtonActionPerformed

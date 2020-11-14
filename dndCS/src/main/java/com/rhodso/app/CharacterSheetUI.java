@@ -111,7 +111,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         if (groupedSpellList.size() == 0) {
                                 continue;
                         }
-                        
+
                 }
 
                 return panel;
@@ -119,7 +119,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         /*
          * @return the number formatted as a string
-         * */
+         */
         public String formatStr(int i) {
                 if (i > 0) {
                         return "+" + Integer.toString(i);
@@ -1060,7 +1060,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         private void infoCharacterClassTextBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox5ActionPerformed
                 p.setAlignment(infoCharacterAlignmentTextBox.getText());
-                JOptionPane.showMessageDialog(updateStrengthButton, "Alignment set");
+                JOptionPane.showMessageDialog(updateStrengthButton, "Alightment set");
                 try {
                         setComponentValues(p);
                         c.SaveSheet(p);
