@@ -95,29 +95,23 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         public JPanel buildSpellsListPanel(ArrayList<JPanel> _spellsList) {
                 JPanel panel = new JPanel();
 
-                //Sort all spells into specific levels
+                // Sort all spells into specific levels
                 ArrayList<Spell> spells = p.getSpellsList();
                 ArrayList<ArrayList<Spell>> sortedSpells = new ArrayList<ArrayList<Spell>>();
-                for(int i = 0; i < 10; i++){
+                for (int i = 0; i < 10; i++) {
                         sortedSpells.add(new ArrayList<Spell>());
                 }
-                for(Spell s : spells){
+                for (Spell s : spells) {
                         sortedSpells.get(s.getSpellLevel()).add(s);
                 }
 
-                //Create the stuff to add to the panel
-                for(ArrayList<Spell> groupedSpellList : sortedSpells){
-                        //Check if we need to bother
-                        if(groupedSpellList.size() == 0){
+                // Create the stuff to add to the panel
+                for (ArrayList<Spell> groupedSpellList : sortedSpells) {
+                        // Check if we need to bother
+                        if (groupedSpellList.size() == 0) {
                                 continue;
                         }
-                        //Leveled slot has more than one spell in the slot, add header
-                        //TODO add header
-
-                        //Add the spells
-                        for(Spell s : groupedSpellList){
-                                
-                        }
+                        
                 }
 
                 return panel;
@@ -125,7 +119,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         /*
          * @return the number formatted as a string
-         */
+         * */
         public String formatStr(int i) {
                 if (i > 0) {
                         return "+" + Integer.toString(i);
