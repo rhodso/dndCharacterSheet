@@ -111,6 +111,13 @@ public class CharacterSheet {
                 s.setRange(spl.get("range").toString());
                 s.setDamageType(spl.get("damageType").toString());
                 s.setSpellLevel(Integer.parseInt((spl.get("spellLevel").toString()).toString()));
+
+                // Calculated fields
+                if (!s.getDmgDR().equals("0")) {
+                    s.setDmg(new Dice(s.getDmgDR()));
+                }
+                s.setHit(new Dice(s.getHitDR()));
+
                 spellsList.add(s);
             }
             p.setSpellsList(spellsList);
@@ -295,6 +302,17 @@ public class CharacterSheet {
         res -= 5;
 
         return res;
+    }
+
+    /*
+     * @return the number formatted as a string
+     */
+    public String formatStr(int i) {
+        if (i > 0) {
+            return "+" + Integer.toString(i);
+        } else {
+            return Integer.toString(i);
+        }
     }
 
     public int getSave(String stat, Player p) {

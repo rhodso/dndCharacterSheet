@@ -16,9 +16,12 @@ import javax.swing.JPanel;
 
 public class CharacterSheetUI extends javax.swing.JFrame {
         Map<JButton, Weapon> buttonWeaponMap = new HashMap<JButton, Weapon>();
+        Map<JButton, Spell> buttonSpellMap = new HashMap<JButton, Spell>();
+        Map<JButton, Integer> buttonspellSlotMap = new HashMap<JButton, Integer>();
         Player p;
         CharacterSheet c;
         ArrayList<JPanel> weaponsList;
+        ArrayList<JPanel> spellsList;
 
         /**
         *
@@ -92,7 +95,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 return panel;
         }
 
-        public JPanel buildSpellsListPanel(ArrayList<JPanel> _spellsList) {
+        public JPanel buildSpellListPanel() {
                 JPanel panel = new JPanel();
 
                 // Sort all spells into specific levels
@@ -105,27 +108,32 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         sortedSpells.get(s.getSpellLevel()).add(s);
                 }
 
+                int spellSlotsNeeded = 0;
+                for (ArrayList<Spell> sList : sortedSpells) {
+                        if (sList.size() > 0) {
+                                spellSlotsNeeded++;
+                        }
+                }
+
+                panel.setLayout(new java.awt.GridLayout(p.getSpellsList().size() + spellSlotsNeeded,
+                                1));
+
                 // Create the stuff to add to the panel
+                int level = -1;
                 for (ArrayList<Spell> groupedSpellList : sortedSpells) {
+                        level++;
                         // Check if we need to bother
                         if (groupedSpellList.size() == 0) {
                                 continue;
+                        } else {
+                                panel.add(buildSpellHeaderPanel(level));
+                                for (Spell s : groupedSpellList) {
+                                        panel.add(buildSpellPanel(s));
+                                }
                         }
-
                 }
 
                 return panel;
-        }
-
-        /*
-         * @return the number formatted as a string
-         */
-        public String formatStr(int i) {
-                if (i > 0) {
-                        return "+" + Integer.toString(i);
-                } else {
-                        return Integer.toString(i);
-                }
         }
 
         private void setComponentValues(Player p) {
@@ -135,19 +143,16 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponsCharacterName.setText(p.getName());
                 spellsCharacterName.setText(p.getName());
                 informationCharacterName.setText(p.getName());
-
                 statsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
                 abilitiesCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
                 weaponsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
                 spellsCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
                 informationCharacterClass.setText(p.getChrSubclass() + " " + p.getChrClass());
-
                 statsCharacterLevel.setText(Integer.toString(p.getLvl()));
                 abilitiesCharacterLevel.setText(Integer.toString(p.getLvl()));
                 weaponsCharacterLevel.setText(Integer.toString(p.getLvl()));
                 spellsCharacterLevel.setText(Integer.toString(p.getLvl()));
                 informationCharacterLevel.setText(Integer.toString(p.getLvl()));
-
                 HPValueLabel.setText(p.getHp() + "/" + p.getHpMax());
 
                 // Low health representation
@@ -164,64 +169,64 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 // Set score values
                 strengthScoreValueLabel.setText(Integer.toString(p.getStr()));
-                strengthModifierValueLabel.setText(formatStr(p.getStrMod()));
-                strengthSaveValueLabel.setText(formatStr(p.getStrSave()));
+                strengthModifierValueLabel.setText(c.formatStr(p.getStrMod()));
+                strengthSaveValueLabel.setText(c.formatStr(p.getStrSave()));
 
                 dexterityScoreValueLabel.setText(Integer.toString(p.getDex()));
-                dexterityModifierValueLabel.setText(formatStr(p.getDexMod()));
-                dexteritySaveValueLabel.setText(formatStr(p.getDexSave()));
+                dexterityModifierValueLabel.setText(c.formatStr(p.getDexMod()));
+                dexteritySaveValueLabel.setText(c.formatStr(p.getDexSave()));
 
                 constitutionScoreValueLabel.setText(Integer.toString(p.getCon()));
-                constitutionModifierValueLabel.setText(formatStr(p.getConMod()));
-                constitutionSaveValueLabel.setText(formatStr(p.getConSave()));
+                constitutionModifierValueLabel.setText(c.formatStr(p.getConMod()));
+                constitutionSaveValueLabel.setText(c.formatStr(p.getConSave()));
 
                 intelligenceScoreValueLabel.setText(Integer.toString(p.getIntl()));
-                intelligenceModifierValueLabel.setText(formatStr(p.getIntlMod()));
-                intelligenceSaveValueLabel.setText(formatStr(p.getIntlSave()));
+                intelligenceModifierValueLabel.setText(c.formatStr(p.getIntlMod()));
+                intelligenceSaveValueLabel.setText(c.formatStr(p.getIntlSave()));
 
                 wisdomScoreValueLabel.setText(Integer.toString(p.getWis()));
-                wisdomModifierValueLabel.setText(formatStr(p.getWisMod()));
-                wisdomSaveValueLabel.setText(formatStr(p.getWisSave()));
+                wisdomModifierValueLabel.setText(c.formatStr(p.getWisMod()));
+                wisdomSaveValueLabel.setText(c.formatStr(p.getWisSave()));
 
                 charismaScoreValueLabel.setText(Integer.toString(p.getCha()));
-                charismaModifierValueLabel.setText(formatStr(p.getChaMod()));
-                charismaSaveValueLabel.setText(formatStr(p.getChaSave()));
+                charismaModifierValueLabel.setText(c.formatStr(p.getChaMod()));
+                charismaSaveValueLabel.setText(c.formatStr(p.getChaSave()));
 
                 // ability scores
-                charStrengthValueLabel.setText(formatStr(p.getStrMod()));
-                charAthleticsValueLabel.setText(formatStr(p.getAthletics()));
-                charDexterityValueLabel.setText(formatStr(p.getDexMod()));
-                charAcrobaticsValueLabel.setText(formatStr(p.getAcrobatics()));
-                charSoHValueLabel.setText(formatStr(p.getSleightOfHand()));
-                charStealthValueLabel.setText(formatStr(p.getStealth()));
-                charIntelligenceValueLabel.setText(formatStr(p.getIntlMod()));
-                charArcanaValueLabel.setText(formatStr(p.getArcana()));
-                charHistoryValueLabel.setText(formatStr(p.getHistory()));
-                charInvestigationValueLabel.setText(formatStr(p.getInvestigation()));
-                charNatureValueLabel.setText(formatStr(p.getNature()));
-                charReligionValueLabel.setText(formatStr(p.getReligion()));
-                charWisdomValueLabel.setText(formatStr(p.getWisMod()));
-                charAnimalHandlingValueLabel.setText(formatStr(p.getAnimalHandling()));
-                charInsightValueLabel.setText(formatStr(p.getInsight()));
-                charMedicineValueLabel.setText(formatStr(p.getMedicine()));
-                charPerceptionValueLabel.setText(formatStr(p.getPerception()));
-                charSurvivalValueLabel.setText(formatStr(p.getSurvival()));
-                charCharismaValueLabel.setText(formatStr(p.getChaMod()));
-                charDeceptionValueLabel.setText(formatStr(p.getDeception()));
-                charIntimidationValueLabel.setText(formatStr(p.getIntimidation()));
-                charPerformanceValueLabel.setText(formatStr(p.getPerformance()));
-                charPersuasionValueLabel.setText(formatStr(p.getPersuasion()));
+                charStrengthValueLabel.setText(c.formatStr(p.getStrMod()));
+                charAthleticsValueLabel.setText(c.formatStr(p.getAthletics()));
+                charDexterityValueLabel.setText(c.formatStr(p.getDexMod()));
+                charAcrobaticsValueLabel.setText(c.formatStr(p.getAcrobatics()));
+                charSoHValueLabel.setText(c.formatStr(p.getSleightOfHand()));
+                charStealthValueLabel.setText(c.formatStr(p.getStealth()));
+                charIntelligenceValueLabel.setText(c.formatStr(p.getIntlMod()));
+                charArcanaValueLabel.setText(c.formatStr(p.getArcana()));
+                charHistoryValueLabel.setText(c.formatStr(p.getHistory()));
+                charInvestigationValueLabel.setText(c.formatStr(p.getInvestigation()));
+                charNatureValueLabel.setText(c.formatStr(p.getNature()));
+                charReligionValueLabel.setText(c.formatStr(p.getReligion()));
+                charWisdomValueLabel.setText(c.formatStr(p.getWisMod()));
+                charAnimalHandlingValueLabel.setText(c.formatStr(p.getAnimalHandling()));
+                charInsightValueLabel.setText(c.formatStr(p.getInsight()));
+                charMedicineValueLabel.setText(c.formatStr(p.getMedicine()));
+                charPerceptionValueLabel.setText(c.formatStr(p.getPerception()));
+                charSurvivalValueLabel.setText(c.formatStr(p.getSurvival()));
+                charCharismaValueLabel.setText(c.formatStr(p.getChaMod()));
+                charDeceptionValueLabel.setText(c.formatStr(p.getDeception()));
+                charIntimidationValueLabel.setText(c.formatStr(p.getIntimidation()));
+                charPerformanceValueLabel.setText(c.formatStr(p.getPerformance()));
+                charPersuasionValueLabel.setText(c.formatStr(p.getPersuasion()));
 
-                proficiencyValueLabel.setText(formatStr(p.getProf()));
+                proficiencyValueLabel.setText(c.formatStr(p.getProf()));
 
                 // weapon info
-                weaponProficiencyValueLabel.setText(formatStr(p.getProf()));
+                weaponProficiencyValueLabel.setText(c.formatStr(p.getProf()));
                 weaponStrengthValueLable.setText(Integer.toString(p.getStr()));
                 weaponResourceValueLabel.setText(Integer.toString(p.getWeaponResource()));
 
                 // spell info
                 spellsCLevelValueLabel.setText(Integer.toString(p.getcLevel()));
-                spellsAttackValueLabel.setText(formatStr(p.getSpellAttack()));
+                spellsAttackValueLabel.setText(c.formatStr(p.getSpellAttack()));
                 spellsDCValueLabel.setText(Integer.toString(p.getSpellDC()));
 
                 // info panel
@@ -245,7 +250,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 weaponsList = buildWeaponList();
                 JPanel weaponsListPanel = buildWeaponsListPanel(weaponsList);
 
+                JPanel spellsListPanel = buildSpellListPanel();
+
                 weaponsListScrollPane.setViewportView(weaponsListPanel);
+                SpellsListScrollPane1.setViewportView(spellsListPanel);
 
         }
 
@@ -255,6 +263,23 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 // Roll dice
                 int res = Dice.roll(20);
+
+                if (res == 1) {
+                        msg += "1, Critical Fail";
+                } else if (res == 20) {
+                        msg += "20 , Critical Success";
+                } else {
+                        msg += (res + " + " + mod + " makes " + (res + mod));
+                }
+                return msg;
+        }
+
+        String abilityCheck(int mod, int roll) {
+                // Create default string
+                String msg = "Rolled a ";
+
+                // Roll dice
+                int res = roll;
 
                 if (res == 1) {
                         msg += "1, Critical Fail";
@@ -442,13 +467,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 + ".\nType \"max\" after the value to affect the maximum HP instead (Current HP will not be modified)",
                                 "Enter new value", JOptionPane.QUESTION_MESSAGE);
 
-                /*
-                 * String[] buttons = {"Set current hp", "Take from hp", "give to hp",
-                 * "set to max hp"}; Object s = JOptionPane.showInputDialog(updateStrengthButton,
-                 * "Please enter new hp value\nCurrent value is " + p.getHp() +
-                 * " and your max HP is " + p.getHpMax(), "Enter new value",
-                 * JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[0]);
-                 */
                 // Create int to parse string to
                 int newVal = 0;
                 try {
@@ -997,20 +1015,25 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(updateStrengthButton,
                                 "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_spellsUpdateButtonActionPerformed
-
-        private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButtonActionPerformed
-                ;
-        }// GEN-LAST:event_exampleSpellRollButtonActionPerformed
-
-        private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cantripsUpdateButtonActionPerformed
-                ;
-        }// GEN-LAST:event_cantripsUpdateButtonActionPerformed
-
-        private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_exampleSpellRollButton1ActionPerformed
-                ;
-        }// GEN-LAST:event_exampleSpellRollButton1ActionPerformed
+        /*
+         * private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {//
+         * GEN-FIRST:event_exampleSpellRollButtonActionPerformed ; }//
+         * GEN-LAST:event_exampleSpellRollButtonActionPerformed
+         * 
+         * private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//
+         * GEN-FIRST:event_cantripsUpdateButtonActionPerformed
+         * JOptionPane.showMessageDialog(updateStrengthButton,
+         * "This feature is not yet implimented2"); // TODO }//
+         * GEN-LAST:event_cantripsUpdateButtonActionPerformed
+         * 
+         * private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {//
+         * GEN-FIRST:event_exampleSpellRollButton1ActionPerformed ; }//
+         * GEN-LAST:event_exampleSpellRollButton1ActionPerformed
+         */
 
         private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
+                // JOptionPane.showMessageDialog(updateStrengthButton, "This feature is not yet
+                // implimented1"); // TODO
                 ;
         }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
 
@@ -1111,7 +1134,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                         wpnProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
                         wpnProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-                        wpnProficiency.setText(formatStr(w.getProficiency()));
+                        wpnProficiency.setText(c.formatStr(w.getProficiency()));
                         wpnProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
                         wpnDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -1131,7 +1154,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                         Weapon thisWeapon = buttonWeaponMap.get(evt.getSource());
                                         Dice d = thisWeapon.getHit();
                                         JOptionPane.showMessageDialog(strengthCheckButton,
-                                                        "Rolled: " + d.roll(), "Rolling to hit",
+                                                        "Rolled: " + abilityCheck(
+                                                                        thisWeapon.getProficiency(),
+                                                                        d.roll()),
+                                                        "Rolling to hit",
                                                         JOptionPane.INFORMATION_MESSAGE, null);
                                 }
                         });
@@ -1253,6 +1279,467 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 return weaponPanelList;
         }
 
+        public JPanel buildSpellHeaderPanel(int spellLevel) {
+                JPanel panel = new JPanel();
+                if (spellLevel == 0) {
+
+                        Lvl1HeaderPanel = new JPanel();
+                        Lvl1SpellSlotAvailableLabel = new JLabel();
+                        jLabel4 = new JLabel();
+                        Lvl1SpellMaxLabel = new JLabel();
+                        Lvl1SpellMaxLabel = new JLabel();
+                        Lvl1UpdateButton = new JButton();
+
+                        Lvl1HeaderPanel.setBorder(javax.swing.BorderFactory
+                                        .createLineBorder(new java.awt.Color(0, 0, 0)));
+
+                        Lvl1HeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1HeaderLabel.setText(" Cantrips");
+                        Lvl1HeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1SpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1SpellSlotAvailableLabel
+                                        .setText(" Cantrips                              ");
+                        Lvl1SpellSlotAvailableLabel
+                                        .setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        jLabel4.setText(" ");
+                        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1SpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1SpellMaxLabel.setText("  ");
+                        Lvl1SpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1UpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        Lvl1UpdateButton.setText("Reset all spell slots");
+                        Lvl1UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        int input = JOptionPane.showConfirmDialog(
+                                                        strengthCheckButton,
+                                                        "Are you sure you want to reset all spell slots?",
+                                                        "Reset all spell slots?",
+                                                        JOptionPane.YES_NO_OPTION,
+                                                        JOptionPane.QUESTION_MESSAGE, null);
+                                        if (input == 0) {
+                                                p.setSpellSlotsLeft(p.getSpellSlots());
+                                                try {
+                                                        setComponentValues(p);
+                                                        c.SaveSheet(p);
+                                                } catch (Exception e) {
+                                                        System.out.println(e.getMessage());
+                                                }
+                                        }
+                                }
+                        });
+
+                        javax.swing.GroupLayout Lvl1HeaderPanelLayout =
+                                        new javax.swing.GroupLayout(Lvl1HeaderPanel);
+                        Lvl1HeaderPanel.setLayout(Lvl1HeaderPanelLayout);
+                        Lvl1HeaderPanelLayout.setHorizontalGroup(Lvl1HeaderPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(Lvl1HeaderPanelLayout.createSequentialGroup()
+                                                        .addComponent(Lvl1HeaderLabel,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(Lvl1SpellSlotAvailableLabel)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jLabel4)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(Lvl1SpellMaxLabel)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(Lvl1UpdateButton)
+                                                        .addContainerGap()));
+                        Lvl1HeaderPanelLayout.setVerticalGroup(Lvl1HeaderPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Lvl1HeaderLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(Lvl1SpellSlotAvailableLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(Lvl1SpellMaxLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        Lvl1HeaderPanelLayout
+                                                                        .createSequentialGroup()
+                                                                        .addContainerGap()
+                                                                        .addComponent(Lvl1UpdateButton,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        37,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addContainerGap()));
+                        panel.add(new JLabel(""));
+                        panel.add(Lvl1HeaderPanel);
+                } else {
+                        Lvl1HeaderPanel = new JPanel();
+                        Lvl1SpellSlotAvailableLabel = new JLabel();
+                        jLabel4 = new JLabel();
+                        Lvl1SpellMaxLabel = new JLabel();
+                        Lvl1SpellMaxLabel = new JLabel();
+                        Lvl1UpdateButton = new JButton();
+
+                        Lvl1HeaderPanel.setBorder(javax.swing.BorderFactory
+                                        .createLineBorder(new java.awt.Color(0, 0, 0)));
+
+                        Lvl1HeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1HeaderLabel.setText(" Level " + spellLevel);
+                        Lvl1HeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1SpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1SpellSlotAvailableLabel.setText("            Remaining slots: "
+                                        + Integer.toString(p.getSpellSlotsLeft()[spellLevel - 1]));
+                        Lvl1SpellSlotAvailableLabel
+                                        .setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        jLabel4.setText("/");
+                        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1SpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                        Lvl1SpellMaxLabel.setText(
+                                        Integer.toString(p.getSpellSlots()[spellLevel - 1]));
+                        Lvl1SpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                        Lvl1UpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                        Lvl1UpdateButton.setText("Update");
+                        buttonspellSlotMap.put(Lvl1UpdateButton, spellLevel);
+                        Lvl1UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        int thisSpellSlotLevel =
+                                                        buttonspellSlotMap.get(evt.getSource());
+                                        thisSpellSlotLevel -= 1;
+                                        boolean fail = false;
+                                        boolean affectMax = false;
+                                        boolean resetSlot = false;
+
+                                        // Show input dialog
+                                        String newVal_S = JOptionPane.showInputDialog(
+                                                        updateStrengthButton,
+                                                        "Please enter new available spell slot value\nCurrent value is "
+                                                                        + p.getSpellSlotsLeft()[thisSpellSlotLevel]
+                                                                        + " and your max spell slot number is "
+                                                                        + p.getSpellSlots()[thisSpellSlotLevel]
+                                                                        + ".\nIf you enter a negative value, that will be removed from the current value"
+                                                                        + ".\nIf you don't enter a value, your available slots will be set to you current max number spell slots"
+                                                                        + ".\nType \"max\" after the value to affect the maximum spell slot number instead (Available spell slot number will not be modified)",
+                                                        "Enter new value",
+                                                        JOptionPane.QUESTION_MESSAGE);
+
+                                        // Create int to parse string to
+                                        int newVal = 0;
+                                        try {
+                                                // Try to parse string
+                                                if (newVal_S.equals("")) {
+                                                        resetSlot = true;
+                                                } else if (newVal_S.indexOf("max") == -1) {
+                                                        // Don't affect the max HP
+                                                        newVal = Integer.parseInt(newVal_S);
+                                                } else {
+                                                        affectMax = true;
+                                                        newVal_S = newVal_S.replace("max", "");
+                                                        newVal_S = newVal_S.replace(" ", "");
+                                                        newVal = Integer.parseInt(newVal_S);
+                                                }
+                                        } catch (Exception e) {
+                                                JOptionPane.showMessageDialog(updateStrengthButton,
+                                                                "Please enter a number",
+                                                                "Input error",
+                                                                JOptionPane.ERROR_MESSAGE);
+                                                fail = true;
+                                        }
+                                        // If it didn't mess up, then set the stat, mod, and save,
+                                        // then update form and
+                                        // update the sheet
+                                        if (!fail) {
+                                                int[] tmpSpellSlotsLeft = p.getSpellSlotsLeft();
+                                                int[] tmpSpellSlots = p.getSpellSlots();
+                                                if (resetSlot) {
+                                                        // reset spell slots
+                                                        // p.setSpellSlotsLeft(7)[thisSpellSlotLevel];
+                                                        tmpSpellSlotsLeft[thisSpellSlotLevel] =
+                                                                        tmpSpellSlots[thisSpellSlotLevel];
+                                                        // p.setSpellSlotsLeft(tmpSpellSlotsLeft);
+
+                                                } else if (affectMax) {
+                                                        // Affect Max HP
+                                                        if (newVal > 0) {
+                                                                // p.setHpMax(newVal);
+                                                                tmpSpellSlots[thisSpellSlotLevel] =
+                                                                                newVal;
+                                                                p.setSpellSlots(tmpSpellSlots);
+                                                        } else {
+                                                                // p.setHpMax(p.getHpMax() +
+                                                                // newVal);
+                                                                tmpSpellSlots[thisSpellSlotLevel] =
+                                                                                tmpSpellSlots[thisSpellSlotLevel]
+                                                                                                + newVal;
+                                                                p.setSpellSlots(tmpSpellSlots);
+                                                        }
+                                                } else {
+                                                        // Affect actual HP
+                                                        if (newVal > 0) {
+                                                                // p.setHp(newVal);
+                                                                tmpSpellSlotsLeft[thisSpellSlotLevel] =
+                                                                                newVal;
+
+                                                        } else {
+                                                                // p.setHp(p.getHp() + newVal);
+                                                                tmpSpellSlotsLeft[thisSpellSlotLevel] =
+                                                                                tmpSpellSlotsLeft[thisSpellSlotLevel]
+                                                                                                + newVal;
+                        // FIXME: spell slots sometimes updated when only 1 should be
+                                                        }
+                                                }
+                                                p.setSpellSlots(tmpSpellSlots);
+                                                p.setSpellSlotsLeft(tmpSpellSlotsLeft);
+                                                try {
+                                                        setComponentValues(p);
+                                                        c.SaveSheet(p);
+                                                } catch (Exception e) {
+                                                        System.out.println(e.getMessage());
+                                                }
+                                        }
+                                }
+                        });
+
+                        javax.swing.GroupLayout Lvl1HeaderPanelLayout =
+                                        new javax.swing.GroupLayout(Lvl1HeaderPanel);
+                        Lvl1HeaderPanel.setLayout(Lvl1HeaderPanelLayout);
+                        Lvl1HeaderPanelLayout.setHorizontalGroup(Lvl1HeaderPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(Lvl1HeaderPanelLayout.createSequentialGroup()
+                                                        .addComponent(Lvl1HeaderLabel,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(Lvl1SpellSlotAvailableLabel)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jLabel4)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(Lvl1SpellMaxLabel)
+                                                        .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(Lvl1UpdateButton)
+                                                        .addContainerGap()));
+                        Lvl1HeaderPanelLayout.setVerticalGroup(Lvl1HeaderPanelLayout
+                                        .createParallelGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Lvl1HeaderLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(Lvl1SpellSlotAvailableLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addComponent(Lvl1SpellMaxLabel,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        Lvl1HeaderPanelLayout
+                                                                        .createSequentialGroup()
+                                                                        .addContainerGap()
+                                                                        .addComponent(Lvl1UpdateButton,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        37,
+                                                                                        Short.MAX_VALUE)
+                                                                        .addContainerGap()));
+                        panel.add(new JLabel(""));
+                        panel.add(Lvl1HeaderPanel);
+                }
+
+                return panel;
+        }
+
+        public JPanel buildSpellPanel(Spell s) {
+                JPanel spellPanel = new JPanel();
+                JPanel splPanel = new JPanel();
+                JLabel splName = new JLabel();
+                JLabel splRange = new JLabel();
+                JLabel splProficiency = new JLabel();
+                JLabel splDamageType = new JLabel();
+                JLabel splDamageRoll = new JLabel();
+                JButton splRollHit = new JButton();
+                JButton splRollDamage = new JButton();
+
+                splPanel.setBorder(javax.swing.BorderFactory
+                                .createLineBorder(new java.awt.Color(0, 0, 0)));
+                splName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                splName.setText(s.getName());
+
+                splRange.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                splRange.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                splRange.setText(s.getRange() + "ft");
+                splRange.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                splProficiency.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                splProficiency.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                splProficiency.setText(c.formatStr(s.getProficiency()));
+                splProficiency.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                splDamageType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                splDamageType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                splDamageType.setText(s.getDamageType());
+                splDamageType.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+                splDamageRoll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+                splDamageRoll.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+                splDamageRoll.setText(s.getDmgDR());
+                splDamageRoll.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+                splRollHit.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                splRollHit.setText("HIT\n");
+                splRollHit.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                Spell thisSpell = buttonSpellMap.get(evt.getSource());
+                                Dice d = thisSpell.getHit();
+                                JOptionPane.showMessageDialog(strengthCheckButton,
+                                                "Rolled: " + abilityCheck(p.getSpellAttack(),
+                                                                d.roll()),
+                                                "Rolling to hit", JOptionPane.INFORMATION_MESSAGE,
+                                                null);
+                        }
+                });
+                buttonSpellMap.put(splRollHit, s);
+
+                splRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                splRollDamage.setText("DMG\n");
+                splRollDamage.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                Spell thisSpell = buttonSpellMap.get(evt.getSource());
+                                if (!thisSpell.getDmgDR().equals("0")) {
+                                        Dice d = thisSpell.getDmg();
+                                        int res = d.roll();
+                                        JOptionPane.showMessageDialog(strengthCheckButton,
+                                                        "Rolled: " + res, "Rolling damage",
+                                                        JOptionPane.INFORMATION_MESSAGE, null);
+                                } else {
+                                        JOptionPane.showMessageDialog(strengthCheckButton,
+                                                        "This spell does not have a damage roll",
+                                                        "Roll failed",
+                                                        JOptionPane.INFORMATION_MESSAGE, null);
+                                }
+                        }
+                });
+                buttonSpellMap.put(splRollDamage, s);
+
+                javax.swing.GroupLayout splPanelLayout = new javax.swing.GroupLayout(splPanel);
+                splPanel.setLayout(splPanelLayout);
+                splPanelLayout.setHorizontalGroup(splPanelLayout
+                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(splPanelLayout.createSequentialGroup().addContainerGap()
+                                                .addComponent(splName,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                260,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addGroup(splPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                                .addComponent(splProficiency,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addComponent(splRange,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE))
+                                                .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(splPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(splDamageType,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                162,
+                                                                                Short.MAX_VALUE)
+                                                                .addComponent(splDamageRoll,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE))
+                                                .addGap(53, 53, 53)
+                                                .addComponent(splRollHit,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                78,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(9, 9, 9).addComponent(splRollDamage)
+                                                .addContainerGap()));
+                splPanelLayout.setVerticalGroup(splPanelLayout
+                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, splPanelLayout
+                                                .createSequentialGroup().addContainerGap()
+                                                .addGroup(splPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(splRollDamage,
+                                                                                javax.swing.GroupLayout.Alignment.LEADING)
+
+                                                                .addComponent(splRollHit,
+                                                                                javax.swing.GroupLayout.Alignment.LEADING))
+                                                .addContainerGap())
+                                .addGroup(splPanelLayout.createSequentialGroup().addGap(4, 4, 4)
+                                                .addGroup(splPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(splName,
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addGroup(splPanelLayout
+                                                                                .createSequentialGroup()
+                                                                                .addGroup(splPanelLayout
+                                                                                                .createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                .addComponent(splRange,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                29,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                .addComponent(splDamageType,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                29,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addPreferredGap(
+                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addGroup(splPanelLayout
+                                                                                                .createParallelGroup(
+                                                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                                                .addComponent(splProficiency,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                20,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                .addComponent(splDamageRoll,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                20,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                                .addGap(6, 12, Short.MAX_VALUE)))));
+                spellPanel.add(splPanel);
+                return spellPanel;
+        }
+
+
 
         /**
          * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -1260,6 +1747,314 @@ public class CharacterSheetUI extends javax.swing.JFrame {
          */
         // <editor-fold defaultstate="collapsed" desc="Generated
         // Code">//GEN-BEGIN:initComponents
+
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JLabel ACLabel;
+        private javax.swing.JPanel ACPanel;
+        private javax.swing.JButton ACUpdateButton;
+        private javax.swing.JLabel ACValueLabel;
+        private javax.swing.JPanel CSMainPanel;
+        private javax.swing.JLabel HPLabel;
+        private javax.swing.JPanel HPPanel;
+        private javax.swing.JButton HPUpdateButton;
+        private javax.swing.JLabel HPValueLabel;
+        private javax.swing.JLabel HitDiceLabel;
+        private javax.swing.JPanel HitDicePanel;
+        private javax.swing.JButton HitDiceUpdateButton;
+        private javax.swing.JLabel HitDiceValueLabel;
+        private javax.swing.JLabel Lvl1HeaderLabel;
+        private javax.swing.JPanel Lvl1HeaderPanel;
+        private javax.swing.JLabel Lvl1SpellMaxLabel;
+        private javax.swing.JLabel Lvl1SpellSlotAvailableLabel;
+        private javax.swing.JButton Lvl1UpdateButton;
+        private javax.swing.JPanel ProficiencyPanel;
+        private javax.swing.JTabbedPane SheetTabs;
+        private javax.swing.JButton SoHCheckButton;
+        private javax.swing.JLabel SpeedLabel;
+        private javax.swing.JPanel SpeedPanel;
+        private javax.swing.JButton SpeedUpdateButton;
+        private javax.swing.JLabel SpeedValueLabel;
+        private javax.swing.JScrollPane SpellsListScrollPane1;
+        private javax.swing.JPanel StatsPanel;
+        private javax.swing.JPanel abilitesReligionPanel;
+        private javax.swing.JPanel abilitiesAcrobaticsPanel;
+        private javax.swing.JPanel abilitiesAnimalHandlingPanel;
+        private javax.swing.JPanel abilitiesArcanaPanel;
+        private javax.swing.JPanel abilitiesAthleticsPanel;
+        private javax.swing.JLabel abilitiesCharacterClass;
+        private javax.swing.JLabel abilitiesCharacterLevel;
+        private javax.swing.JLabel abilitiesCharacterName;
+        private javax.swing.JPanel abilitiesCharismaPanel;
+        private javax.swing.JPanel abilitiesCharismaSectionPanel;
+        private javax.swing.JPanel abilitiesDeceptionPanel;
+        private javax.swing.JPanel abilitiesDexterityPanel;
+        private javax.swing.JPanel abilitiesDexteritySectionPanel;
+        private javax.swing.JPanel abilitiesHistoryPanel;
+        private javax.swing.JPanel abilitiesInsightPanel;
+        private javax.swing.JPanel abilitiesIntelligencePanel;
+        private javax.swing.JPanel abilitiesIntelligenceSectionPanel;
+        private javax.swing.JPanel abilitiesIntimidationPanel;
+        private javax.swing.JPanel abilitiesInvestigationPanel;
+        private javax.swing.JPanel abilitiesMedicinePanel;
+        private javax.swing.JPanel abilitiesNaturePanel;
+        private javax.swing.JPanel abilitiesPanel;
+        private javax.swing.JPanel abilitiesPerceptionPanel;
+        private javax.swing.JPanel abilitiesPerformancePanel;
+        private javax.swing.JPanel abilitiesPersuasion;
+        private javax.swing.JPanel abilitiesSection;
+        private javax.swing.JPanel abilitiesSoHPanel;
+        private javax.swing.JPanel abilitiesStealthPanel;
+        private javax.swing.JPanel abilitiesStrengthPanel;
+        private javax.swing.JPanel abilitiesStrengthSectionPanel;
+        private javax.swing.JPanel abilitiesSurvivalPanel;
+        private javax.swing.JPanel abilitiesWisdomPanel;
+        private javax.swing.JPanel abilitiesWisdomSectionPanel;
+        private javax.swing.JButton acrobaticsCheckButton;
+        private javax.swing.JButton animalHandlingCheckButton;
+        private javax.swing.JButton arcanaCheck;
+        private javax.swing.JButton athleticsCheckButton;
+        private javax.swing.JLabel charAcrobaticsLabel;
+        private javax.swing.JLabel charAcrobaticsValueLabel;
+        private javax.swing.JLabel charAnimalHandlingLabel;
+        private javax.swing.JLabel charAnimalHandlingValueLabel;
+        private javax.swing.JLabel charArcanaLabel;
+        private javax.swing.JLabel charArcanaValueLabel;
+        private javax.swing.JLabel charAthleticsLabel;
+        private javax.swing.JLabel charAthleticsValueLabel;
+        private javax.swing.JLabel charCharismaLabel;
+        private javax.swing.JLabel charCharismaValueLabel;
+        private javax.swing.JLabel charDeceptionLabel;
+        private javax.swing.JLabel charDeceptionValueLabel;
+        private javax.swing.JLabel charDexterityLabel;
+        private javax.swing.JLabel charDexterityValueLabel;
+        private javax.swing.JLabel charHistoryLabel;
+        private javax.swing.JLabel charHistoryValueLabel;
+        private javax.swing.JLabel charInsightLabel;
+        private javax.swing.JLabel charInsightValueLabel;
+        private javax.swing.JLabel charIntelligenceLabel;
+        private javax.swing.JLabel charIntelligenceValueLabel;
+        private javax.swing.JLabel charIntimidationLabel;
+        private javax.swing.JLabel charIntimidationValueLabel;
+        private javax.swing.JLabel charInvestigationLabel;
+        private javax.swing.JLabel charInvestigationValueLabel;
+        private javax.swing.JLabel charMedicineLabel;
+        private javax.swing.JLabel charMedicineValueLabel;
+        private javax.swing.JLabel charNatureLabel;
+        private javax.swing.JLabel charNatureValueLabel;
+        private javax.swing.JLabel charPerceptionLabel;
+        private javax.swing.JLabel charPerceptionValueLabel;
+        private javax.swing.JLabel charPerformanceLabel;
+        private javax.swing.JLabel charPerformanceValueLabel;
+        private javax.swing.JLabel charPersuasionLabel;
+        private javax.swing.JLabel charPersuasionValueLabel;
+        private javax.swing.JLabel charReligionLabel;
+        private javax.swing.JLabel charReligionValueLabel;
+        private javax.swing.JLabel charSoHLabel;
+        private javax.swing.JLabel charSoHValueLabel;
+        private javax.swing.JLabel charStealthLabel;
+        private javax.swing.JLabel charStealthValueLabel;
+        private javax.swing.JLabel charStrengthLabel;
+        private javax.swing.JLabel charStrengthValueLabel;
+        private javax.swing.JLabel charSurvivalLabel;
+        private javax.swing.JLabel charSurvivalValueLabel;
+        private javax.swing.JLabel charWisdomValueLabel;
+        private javax.swing.JLabel charWisdomLabel;
+        private javax.swing.JPanel characterInformationPanel;
+        private javax.swing.JPanel characterSpellsPanel;
+        private javax.swing.JPanel characterStatsPanel;
+        private javax.swing.JPanel characterWeaponsPanel;
+        private javax.swing.JPanel charicterAttributesPanel;
+        private javax.swing.JButton charismaCheckButton;
+        private javax.swing.JPanel charismaPanel;
+        private javax.swing.JPanel constitutionPanel;
+        private javax.swing.JButton deceptionCheckButton;
+        private javax.swing.JButton dexterityCheckButton;
+        private javax.swing.JPanel dexterityPanel;
+        private javax.swing.JLabel exampleWeaponDamageRoll;
+        private javax.swing.JLabel exampleWeaponDamageType;
+        private javax.swing.JLabel exampleWeaponName;
+        private javax.swing.JPanel exampleWeaponPanel;
+        private javax.swing.JLabel exampleWeaponProficiency;
+        private javax.swing.JButton exampleWeaponRollDamage;
+        private javax.swing.JButton exampleWeaponRollHit;
+        private javax.swing.JLabel exampleWeaponRange;
+        private javax.swing.JLabel headerLabel;
+        private javax.swing.JButton historyCheck;
+        private javax.swing.JLabel infoCharacterClassLabel1;
+        private javax.swing.JLabel infoCharacterClassLabel3;
+        private javax.swing.JLabel infoCharacterClassLabel4;
+        private javax.swing.JLabel infoCharacterClassLabel5;
+        private javax.swing.JLabel infoCharacterClassLabel6;
+        private javax.swing.JPanel infoCharacterClassPanel1;
+        private javax.swing.JPanel infoCharacterClassPanel3;
+        private javax.swing.JPanel infoCharacterClassPanel4;
+        private javax.swing.JPanel infoCharacterClassPanel5;
+        private javax.swing.JPanel infoCharacterClassPanel6;
+        private javax.swing.JTextField infoCharacterClassTextBox;
+        private javax.swing.JTextField infoCharacterRaceTextBox;
+        private javax.swing.JTextField infoCharacterBackgroundTextBox;
+        private javax.swing.JTextField infoCharacterAlignmentTextBox;
+        private javax.swing.JTextField infoCharacterXPTextBox;
+        private javax.swing.JPanel infoHeaderPanel;
+        private javax.swing.JLabel informationCharacterName;
+        private javax.swing.JLabel informationCharacterClass;
+        private javax.swing.JLabel informationCharacterLevel;
+        private javax.swing.JPanel informationPanel;
+        private javax.swing.JButton insightCheckButton;
+        private javax.swing.JButton intelligenceCheck;
+        private javax.swing.JPanel intelligencePanel;
+        private javax.swing.JButton intimidationCheckButton;
+        private javax.swing.JButton investigationCheck;
+        private javax.swing.JButton jButton1;
+        private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel infoCPValueLabel;
+        private javax.swing.JLabel jLabel11;
+        private javax.swing.JLabel infoEPValueLabel;
+        private javax.swing.JLabel infoPPValueLabel;
+        private javax.swing.JLabel jLabel4;
+        private javax.swing.JLabel jLabel5;
+        private javax.swing.JLabel infoGPValueLabel;
+        private javax.swing.JLabel jLabel7;
+        private javax.swing.JLabel infoSPValueLabel;
+        private javax.swing.JLabel jLabel9;
+        private javax.swing.JPanel jPanel2;
+        private javax.swing.JPanel jPanel3;
+        private javax.swing.JPanel jPanel4;
+        private javax.swing.JPanel jPanel5;
+        private javax.swing.JPanel jPanel6;
+        private javax.swing.JPanel jPanel7;
+        private javax.swing.JScrollPane jScrollPane1;
+        private javax.swing.JTextArea infoNotes;
+        private javax.swing.JLabel levellabelLabel;
+        private javax.swing.JLabel levellabelLabel2;
+        private javax.swing.JLabel levellabelLabel3;
+        private javax.swing.JLabel levellabelLabel4;
+        private javax.swing.JLabel levellabelLabel5;
+        private javax.swing.JButton medicineCheckButton;
+        private javax.swing.JButton natureCheck;
+        private javax.swing.JButton perceptionCheckButton;
+        private javax.swing.JButton performanceCheckButton;
+        private javax.swing.JButton persuasionCheckButton;
+        private javax.swing.JLabel proficiencyLabel;
+        private javax.swing.JButton proficiencyUpdateButton;
+        private javax.swing.JLabel proficiencyValueLabel;
+        private javax.swing.JButton religionCheck;
+        private javax.swing.JLabel spellsAttackLabel;
+        private javax.swing.JPanel spellsAttackPanel;
+        private javax.swing.JLabel spellsAttackValueLabel;
+        private javax.swing.JButton spellsAttackValueUpdateButton;
+        private javax.swing.JLabel spellsCLevelLabel;
+        private javax.swing.JPanel spellsCLevelPanle;
+        private javax.swing.JButton spellsCLevelUpdateButton;
+        private javax.swing.JLabel spellsCLevelValueLabel;
+        private javax.swing.JLabel spellsCharacterClass;
+        private javax.swing.JLabel spellsCharacterLevel;
+        private javax.swing.JLabel spellsCharacterName;
+        private javax.swing.JLabel spellsDCLabel;
+        private javax.swing.JPanel spellsDCPanel;
+        private javax.swing.JButton spellsDCUpdateButton;
+        private javax.swing.JLabel spellsDCValueLabel;
+        private javax.swing.JPanel spellsHeaderPanel;
+        private javax.swing.JPanel spellsPanel;
+        private javax.swing.JButton spellsUpdateButton;
+        private javax.swing.JLabel statsCharacterClass;
+        private javax.swing.JLabel statsCharacterLevel;
+        private javax.swing.JLabel statsCharacterName;
+        private javax.swing.JButton stealthCheck;
+        private javax.swing.JButton strengthCheckButton;
+        private javax.swing.JLabel strengthLabel;
+        private javax.swing.JLabel strengthLabel2;
+        private javax.swing.JLabel strengthLabel3;
+        private javax.swing.JLabel strengthLabel4;
+        private javax.swing.JLabel strengthLabel5;
+        private javax.swing.JLabel strengthLabel6;
+        private javax.swing.JLabel strengthModifierLabel;
+        private javax.swing.JLabel strengthModifierLabel1;
+        private javax.swing.JLabel strengthModifierLabel2;
+        private javax.swing.JLabel strengthModifierLabel3;
+        private javax.swing.JLabel strengthModifierLabel4;
+        private javax.swing.JLabel strengthModifierLabel5;
+        private javax.swing.JPanel strengthModifierPanel;
+        private javax.swing.JPanel strengthModifierPanel1;
+        private javax.swing.JPanel strengthModifierPanel2;
+        private javax.swing.JPanel strengthModifierPanel3;
+        private javax.swing.JPanel strengthModifierPanel4;
+        private javax.swing.JPanel strengthModifierPanel5;
+        private javax.swing.JLabel strengthModifierValueLabel;
+        private javax.swing.JLabel intelligenceModifierValueLabel;
+        private javax.swing.JLabel wisdomModifierValueLabel;
+        private javax.swing.JLabel dexterityModifierValueLabel;
+        private javax.swing.JLabel charismaModifierValueLabel;
+        private javax.swing.JLabel constitutionModifierValueLabel;
+        private javax.swing.JPanel strengthPanel;
+        private javax.swing.JLabel strengthSaveLabel;
+        private javax.swing.JLabel strengthSaveLabel2;
+        private javax.swing.JLabel strengthSaveLabel3;
+        private javax.swing.JLabel strengthSaveLabel4;
+        private javax.swing.JLabel strengthSaveLabel5;
+        private javax.swing.JLabel strengthSaveLabel6;
+        private javax.swing.JPanel strengthSavePanel;
+        private javax.swing.JPanel strengthSavePanel2;
+        private javax.swing.JPanel strengthSavePanel3;
+        private javax.swing.JPanel strengthSavePanel4;
+        private javax.swing.JPanel strengthSavePanel5;
+        private javax.swing.JPanel strengthSavePanel6;
+        private javax.swing.JLabel strengthSaveValueLabel;
+        private javax.swing.JLabel intelligenceSaveValueLabel;
+        private javax.swing.JLabel wisdomSaveValueLabel;
+        private javax.swing.JLabel dexteritySaveValueLabel;
+        private javax.swing.JLabel charismaSaveValueLabel;
+        private javax.swing.JLabel constitutionSaveValueLabel;
+        private javax.swing.JLabel strengthScoreLabel;
+        private javax.swing.JLabel strengthScoreLabel1;
+        private javax.swing.JLabel strengthScoreLabel2;
+        private javax.swing.JLabel strengthScoreLabel3;
+        private javax.swing.JLabel strengthScoreLabel4;
+        private javax.swing.JLabel strengthScoreLabel5;
+        private javax.swing.JPanel strengthScorePanel;
+        private javax.swing.JPanel strengthScorePanel1;
+        private javax.swing.JPanel strengthScorePanel2;
+        private javax.swing.JPanel strengthScorePanel3;
+        private javax.swing.JPanel strengthScorePanel4;
+        private javax.swing.JPanel strengthScorePanel5;
+        private javax.swing.JLabel strengthScoreValueLabel;
+        private javax.swing.JLabel intelligenceScoreValueLabel;
+        private javax.swing.JLabel wisdomScoreValueLabel;
+        private javax.swing.JLabel dexterityScoreValueLabel;
+        private javax.swing.JLabel charismaScoreValueLabel;
+        private javax.swing.JLabel constitutionScoreValueLabel;
+        private javax.swing.JLabel subheadingLabel;
+        private javax.swing.JButton survivalCheckButton;
+        private javax.swing.JButton updateCharismaButton;
+        private javax.swing.JButton updateConstitutionButton;
+        private javax.swing.JButton updateDexterityButton;
+        private javax.swing.JButton updateIntelligenceButton;
+        private javax.swing.JButton updateStrengthButton;
+        private javax.swing.JButton updateWisdomButton;
+        private javax.swing.JLabel weaponProficienctLabel;
+        private javax.swing.JPanel weaponProficiencyPanel;
+        private javax.swing.JButton weaponProficiencyUpdateButton;
+        private javax.swing.JLabel weaponProficiencyValueLabel;
+        private javax.swing.JLabel weaponResourceValueLabel;
+        private javax.swing.JLabel weaponResourceLabel;
+        private javax.swing.JPanel weaponResourcePanel;
+        private javax.swing.JButton weaponResourceUpdateButton;
+        private javax.swing.JLabel weaponStrengthLabel;
+        private javax.swing.JPanel weaponStrengthPanel;
+        private javax.swing.JButton weaponStrengthUpdateButton;
+        private javax.swing.JLabel weaponStrengthValueLable;
+        private javax.swing.JLabel weaponsCharacterClass;
+        private javax.swing.JLabel weaponsCharacterLevel;
+        private javax.swing.JLabel weaponsCharacterName;
+        private javax.swing.JPanel weaponsHeaderPanel;
+        private javax.swing.JPanel weaponsListPanel;
+        private javax.swing.JScrollPane weaponsListScrollPane;
+        private javax.swing.JPanel weaponsPanel;
+        private javax.swing.JButton weaponsUpdateButton;
+        private javax.swing.JButton wisdomCheckButton;
+        private javax.swing.JPanel wisdomPanel;
+        // End of variables declaration//GEN-END:variables
+
         private void initComponents() {
                 CSMainPanel = new javax.swing.JPanel();
                 headerLabel = new javax.swing.JLabel();
@@ -1518,23 +2313,20 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 spellsDCUpdateButton = new javax.swing.JButton();
                 spellsUpdateButton = new javax.swing.JButton();
                 SpellsListScrollPane1 = new javax.swing.JScrollPane();
-                spellsListPanel = new javax.swing.JPanel();
-                cantripsKnownSpellsPanel = new javax.swing.JPanel();
-                exampleCantripsSpellPanel = new javax.swing.JPanel();
-                exampleSpellName1 = new javax.swing.JLabel();
-                exampleSpellHitLabel = new javax.swing.JLabel();
-                exampleSpellRollButton = new javax.swing.JButton();
-                cantripsHeaderPanel = new javax.swing.JPanel();
-                cantripsHeaderLabel = new javax.swing.JLabel();
-                cantripsSpellSlotAvailableLabel = new javax.swing.JLabel();
-                jLabel3 = new javax.swing.JLabel();
-                cantripsSpellMaxLabel = new javax.swing.JLabel();
-                cantripsUpdateButton = new javax.swing.JButton();
-                levelOneKnownSpellsPanel = new javax.swing.JPanel();
-                exampleCantripsSpellPanel1 = new javax.swing.JPanel();
-                exampleSpellName2 = new javax.swing.JLabel();
-                exampleSpellHitLabel1 = new javax.swing.JLabel();
-                exampleSpellRollButton1 = new javax.swing.JButton();
+                // spellsListPanel = new javax.swing.JPanel();
+                // exampleSpellName1 = new javax.swing.JLabel();
+                // exampleSpellHitLabel = new javax.swing.JLabel();
+                // exampleSpellRollButton = new javax.swing.JButton();
+                // cantripsHeaderPanel = new javax.swing.JPanel();
+                // cantripsHeaderLabel = new javax.swing.JLabel();
+                // cantripsSpellSlotAvailableLabel = new javax.swing.JLabel();
+                // jLabel3 = new javax.swing.JLabel();
+                // cantripsSpellMaxLabel = new javax.swing.JLabel();
+                // cantripsUpdateButton = new javax.swing.JButton();
+                // levelOneKnownSpellsPanel = new javax.swing.JPanel();
+                // exampleSpellName2 = new javax.swing.JLabel();
+                // exampleSpellHitLabel1 = new javax.swing.JLabel();
+                // exampleSpellRollButton1 = new javax.swing.JButton();
                 Lvl1HeaderPanel = new javax.swing.JPanel();
                 Lvl1HeaderLabel = new javax.swing.JLabel();
                 Lvl1SpellSlotAvailableLabel = new javax.swing.JLabel();
@@ -5980,382 +6772,386 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                                 .addContainerGap()));
 
-                cantripsKnownSpellsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                // cantripsKnownSpellsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-                exampleCantripsSpellPanel.setBorder(javax.swing.BorderFactory
-                                .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                exampleSpellName1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellName1.setText("characterSpellName");
 
-                exampleSpellHitLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellHitLabel.setText("99d999");
+                // exampleSpellName1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellName1.setText("characterSpellName");
 
-                exampleSpellRollButton.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellRollButton.setText("DMG");
-                exampleSpellRollButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                exampleSpellRollButtonActionPerformed(evt);
-                        }
-                });
+                // exampleSpellHitLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellHitLabel.setText("99d999");
 
-                javax.swing.GroupLayout exampleCantripsSpellPanelLayout =
-                                new javax.swing.GroupLayout(exampleCantripsSpellPanel);
-                exampleCantripsSpellPanel.setLayout(exampleCantripsSpellPanelLayout);
-                exampleCantripsSpellPanelLayout.setHorizontalGroup(exampleCantripsSpellPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(exampleSpellName1,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                506, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(exampleSpellHitLabel,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                102,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(exampleSpellRollButton)
-                                                .addContainerGap()));
-                exampleCantripsSpellPanelLayout.setVerticalGroup(exampleCantripsSpellPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
-                                                .addGroup(exampleCantripsSpellPanelLayout
-                                                                .createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(exampleSpellName1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                65,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(exampleSpellHitLabel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                65,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(exampleSpellRollButton,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
-                                                .addContainerGap()));
+                // exampleSpellRollButton.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellRollButton.setText("DMG");
+                // exampleSpellRollButton.addActionListener(new java.awt.event.ActionListener() {
+                // public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // exampleSpellRollButtonActionPerformed(evt);
+                // }
+                // });
 
-                cantripsHeaderPanel.setBorder(javax.swing.BorderFactory
-                                .createLineBorder(new java.awt.Color(0, 0, 0)));
+                // exampleCantripsSpellPanel.setBorder(javax.swing.BorderFactory
+                // .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                cantripsHeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                cantripsHeaderLabel.setText("Cantrips");
-                cantripsHeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // javax.swing.GroupLayout exampleCantripsSpellPanelLayout =
+                // new javax.swing.GroupLayout(exampleCantripsSpellPanel);
+                // exampleCantripsSpellPanel.setLayout(exampleCantripsSpellPanelLayout);
+                // exampleCantripsSpellPanelLayout.setHorizontalGroup(exampleCantripsSpellPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleSpellName1,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // 506, Short.MAX_VALUE)
+                // .addGap(18, 18, 18)
+                // .addComponent(exampleSpellHitLabel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 102,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(exampleSpellRollButton)
+                // .addContainerGap()));
+                // exampleCantripsSpellPanelLayout.setVerticalGroup(exampleCantripsSpellPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
+                // .addGroup(exampleCantripsSpellPanelLayout
+                // .createParallelGroup(
+                // javax.swing.GroupLayout.Alignment.BASELINE)
+                // .addComponent(exampleSpellName1,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 65,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addComponent(exampleSpellHitLabel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 65,
+                // javax.swing.GroupLayout.PREFERRED_SIZE))
+                // .addGap(0, 0, Short.MAX_VALUE))
+                // .addGroup(exampleCantripsSpellPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleSpellRollButton,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addContainerGap()));
 
-                cantripsSpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                cantripsSpellSlotAvailableLabel.setText("99");
-                cantripsSpellSlotAvailableLabel
-                                .setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // cantripsHeaderPanel.setBorder(javax.swing.BorderFactory
+                // .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                jLabel3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                jLabel3.setText("/");
-                jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // cantripsHeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // cantripsHeaderLabel.setText("Cantrips");
+                // cantripsHeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                cantripsSpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                cantripsSpellMaxLabel.setText("99");
-                cantripsSpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // cantripsSpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); //
+                // NOI18N
+                // cantripsSpellSlotAvailableLabel.setText("99");
+                // cantripsSpellSlotAvailableLabel
+                // .setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                cantripsUpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-                cantripsUpdateButton.setText("Update");
-                cantripsUpdateButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                cantripsUpdateButtonActionPerformed(evt);
-                        }
-                });
+                // jLabel3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // jLabel3.setText("/");
+                // jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                javax.swing.GroupLayout cantripsHeaderPanelLayout =
-                                new javax.swing.GroupLayout(cantripsHeaderPanel);
-                cantripsHeaderPanel.setLayout(cantripsHeaderPanelLayout);
-                cantripsHeaderPanelLayout.setHorizontalGroup(cantripsHeaderPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(cantripsHeaderPanelLayout.createSequentialGroup()
-                                                .addComponent(cantripsHeaderLabel,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cantripsSpellSlotAvailableLabel)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cantripsSpellMaxLabel)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cantripsUpdateButton)
-                                                .addContainerGap()));
-                cantripsHeaderPanelLayout.setVerticalGroup(cantripsHeaderPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cantripsHeaderLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(cantripsSpellSlotAvailableLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(cantripsSpellMaxLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                cantripsHeaderPanelLayout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(cantripsUpdateButton,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                37, Short.MAX_VALUE)
-                                                                .addContainerGap()));
+                // cantripsSpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // cantripsSpellMaxLabel.setText("99");
+                // cantripsSpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                javax.swing.GroupLayout cantripsKnownSpellsPanelLayout =
-                                new javax.swing.GroupLayout(cantripsKnownSpellsPanel);
-                cantripsKnownSpellsPanel.setLayout(cantripsKnownSpellsPanelLayout);
-                cantripsKnownSpellsPanelLayout.setHorizontalGroup(cantripsKnownSpellsPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(cantripsKnownSpellsPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(cantripsKnownSpellsPanelLayout
-                                                                .createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(cantripsHeaderPanel,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                .addComponent(exampleCantripsSpellPanel,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
-                                                .addContainerGap()));
-                cantripsKnownSpellsPanelLayout.setVerticalGroup(cantripsKnownSpellsPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                cantripsKnownSpellsPanelLayout
-                                                                .createSequentialGroup()
-                                                                .addComponent(cantripsHeaderPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(exampleCantripsSpellPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)));
+                // cantripsUpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                // cantripsUpdateButton.setText("Update");
+                // cantripsUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+                // public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // cantripsUpdateButtonActionPerformed(evt);
+                // }
+                // });
 
-                levelOneKnownSpellsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                // javax.swing.GroupLayout cantripsHeaderPanelLayout =
+                // new javax.swing.GroupLayout(cantripsHeaderPanel);
+                // cantripsHeaderPanel.setLayout(cantripsHeaderPanelLayout);
+                // cantripsHeaderPanelLayout.setHorizontalGroup(cantripsHeaderPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(cantripsHeaderPanelLayout.createSequentialGroup()
+                // .addComponent(cantripsHeaderLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                // .addComponent(cantripsSpellSlotAvailableLabel)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(jLabel3)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(cantripsSpellMaxLabel)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(cantripsUpdateButton)
+                // .addContainerGap()));
+                // cantripsHeaderPanelLayout.setVerticalGroup(cantripsHeaderPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addComponent(cantripsHeaderLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(cantripsSpellSlotAvailableLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(cantripsSpellMaxLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                // cantripsHeaderPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(cantripsUpdateButton,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // 37, Short.MAX_VALUE)
+                // .addContainerGap()));
 
-                exampleCantripsSpellPanel1.setBorder(javax.swing.BorderFactory
-                                .createLineBorder(new java.awt.Color(0, 0, 0)));
+                // javax.swing.GroupLayout cantripsKnownSpellsPanelLayout =
+                // new javax.swing.GroupLayout(cantripsKnownSpellsPanel);
+                // cantripsKnownSpellsPanel.setLayout(cantripsKnownSpellsPanelLayout);
+                // cantripsKnownSpellsPanelLayout.setHorizontalGroup(cantripsKnownSpellsPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(cantripsKnownSpellsPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addGroup(cantripsKnownSpellsPanelLayout
+                // .createParallelGroup(
+                // javax.swing.GroupLayout.Alignment.LEADING)
+                // .addComponent(cantripsHeaderPanel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(exampleCantripsSpellPanel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE))
+                // .addContainerGap()));
+                // cantripsKnownSpellsPanelLayout.setVerticalGroup(cantripsKnownSpellsPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                // cantripsKnownSpellsPanelLayout
+                // .createSequentialGroup()
+                // .addComponent(cantripsHeaderPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(exampleCantripsSpellPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)));
 
-                exampleSpellName2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellName2.setText("characterSpellName");
+                // levelOneKnownSpellsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-                exampleSpellHitLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellHitLabel1.setText("99d999");
+                // exampleCantripsSpellPanel1.setBorder(javax.swing.BorderFactory
+                // .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                exampleSpellRollButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                exampleSpellRollButton1.setText("DMG");
-                exampleSpellRollButton1.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                exampleSpellRollButton1ActionPerformed(evt);
-                        }
-                });
+                // exampleSpellName2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellName2.setText("characterSpellName");
 
-                javax.swing.GroupLayout exampleCantripsSpellPanel1Layout =
-                                new javax.swing.GroupLayout(exampleCantripsSpellPanel1);
-                exampleCantripsSpellPanel1.setLayout(exampleCantripsSpellPanel1Layout);
-                exampleCantripsSpellPanel1Layout.setHorizontalGroup(exampleCantripsSpellPanel1Layout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(exampleSpellName2,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                506, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(exampleSpellHitLabel1,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                102,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(exampleSpellRollButton1)
-                                                .addContainerGap()));
-                exampleCantripsSpellPanel1Layout.setVerticalGroup(exampleCantripsSpellPanel1Layout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
-                                                .addGroup(exampleCantripsSpellPanel1Layout
-                                                                .createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(exampleSpellName2,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                65,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(exampleSpellHitLabel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                65,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(exampleSpellRollButton1,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
-                                                .addContainerGap()));
+                // exampleSpellHitLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellHitLabel1.setText("99d999");
 
-                Lvl1HeaderPanel.setBorder(javax.swing.BorderFactory
-                                .createLineBorder(new java.awt.Color(0, 0, 0)));
+                // exampleSpellRollButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                // exampleSpellRollButton1.setText("DMG");
+                // exampleSpellRollButton1.addActionListener(new java.awt.event.ActionListener() {
+                // public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // exampleSpellRollButton1ActionPerformed(evt);
+                // }
+                // });
 
-                Lvl1HeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                Lvl1HeaderLabel.setText("Level 1");
-                Lvl1HeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // javax.swing.GroupLayout exampleCantripsSpellPanel1Layout =
+                // new javax.swing.GroupLayout(exampleCantripsSpellPanel1);
+                // exampleCantripsSpellPanel1.setLayout(exampleCantripsSpellPanel1Layout);
+                // exampleCantripsSpellPanel1Layout.setHorizontalGroup(exampleCantripsSpellPanel1Layout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleSpellName2,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // 506, Short.MAX_VALUE)
+                // .addGap(18, 18, 18)
+                // .addComponent(exampleSpellHitLabel1,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 102,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(exampleSpellRollButton1)
+                // .addContainerGap()));
+                // exampleCantripsSpellPanel1Layout.setVerticalGroup(exampleCantripsSpellPanel1Layout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
+                // .addGroup(exampleCantripsSpellPanel1Layout
+                // .createParallelGroup(
+                // javax.swing.GroupLayout.Alignment.BASELINE)
+                // .addComponent(exampleSpellName2,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 65,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addComponent(exampleSpellHitLabel1,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // 65,
+                // javax.swing.GroupLayout.PREFERRED_SIZE))
+                // .addGap(0, 0, Short.MAX_VALUE))
+                // .addGroup(exampleCantripsSpellPanel1Layout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(exampleSpellRollButton1,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addContainerGap()));
 
-                Lvl1SpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                Lvl1SpellSlotAvailableLabel.setText("99");
-                Lvl1SpellSlotAvailableLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // Lvl1HeaderPanel.setBorder(javax.swing.BorderFactory
+                // .createLineBorder(new java.awt.Color(0, 0, 0)));
 
-                jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                jLabel4.setText("/");
-                jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // Lvl1HeaderLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // Lvl1HeaderLabel.setText("Level 1");
+                // Lvl1HeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                Lvl1SpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-                Lvl1SpellMaxLabel.setText("99");
-                Lvl1SpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+                // Lvl1SpellSlotAvailableLabel.setFont(new java.awt.Font("Dialog", 0, 36)); //
+                // NOI18N
+                // Lvl1SpellSlotAvailableLabel.setText("99");
+                // Lvl1SpellSlotAvailableLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                Lvl1UpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-                Lvl1UpdateButton.setText("Update");
-                Lvl1UpdateButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                Lvl1UpdateButtonActionPerformed(evt);
-                        }
-                });
+                // jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // jLabel4.setText("/");
+                // jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                javax.swing.GroupLayout Lvl1HeaderPanelLayout =
-                                new javax.swing.GroupLayout(Lvl1HeaderPanel);
-                Lvl1HeaderPanel.setLayout(Lvl1HeaderPanelLayout);
-                Lvl1HeaderPanelLayout.setHorizontalGroup(Lvl1HeaderPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(Lvl1HeaderPanelLayout.createSequentialGroup()
-                                                .addComponent(Lvl1HeaderLabel,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(Lvl1SpellSlotAvailableLabel)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Lvl1SpellMaxLabel)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Lvl1UpdateButton).addContainerGap()));
-                Lvl1HeaderPanelLayout.setVerticalGroup(Lvl1HeaderPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Lvl1HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(Lvl1SpellSlotAvailableLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addComponent(Lvl1SpellMaxLabel,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                Lvl1HeaderPanelLayout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(Lvl1UpdateButton,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                37, Short.MAX_VALUE)
-                                                                .addContainerGap()));
+                // Lvl1SpellMaxLabel.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+                // Lvl1SpellMaxLabel.setText("99");
+                // Lvl1SpellMaxLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-                javax.swing.GroupLayout levelOneKnownSpellsPanelLayout =
-                                new javax.swing.GroupLayout(levelOneKnownSpellsPanel);
-                levelOneKnownSpellsPanel.setLayout(levelOneKnownSpellsPanelLayout);
-                levelOneKnownSpellsPanelLayout.setHorizontalGroup(levelOneKnownSpellsPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(levelOneKnownSpellsPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(levelOneKnownSpellsPanelLayout
-                                                                .createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(Lvl1HeaderPanel,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                .addComponent(exampleCantripsSpellPanel1,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
-                                                .addContainerGap()));
-                levelOneKnownSpellsPanelLayout.setVerticalGroup(levelOneKnownSpellsPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                levelOneKnownSpellsPanelLayout
-                                                                .createSequentialGroup()
-                                                                .addComponent(Lvl1HeaderPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(exampleCantripsSpellPanel1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)));
+                // Lvl1UpdateButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+                // Lvl1UpdateButton.setText("Update");
+                // Lvl1UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+                // public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Lvl1UpdateButtonActionPerformed(evt);
+                // }
+                // });
 
-                javax.swing.GroupLayout spellsListPanelLayout =
-                                new javax.swing.GroupLayout(spellsListPanel);
-                spellsListPanel.setLayout(spellsListPanelLayout);
-                spellsListPanelLayout.setHorizontalGroup(spellsListPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(spellsListPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(spellsListPanelLayout.createParallelGroup(
-                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(cantripsKnownSpellsPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(levelOneKnownSpellsPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addContainerGap(63, Short.MAX_VALUE)));
-                spellsListPanelLayout.setVerticalGroup(spellsListPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(spellsListPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(cantripsKnownSpellsPanel,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(levelOneKnownSpellsPanel,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(334, Short.MAX_VALUE)));
+                // javax.swing.GroupLayout Lvl1HeaderPanelLayout =
+                // new javax.swing.GroupLayout(Lvl1HeaderPanel);
+                // Lvl1HeaderPanel.setLayout(Lvl1HeaderPanelLayout);
+                // Lvl1HeaderPanelLayout.setHorizontalGroup(Lvl1HeaderPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(Lvl1HeaderPanelLayout.createSequentialGroup()
+                // .addComponent(Lvl1HeaderLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                // .addComponent(Lvl1SpellSlotAvailableLabel)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(jLabel4)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(Lvl1SpellMaxLabel)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(Lvl1UpdateButton).addContainerGap()));
+                // Lvl1HeaderPanelLayout.setVerticalGroup(Lvl1HeaderPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addComponent(Lvl1HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(Lvl1SpellSlotAvailableLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(Lvl1SpellMaxLabel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                // Lvl1HeaderPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(Lvl1UpdateButton,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // 37, Short.MAX_VALUE)
+                // .addContainerGap()));
 
-                SpellsListScrollPane1.setViewportView(spellsListPanel);
+                // javax.swing.GroupLayout levelOneKnownSpellsPanelLayout =
+                // new javax.swing.GroupLayout(levelOneKnownSpellsPanel);
+                // levelOneKnownSpellsPanel.setLayout(levelOneKnownSpellsPanelLayout);
+                // levelOneKnownSpellsPanelLayout.setHorizontalGroup(levelOneKnownSpellsPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(levelOneKnownSpellsPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addGroup(levelOneKnownSpellsPanelLayout
+                // .createParallelGroup(
+                // javax.swing.GroupLayout.Alignment.LEADING)
+                // .addComponent(Lvl1HeaderPanel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE)
+                // .addComponent(exampleCantripsSpellPanel,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // Short.MAX_VALUE))
+                // .addContainerGap()));
+                // levelOneKnownSpellsPanelLayout.setVerticalGroup(levelOneKnownSpellsPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                // levelOneKnownSpellsPanelLayout
+                // .createSequentialGroup()
+                // .addComponent(Lvl1HeaderPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(exampleCantripsSpellPanel1,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)));
+
+                // javax.swing.GroupLayout spellsListPanelLayout =
+                // new javax.swing.GroupLayout(spellsListPanel);
+                // spellsListPanel.setLayout(spellsListPanelLayout);
+                // spellsListPanelLayout.setHorizontalGroup(spellsListPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(spellsListPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addGroup(spellsListPanelLayout.createParallelGroup(
+                // javax.swing.GroupLayout.Alignment.LEADING)
+                // .addComponent(cantripsKnownSpellsPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addComponent(levelOneKnownSpellsPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE))
+                // .addContainerGap(63, Short.MAX_VALUE)));
+                // spellsListPanelLayout.setVerticalGroup(spellsListPanelLayout
+                // .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                // .addGroup(spellsListPanelLayout.createSequentialGroup()
+                // .addContainerGap()
+                // .addComponent(cantripsKnownSpellsPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addPreferredGap(
+                // javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                // .addComponent(levelOneKnownSpellsPanel,
+                // javax.swing.GroupLayout.PREFERRED_SIZE,
+                // javax.swing.GroupLayout.DEFAULT_SIZE,
+                // javax.swing.GroupLayout.PREFERRED_SIZE)
+                // .addContainerGap(334, Short.MAX_VALUE)));
+
+                // SpellsListScrollPane1.setViewportView(spellsListPanel);
 
                 javax.swing.GroupLayout characterSpellsPanelLayout =
                                 new javax.swing.GroupLayout(characterSpellsPanel);
@@ -6375,6 +7171,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 0,
                                                                                 Short.MAX_VALUE))));
+
                 characterSpellsPanelLayout.setVerticalGroup(characterSpellsPanelLayout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(characterSpellsPanelLayout.createSequentialGroup()
@@ -7210,327 +8007,4 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
         }// </editor-fold>//GEN-END:initComponents
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JLabel ACLabel;
-        private javax.swing.JPanel ACPanel;
-        private javax.swing.JButton ACUpdateButton;
-        private javax.swing.JLabel ACValueLabel;
-        private javax.swing.JPanel CSMainPanel;
-        private javax.swing.JLabel HPLabel;
-        private javax.swing.JPanel HPPanel;
-        private javax.swing.JButton HPUpdateButton;
-        private javax.swing.JLabel HPValueLabel;
-        private javax.swing.JLabel HitDiceLabel;
-        private javax.swing.JPanel HitDicePanel;
-        private javax.swing.JButton HitDiceUpdateButton;
-        private javax.swing.JLabel HitDiceValueLabel;
-        private javax.swing.JLabel Lvl1HeaderLabel;
-        private javax.swing.JPanel Lvl1HeaderPanel;
-        private javax.swing.JLabel Lvl1SpellMaxLabel;
-        private javax.swing.JLabel Lvl1SpellSlotAvailableLabel;
-        private javax.swing.JButton Lvl1UpdateButton;
-        private javax.swing.JPanel ProficiencyPanel;
-        private javax.swing.JTabbedPane SheetTabs;
-        private javax.swing.JButton SoHCheckButton;
-        private javax.swing.JLabel SpeedLabel;
-        private javax.swing.JPanel SpeedPanel;
-        private javax.swing.JButton SpeedUpdateButton;
-        private javax.swing.JLabel SpeedValueLabel;
-        private javax.swing.JScrollPane SpellsListScrollPane1;
-        private javax.swing.JPanel StatsPanel;
-        private javax.swing.JPanel abilitesReligionPanel;
-        private javax.swing.JPanel abilitiesAcrobaticsPanel;
-        private javax.swing.JPanel abilitiesAnimalHandlingPanel;
-        private javax.swing.JPanel abilitiesArcanaPanel;
-        private javax.swing.JPanel abilitiesAthleticsPanel;
-        private javax.swing.JLabel abilitiesCharacterClass;
-        private javax.swing.JLabel abilitiesCharacterLevel;
-        private javax.swing.JLabel abilitiesCharacterName;
-        private javax.swing.JPanel abilitiesCharismaPanel;
-        private javax.swing.JPanel abilitiesCharismaSectionPanel;
-        private javax.swing.JPanel abilitiesDeceptionPanel;
-        private javax.swing.JPanel abilitiesDexterityPanel;
-        private javax.swing.JPanel abilitiesDexteritySectionPanel;
-        private javax.swing.JPanel abilitiesHistoryPanel;
-        private javax.swing.JPanel abilitiesInsightPanel;
-        private javax.swing.JPanel abilitiesIntelligencePanel;
-        private javax.swing.JPanel abilitiesIntelligenceSectionPanel;
-        private javax.swing.JPanel abilitiesIntimidationPanel;
-        private javax.swing.JPanel abilitiesInvestigationPanel;
-        private javax.swing.JPanel abilitiesMedicinePanel;
-        private javax.swing.JPanel abilitiesNaturePanel;
-        private javax.swing.JPanel abilitiesPanel;
-        private javax.swing.JPanel abilitiesPerceptionPanel;
-        private javax.swing.JPanel abilitiesPerformancePanel;
-        private javax.swing.JPanel abilitiesPersuasion;
-        private javax.swing.JPanel abilitiesSection;
-        private javax.swing.JPanel abilitiesSoHPanel;
-        private javax.swing.JPanel abilitiesStealthPanel;
-        private javax.swing.JPanel abilitiesStrengthPanel;
-        private javax.swing.JPanel abilitiesStrengthSectionPanel;
-        private javax.swing.JPanel abilitiesSurvivalPanel;
-        private javax.swing.JPanel abilitiesWisdomPanel;
-        private javax.swing.JPanel abilitiesWisdomSectionPanel;
-        private javax.swing.JButton acrobaticsCheckButton;
-        private javax.swing.JButton animalHandlingCheckButton;
-        private javax.swing.JButton arcanaCheck;
-        private javax.swing.JButton athleticsCheckButton;
-        private javax.swing.JLabel cantripsHeaderLabel;
-        private javax.swing.JPanel cantripsHeaderPanel;
-        private javax.swing.JPanel cantripsKnownSpellsPanel;
-        private javax.swing.JLabel cantripsSpellMaxLabel;
-        private javax.swing.JLabel cantripsSpellSlotAvailableLabel;
-        private javax.swing.JButton cantripsUpdateButton;
-        private javax.swing.JLabel charAcrobaticsLabel;
-        private javax.swing.JLabel charAcrobaticsValueLabel;
-        private javax.swing.JLabel charAnimalHandlingLabel;
-        private javax.swing.JLabel charAnimalHandlingValueLabel;
-        private javax.swing.JLabel charArcanaLabel;
-        private javax.swing.JLabel charArcanaValueLabel;
-        private javax.swing.JLabel charAthleticsLabel;
-        private javax.swing.JLabel charAthleticsValueLabel;
-        private javax.swing.JLabel charCharismaLabel;
-        private javax.swing.JLabel charCharismaValueLabel;
-        private javax.swing.JLabel charDeceptionLabel;
-        private javax.swing.JLabel charDeceptionValueLabel;
-        private javax.swing.JLabel charDexterityLabel;
-        private javax.swing.JLabel charDexterityValueLabel;
-        private javax.swing.JLabel charHistoryLabel;
-        private javax.swing.JLabel charHistoryValueLabel;
-        private javax.swing.JLabel charInsightLabel;
-        private javax.swing.JLabel charInsightValueLabel;
-        private javax.swing.JLabel charIntelligenceLabel;
-        private javax.swing.JLabel charIntelligenceValueLabel;
-        private javax.swing.JLabel charIntimidationLabel;
-        private javax.swing.JLabel charIntimidationValueLabel;
-        private javax.swing.JLabel charInvestigationLabel;
-        private javax.swing.JLabel charInvestigationValueLabel;
-        private javax.swing.JLabel charMedicineLabel;
-        private javax.swing.JLabel charMedicineValueLabel;
-        private javax.swing.JLabel charNatureLabel;
-        private javax.swing.JLabel charNatureValueLabel;
-        private javax.swing.JLabel charPerceptionLabel;
-        private javax.swing.JLabel charPerceptionValueLabel;
-        private javax.swing.JLabel charPerformanceLabel;
-        private javax.swing.JLabel charPerformanceValueLabel;
-        private javax.swing.JLabel charPersuasionLabel;
-        private javax.swing.JLabel charPersuasionValueLabel;
-        private javax.swing.JLabel charReligionLabel;
-        private javax.swing.JLabel charReligionValueLabel;
-        private javax.swing.JLabel charSoHLabel;
-        private javax.swing.JLabel charSoHValueLabel;
-        private javax.swing.JLabel charStealthLabel;
-        private javax.swing.JLabel charStealthValueLabel;
-        private javax.swing.JLabel charStrengthLabel;
-        private javax.swing.JLabel charStrengthValueLabel;
-        private javax.swing.JLabel charSurvivalLabel;
-        private javax.swing.JLabel charSurvivalValueLabel;
-        private javax.swing.JLabel charWisdomValueLabel;
-        private javax.swing.JLabel charWisdomLabel;
-        private javax.swing.JPanel characterInformationPanel;
-        private javax.swing.JPanel characterSpellsPanel;
-        private javax.swing.JPanel characterStatsPanel;
-        private javax.swing.JPanel characterWeaponsPanel;
-        private javax.swing.JPanel charicterAttributesPanel;
-        private javax.swing.JButton charismaCheckButton;
-        private javax.swing.JPanel charismaPanel;
-        private javax.swing.JPanel constitutionPanel;
-        private javax.swing.JButton deceptionCheckButton;
-        private javax.swing.JButton dexterityCheckButton;
-        private javax.swing.JPanel dexterityPanel;
-        private javax.swing.JPanel exampleCantripsSpellPanel;
-        private javax.swing.JPanel exampleCantripsSpellPanel1;
-        private javax.swing.JLabel exampleSpellHitLabel;
-        private javax.swing.JLabel exampleSpellHitLabel1;
-        private javax.swing.JLabel exampleSpellName1;
-        private javax.swing.JLabel exampleSpellName2;
-        private javax.swing.JButton exampleSpellRollButton;
-        private javax.swing.JButton exampleSpellRollButton1;
-        private javax.swing.JLabel exampleWeaponDamageRoll;
-        private javax.swing.JLabel exampleWeaponDamageType;
-        private javax.swing.JLabel exampleWeaponName;
-        private javax.swing.JPanel exampleWeaponPanel;
-        private javax.swing.JLabel exampleWeaponProficiency;
-        private javax.swing.JButton exampleWeaponRollDamage;
-        private javax.swing.JButton exampleWeaponRollHit;
-        private javax.swing.JLabel exampleWeaponRange;
-        private javax.swing.JLabel headerLabel;
-        private javax.swing.JButton historyCheck;
-        private javax.swing.JLabel infoCharacterClassLabel1;
-        private javax.swing.JLabel infoCharacterClassLabel3;
-        private javax.swing.JLabel infoCharacterClassLabel4;
-        private javax.swing.JLabel infoCharacterClassLabel5;
-        private javax.swing.JLabel infoCharacterClassLabel6;
-        private javax.swing.JPanel infoCharacterClassPanel1;
-        private javax.swing.JPanel infoCharacterClassPanel3;
-        private javax.swing.JPanel infoCharacterClassPanel4;
-        private javax.swing.JPanel infoCharacterClassPanel5;
-        private javax.swing.JPanel infoCharacterClassPanel6;
-        private javax.swing.JTextField infoCharacterClassTextBox;
-        private javax.swing.JTextField infoCharacterRaceTextBox;
-        private javax.swing.JTextField infoCharacterBackgroundTextBox;
-        private javax.swing.JTextField infoCharacterAlignmentTextBox;
-        private javax.swing.JTextField infoCharacterXPTextBox;
-        private javax.swing.JPanel infoHeaderPanel;
-        private javax.swing.JLabel informationCharacterName;
-        private javax.swing.JLabel informationCharacterClass;
-        private javax.swing.JLabel informationCharacterLevel;
-        private javax.swing.JPanel informationPanel;
-        private javax.swing.JButton insightCheckButton;
-        private javax.swing.JButton intelligenceCheck;
-        private javax.swing.JPanel intelligencePanel;
-        private javax.swing.JButton intimidationCheckButton;
-        private javax.swing.JButton investigationCheck;
-        private javax.swing.JButton jButton1;
-        private javax.swing.JLabel jLabel1;
-        private javax.swing.JLabel infoCPValueLabel;
-        private javax.swing.JLabel jLabel11;
-        private javax.swing.JLabel infoEPValueLabel;
-        private javax.swing.JLabel infoPPValueLabel;
-        private javax.swing.JLabel jLabel3;
-        private javax.swing.JLabel jLabel4;
-        private javax.swing.JLabel jLabel5;
-        private javax.swing.JLabel infoGPValueLabel;
-        private javax.swing.JLabel jLabel7;
-        private javax.swing.JLabel infoSPValueLabel;
-        private javax.swing.JLabel jLabel9;
-        private javax.swing.JPanel jPanel2;
-        private javax.swing.JPanel jPanel3;
-        private javax.swing.JPanel jPanel4;
-        private javax.swing.JPanel jPanel5;
-        private javax.swing.JPanel jPanel6;
-        private javax.swing.JPanel jPanel7;
-        private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JTextArea infoNotes;
-        private javax.swing.JPanel levelOneKnownSpellsPanel;
-        private javax.swing.JLabel levellabelLabel;
-        private javax.swing.JLabel levellabelLabel2;
-        private javax.swing.JLabel levellabelLabel3;
-        private javax.swing.JLabel levellabelLabel4;
-        private javax.swing.JLabel levellabelLabel5;
-        private javax.swing.JButton medicineCheckButton;
-        private javax.swing.JButton natureCheck;
-        private javax.swing.JButton perceptionCheckButton;
-        private javax.swing.JButton performanceCheckButton;
-        private javax.swing.JButton persuasionCheckButton;
-        private javax.swing.JLabel proficiencyLabel;
-        private javax.swing.JButton proficiencyUpdateButton;
-        private javax.swing.JLabel proficiencyValueLabel;
-        private javax.swing.JButton religionCheck;
-        private javax.swing.JLabel spellsAttackLabel;
-        private javax.swing.JPanel spellsAttackPanel;
-        private javax.swing.JLabel spellsAttackValueLabel;
-        private javax.swing.JButton spellsAttackValueUpdateButton;
-        private javax.swing.JLabel spellsCLevelLabel;
-        private javax.swing.JPanel spellsCLevelPanle;
-        private javax.swing.JButton spellsCLevelUpdateButton;
-        private javax.swing.JLabel spellsCLevelValueLabel;
-        private javax.swing.JLabel spellsCharacterClass;
-        private javax.swing.JLabel spellsCharacterLevel;
-        private javax.swing.JLabel spellsCharacterName;
-        private javax.swing.JLabel spellsDCLabel;
-        private javax.swing.JPanel spellsDCPanel;
-        private javax.swing.JButton spellsDCUpdateButton;
-        private javax.swing.JLabel spellsDCValueLabel;
-        private javax.swing.JPanel spellsHeaderPanel;
-        private javax.swing.JPanel spellsListPanel;
-        private javax.swing.JPanel spellsPanel;
-        private javax.swing.JButton spellsUpdateButton;
-        private javax.swing.JLabel statsCharacterClass;
-        private javax.swing.JLabel statsCharacterLevel;
-        private javax.swing.JLabel statsCharacterName;
-        private javax.swing.JButton stealthCheck;
-        private javax.swing.JButton strengthCheckButton;
-        private javax.swing.JLabel strengthLabel;
-        private javax.swing.JLabel strengthLabel2;
-        private javax.swing.JLabel strengthLabel3;
-        private javax.swing.JLabel strengthLabel4;
-        private javax.swing.JLabel strengthLabel5;
-        private javax.swing.JLabel strengthLabel6;
-        private javax.swing.JLabel strengthModifierLabel;
-        private javax.swing.JLabel strengthModifierLabel1;
-        private javax.swing.JLabel strengthModifierLabel2;
-        private javax.swing.JLabel strengthModifierLabel3;
-        private javax.swing.JLabel strengthModifierLabel4;
-        private javax.swing.JLabel strengthModifierLabel5;
-        private javax.swing.JPanel strengthModifierPanel;
-        private javax.swing.JPanel strengthModifierPanel1;
-        private javax.swing.JPanel strengthModifierPanel2;
-        private javax.swing.JPanel strengthModifierPanel3;
-        private javax.swing.JPanel strengthModifierPanel4;
-        private javax.swing.JPanel strengthModifierPanel5;
-        private javax.swing.JLabel strengthModifierValueLabel;
-        private javax.swing.JLabel intelligenceModifierValueLabel;
-        private javax.swing.JLabel wisdomModifierValueLabel;
-        private javax.swing.JLabel dexterityModifierValueLabel;
-        private javax.swing.JLabel charismaModifierValueLabel;
-        private javax.swing.JLabel constitutionModifierValueLabel;
-        private javax.swing.JPanel strengthPanel;
-        private javax.swing.JLabel strengthSaveLabel;
-        private javax.swing.JLabel strengthSaveLabel2;
-        private javax.swing.JLabel strengthSaveLabel3;
-        private javax.swing.JLabel strengthSaveLabel4;
-        private javax.swing.JLabel strengthSaveLabel5;
-        private javax.swing.JLabel strengthSaveLabel6;
-        private javax.swing.JPanel strengthSavePanel;
-        private javax.swing.JPanel strengthSavePanel2;
-        private javax.swing.JPanel strengthSavePanel3;
-        private javax.swing.JPanel strengthSavePanel4;
-        private javax.swing.JPanel strengthSavePanel5;
-        private javax.swing.JPanel strengthSavePanel6;
-        private javax.swing.JLabel strengthSaveValueLabel;
-        private javax.swing.JLabel intelligenceSaveValueLabel;
-        private javax.swing.JLabel wisdomSaveValueLabel;
-        private javax.swing.JLabel dexteritySaveValueLabel;
-        private javax.swing.JLabel charismaSaveValueLabel;
-        private javax.swing.JLabel constitutionSaveValueLabel;
-        private javax.swing.JLabel strengthScoreLabel;
-        private javax.swing.JLabel strengthScoreLabel1;
-        private javax.swing.JLabel strengthScoreLabel2;
-        private javax.swing.JLabel strengthScoreLabel3;
-        private javax.swing.JLabel strengthScoreLabel4;
-        private javax.swing.JLabel strengthScoreLabel5;
-        private javax.swing.JPanel strengthScorePanel;
-        private javax.swing.JPanel strengthScorePanel1;
-        private javax.swing.JPanel strengthScorePanel2;
-        private javax.swing.JPanel strengthScorePanel3;
-        private javax.swing.JPanel strengthScorePanel4;
-        private javax.swing.JPanel strengthScorePanel5;
-        private javax.swing.JLabel strengthScoreValueLabel;
-        private javax.swing.JLabel intelligenceScoreValueLabel;
-        private javax.swing.JLabel wisdomScoreValueLabel;
-        private javax.swing.JLabel dexterityScoreValueLabel;
-        private javax.swing.JLabel charismaScoreValueLabel;
-        private javax.swing.JLabel constitutionScoreValueLabel;
-        private javax.swing.JLabel subheadingLabel;
-        private javax.swing.JButton survivalCheckButton;
-        private javax.swing.JButton updateCharismaButton;
-        private javax.swing.JButton updateConstitutionButton;
-        private javax.swing.JButton updateDexterityButton;
-        private javax.swing.JButton updateIntelligenceButton;
-        private javax.swing.JButton updateStrengthButton;
-        private javax.swing.JButton updateWisdomButton;
-        private javax.swing.JLabel weaponProficienctLabel;
-        private javax.swing.JPanel weaponProficiencyPanel;
-        private javax.swing.JButton weaponProficiencyUpdateButton;
-        private javax.swing.JLabel weaponProficiencyValueLabel;
-        private javax.swing.JLabel weaponResourceValueLabel;
-        private javax.swing.JLabel weaponResourceLabel;
-        private javax.swing.JPanel weaponResourcePanel;
-        private javax.swing.JButton weaponResourceUpdateButton;
-        private javax.swing.JLabel weaponStrengthLabel;
-        private javax.swing.JPanel weaponStrengthPanel;
-        private javax.swing.JButton weaponStrengthUpdateButton;
-        private javax.swing.JLabel weaponStrengthValueLable;
-        private javax.swing.JLabel weaponsCharacterClass;
-        private javax.swing.JLabel weaponsCharacterLevel;
-        private javax.swing.JLabel weaponsCharacterName;
-        private javax.swing.JPanel weaponsHeaderPanel;
-        private javax.swing.JPanel weaponsListPanel;
-        private javax.swing.JScrollPane weaponsListScrollPane;
-        private javax.swing.JPanel weaponsPanel;
-        private javax.swing.JButton weaponsUpdateButton;
-        private javax.swing.JButton wisdomCheckButton;
-        private javax.swing.JPanel wisdomPanel;
-        // End of variables declaration//GEN-END:variables
 }

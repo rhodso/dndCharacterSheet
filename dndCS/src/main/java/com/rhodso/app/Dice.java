@@ -1,7 +1,5 @@
 package com.rhodso.app;
 
-import java.time.Instant;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Dice {
@@ -100,6 +98,14 @@ public class Dice {
     public static int roll(int _sides, int _number, int _modifier) {
         Dice d = new Dice(_sides, _number, _modifier);
         return d.roll();
+    }
+
+    /*
+     * Allow the user to set the modifier so that spellcasting ability can be added to spell hit
+     * rolls
+     */
+    public void setMod(int _mod) {
+        this.modifier = _mod;
     }
 
 }
