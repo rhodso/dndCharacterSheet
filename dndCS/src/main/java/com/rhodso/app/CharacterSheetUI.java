@@ -909,8 +909,45 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_weaponResourceUpdateButtonActionPerformed
 
         private void weaponsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                int wpnID = 0;
+
+                ArrayList<Integer> weaponIDList = new ArrayList<>();
+                ArrayList<String> weaponNameList = new ArrayList<>();
+                for (Weapon wpn : p.getWeaponsList()) {
+                        weaponIDList.add(wpn.getID());
+                        weaponNameList.add(wpn.getName());
+                }
+                weaponNameList.add("Create new weapon");
+
+                String selectedValue = (String) JOptionPane.showInputDialog(strengthCheckButton,
+                                "Select a weapon to modfiy", "Modify weapon",
+                                JOptionPane.QUESTION_MESSAGE, null, weaponNameList.toArray(),
+                                weaponNameList.get(0));
+                if (selectedValue != null) {
+                        // if (selectedValue.equals("Create new weapon")) {
+                        // // If the player wants to create a new weapon, then create the
+                        // // object here
+                        // Weapon w = new Weapon();
+                        // wpnID = w.getID();
+                        // w.setName("Weapon name");
+                        // w.setHitDR("1d20");
+                        // w.setDmgDR("1d10");
+                        // w.setRange("30ft");
+                        // w.setDamageType("Piercing");
+                        // w.setProficiency(p.getProf());
+
+
+
+                        // } else {
+                        int selectedWpn = weaponNameList.indexOf(selectedValue);
+                        wpnID = weaponIDList.get(selectedWpn);
+                        // }
+                        setComponentValues(p);
+                        c.SaveSheet(p);
+                        c.launchWeaponModifier(wpnID, p);
+                        this.dispose();
+                }
+
         }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
 
         private void spellsCLevelUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsCLevelUpdateButtonActionPerformed
@@ -1015,21 +1052,6 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(updateStrengthButton,
                                 "This feature is not yet implimented"); // TODO
         }// GEN-LAST:event_spellsUpdateButtonActionPerformed
-        /*
-         * private void exampleSpellRollButtonActionPerformed(java.awt.event.ActionEvent evt) {//
-         * GEN-FIRST:event_exampleSpellRollButtonActionPerformed ; }//
-         * GEN-LAST:event_exampleSpellRollButtonActionPerformed
-         * 
-         * private void cantripsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//
-         * GEN-FIRST:event_cantripsUpdateButtonActionPerformed
-         * JOptionPane.showMessageDialog(updateStrengthButton,
-         * "This feature is not yet implimented2"); // TODO }//
-         * GEN-LAST:event_cantripsUpdateButtonActionPerformed
-         * 
-         * private void exampleSpellRollButton1ActionPerformed(java.awt.event.ActionEvent evt) {//
-         * GEN-FIRST:event_exampleSpellRollButton1ActionPerformed ; }//
-         * GEN-LAST:event_exampleSpellRollButton1ActionPerformed
-         */
 
         private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
                 // JOptionPane.showMessageDialog(updateStrengthButton, "This feature is not yet
@@ -1643,7 +1665,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         }
                 });
                 buttonSpellMap.put(splRollHit, s);
-                
+
                 splRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                 splRollDamage.setText("DMG\n");
                 splRollDamage.addActionListener(new java.awt.event.ActionListener() {

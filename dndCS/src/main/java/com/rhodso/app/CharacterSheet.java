@@ -10,12 +10,24 @@ import org.json.simple.parser.JSONParser;
 
 public class CharacterSheet {
     private String sheetFP;
-    private CharacterSheetUI ui;
+    private static CharacterSheetUI ui;
+    private static Weapon checkedWeapon;
+
+    public Weapon getCheckedWeapon() {
+        return checkedWeapon;
+    }
+
+    public void setCheckedWeapon(Weapon _checkedWeapon) {
+        checkedWeapon = _checkedWeapon;
+    }
 
     public Player loadSheet(String sheetFP) {
         // Settings.setLastFile(sheetFP);
 
         Player p = new Player();
+
+        p.setSheetFP(sheetFP);
+
         JSONObject player = null;
         FileReader reader;
         JSONParser jsonParser = new JSONParser();
@@ -24,6 +36,7 @@ public class CharacterSheet {
         JSONArray spellSlots;
         JSONArray spellSlotsLeft;
         JSONArray curr;
+
 
         // Populate player with data from JSON
         try {
@@ -304,6 +317,25 @@ public class CharacterSheet {
         return res;
     }
 
+    public void launchWeaponModifier(int _weaponID, Player p) {
+        Weapon w = null;
+        for (Weapon wpn : p.getWeaponsList()) {
+            if (wpn.getID() == _weaponID) {
+                w = wpn;
+                break;
+            }
+        }
+        weaponModifierUI wm;
+
+        if (w == null) {
+            wm = new weaponModifierUI(p);
+        } else {
+            wm = new weaponModifierUI(p, w);
+        }
+
+        wm.setVisible(true);
+    }
+
     /*
      * @return the number formatted as a string
      */
@@ -374,6 +406,11 @@ public class CharacterSheet {
 
     public void loadUI(String sheetFP) {
         ui = new CharacterSheetUI(loadSheet(sheetFP), this.sheetFP);
+        ui.setVisible(true);
+    }
+
+    public void loadUI(Player p) {
+        ui = new CharacterSheetUI(p, p.getSheetFP());
         ui.setVisible(true);
     }
 

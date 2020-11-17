@@ -83,11 +83,27 @@ public class Player {
     private int[] spellSlots;
     private int[] spellSlotsLeft;
 
+    private String sheetFP;
+
     /**
      * @return the persuasion
      */
     public int getPersuasion() {
         return persuasion;
+    }
+
+    /**
+     * @return the sheetFP
+     */
+    public String getSheetFP() {
+        return sheetFP;
+    }
+
+    /**
+     * @param sheetFP the sheetFP to set
+     */
+    public void setSheetFP(String sheetFP) {
+        this.sheetFP = sheetFP;
     }
 
     /**
@@ -735,11 +751,12 @@ public class Player {
     }
 
     /**
-     * @param arcana the arcana to set
+     * @param the arcana
      */
     public void setArcana(int arcana) {
         this.arcana = arcana;
     }
+
 
     /**
      * @return the stealth

@@ -1,6 +1,8 @@
 package com.rhodso.app;
 
 public class Weapon {
+    private static int count = 0;
+    private int weaponID;
     private String name;
     private String hitDR;
     private String dmgDR;
@@ -9,6 +11,13 @@ public class Weapon {
     private String range;
     private String damageType;
     private int proficiency;
+
+    /**
+     * @return the weapon ID
+     */
+    public int getID() {
+        return weaponID;
+    }
 
     /**
      * @return the name
@@ -126,6 +135,8 @@ public class Weapon {
      * 
      */
     public Weapon() {
+        weaponID = count;
+        count++;
     }
 
     /**
