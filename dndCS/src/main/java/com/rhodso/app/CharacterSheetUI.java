@@ -1467,25 +1467,33 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                         // then update form and
                                         // update the sheet
                                         if (!fail) {
-                                                int[] tmpSpellSlotsLeft = p.getSpellSlotsLeft();
-                                                int[] tmpSpellSlots = p.getSpellSlots();
                                                 if (resetSlot) {
+                                                        int[] tmpSpellSlotsLeft =
+                                                                        p.getSpellSlotsLeft();
                                                         // reset spell slots
                                                         // p.setSpellSlotsLeft(7)[thisSpellSlotLevel];
+                                                        int[] tmpSpellSlots = p.getSpellSlots();
                                                         tmpSpellSlotsLeft[thisSpellSlotLevel] =
                                                                         tmpSpellSlots[thisSpellSlotLevel];
                                                         // p.setSpellSlotsLeft(tmpSpellSlotsLeft);
+                                                        p.setSpellSlotsLeft(tmpSpellSlotsLeft);
+                                                        p.setSpellSlots(tmpSpellSlots);
 
                                                 } else if (affectMax) {
                                                         // Affect Max HP
                                                         if (newVal > 0) {
                                                                 // p.setHpMax(newVal);
+                                                                int[] tmpSpellSlots =
+                                                                                p.getSpellSlots();
                                                                 tmpSpellSlots[thisSpellSlotLevel] =
                                                                                 newVal;
                                                                 p.setSpellSlots(tmpSpellSlots);
+
                                                         } else {
                                                                 // p.setHpMax(p.getHpMax() +
                                                                 // newVal);
+                                                                int[] tmpSpellSlots =
+                                                                                p.getSpellSlots();
                                                                 tmpSpellSlots[thisSpellSlotLevel] =
                                                                                 tmpSpellSlots[thisSpellSlotLevel]
                                                                                                 + newVal;
@@ -1495,19 +1503,28 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                         // Affect actual HP
                                                         if (newVal > 0) {
                                                                 // p.setHp(newVal);
+                                                                int[] tmpSpellSlotsLeft = p
+                                                                                .getSpellSlotsLeft();
                                                                 tmpSpellSlotsLeft[thisSpellSlotLevel] =
                                                                                 newVal;
+                                                                p.setSpellSlotsLeft(
+                                                                                tmpSpellSlotsLeft);
 
                                                         } else {
+                                                                int[] tmpSpellSlotsLeft = p
+                                                                                .getSpellSlotsLeft();
                                                                 // p.setHp(p.getHp() + newVal);
                                                                 tmpSpellSlotsLeft[thisSpellSlotLevel] =
                                                                                 tmpSpellSlotsLeft[thisSpellSlotLevel]
                                                                                                 + newVal;
-                        // FIXME: spell slots sometimes updated when only 1 should be
+                                                                p.setSpellSlotsLeft(
+                                                                                tmpSpellSlotsLeft);
+                                                                // FIXME: spell slots sometimes
+                                                                // updated when only 1 should be
                                                         }
                                                 }
-                                                p.setSpellSlots(tmpSpellSlots);
-                                                p.setSpellSlotsLeft(tmpSpellSlotsLeft);
+
+
                                                 try {
                                                         setComponentValues(p);
                                                         c.SaveSheet(p);
@@ -1626,7 +1643,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         }
                 });
                 buttonSpellMap.put(splRollHit, s);
-
+                
                 splRollDamage.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                 splRollDamage.setText("DMG\n");
                 splRollDamage.addActionListener(new java.awt.event.ActionListener() {
