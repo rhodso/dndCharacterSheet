@@ -2,7 +2,7 @@ package com.rhodso.app;
 
 public class Spell {
     private static int count = 0;
-    private int weaponID;
+    private int spellID;
     private String name;
     private String hitDR;
     private String dmgDR;
@@ -18,6 +18,28 @@ public class Spell {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @return the spellID
+     */
+    public int getSpellID() {
+        return spellID;
+    }
+
+    /**
+     * @return the spellID
+     */
+    // Overload because I'm lazy
+    public int getID() {
+        return spellID;
+    }
+
+    /**
+     * @param spellID the spellID to set
+     */
+    public void setSpellID(int spellID) {
+        this.spellID = spellID;
     }
 
     /**
@@ -143,9 +165,11 @@ public class Spell {
      * 
      */
     public Spell() {
-        weaponID = count;
+        setSpellID(count);
         count++;
     }
+
+
 
     /**
      * @param name

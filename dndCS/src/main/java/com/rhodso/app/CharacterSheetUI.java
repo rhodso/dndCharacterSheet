@@ -1057,15 +1057,54 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_spellsDCUpdateButtonActionPerformed
 
         private void spellsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_spellsUpdateButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_spellsUpdateButtonActionPerformed
+                int splID = -1;
 
-        private void Lvl1UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_Lvl1UpdateButtonActionPerformed
-                // JOptionPane.showMessageDialog(updateStrengthButton, "This feature is not yet
-                // implimented1"); // TODO
-                ;
-        }// GEN-LAST:event_Lvl1UpdateButtonActionPerformed
+                ArrayList<Integer> spellIDList = new ArrayList<>();
+                ArrayList<String> spellNameList = new ArrayList<>();
+                for (Spell spl : p.getSpellsList()) {
+                        spellIDList.add(spl.getID());
+                        spellNameList.add(spl.getName());
+                }
+                spellNameList.add("Create new spell");
+
+                String selectedValue = (String) JOptionPane.showInputDialog(strengthCheckButton,
+                                "Select a spell to modfiy", "Modify spell",
+                                JOptionPane.QUESTION_MESSAGE, null, spellNameList.toArray(),
+                                spellNameList.get(0));
+                if (selectedValue != null) {
+                        if (selectedValue.equals("Create new spell")) {
+                                // If the player wants to create a new weapon, then create the
+                                // object here
+                                Spell s = new Spell();
+                                s.setName("Spell Name");
+                                s.setHitDR("1d20");
+                                s.setDmgDR("1d10");
+                                s.setRange("30ft");
+                                s.setDamageType("Util");
+                                s.setProficiency(p.getProf());
+                                s.setSpellLevel(0);
+
+                                // Add to player weapon list
+                                ArrayList<Spell> sList = p.getSpellsList();
+                                sList.add(s);
+                                splID = s.getID();
+                        } else {
+                                int selectedWpn = spellNameList.indexOf(selectedValue);
+                                splID = spellIDList.get(selectedWpn);
+                        }
+
+                        if (splID != -1) {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                                c.launchSpellModifier(splID, p);
+                                this.dispose();
+                        } else {
+                                JOptionPane.showMessageDialog(updateStrengthButton,
+                                                "Spell could not be found in player weapon list",
+                                                "Something went wrong", JOptionPane.ERROR_MESSAGE);
+                        }
+                }
+        }// GEN-LAST:event_spellsUpdateButtonActionPerformed
 
         private void infoCharacterClassTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox1ActionPerformed
                 String[] s = infoCharacterClassTextBox.getText().split(" ");

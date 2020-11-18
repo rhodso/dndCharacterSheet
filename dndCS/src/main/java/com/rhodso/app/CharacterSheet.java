@@ -336,6 +336,25 @@ public class CharacterSheet {
         wm.setVisible(true);
     }
 
+    public void launchSpellModifier(int _spellID, Player p) {
+        Spell s = null;
+        for (Spell spl : p.getSpellsList()) {
+            if (spl.getID() == _spellID) {
+                s = spl;
+                break;
+            }
+        }
+        spellModifierUI sm;
+
+        if (s == null) {
+            sm = new spellModifierUI(p);
+        } else {
+            sm = new spellModifierUI(p, s);
+        }
+
+        sm.setVisible(true);
+    }
+
 
 
     /*

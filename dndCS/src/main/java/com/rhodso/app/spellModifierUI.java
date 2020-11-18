@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class weaponModifierUI extends javax.swing.JFrame {
+public class spellModifierUI extends javax.swing.JFrame {
 
         private Player p;
-        private Weapon w;
+        private Spell s;
         private boolean check = false;
 
-        public weaponModifierUI() {
+        /**
+         * Creates new foModifier
+         */
+        public spellModifierUI() {
                 // Override default close operation
                 this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -53,14 +56,10 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 });
         }
 
-        boolean getCheck() {
-                return check;
-        }
-
         /**
          * @param _p the player
          */
-        public weaponModifierUI(Player _p) {
+        public spellModifierUI(Player _p) {
                 p = _p;
 
                 initComponents();
@@ -69,62 +68,50 @@ public class weaponModifierUI extends javax.swing.JFrame {
 
         /**
          * @param _p the player
-         * @param _w the weapon to modify
+         * @param _s the spell to modify
          */
-        public weaponModifierUI(Player _p, Weapon _w) {
+        public spellModifierUI(Player _p, Spell _s) {
                 p = _p;
-                w = _w;
+                s = _s;
 
                 initComponents();
-                setComponentValues(w);
+                setComponentValues(s);
         }
 
-        /**
-         * @param None
-         */
-        public void setComponentValues() {
-                w = new Weapon();
-                w.setName("Weapon Name");
-                w.setHitDR("1d20");
-                w.setDmgDR("0");
-                w.setRange("0ft");
-                w.setDamageType("None");
-                w.setProficiency(p.getProf());
-        }
+        private void save() {
+                // Validation check
+                boolean valid = true;
 
-        /**
-         * @param _w the weapon to modify
-         */
-        public void setComponentValues(Weapon _w) {
-                weaponNameInput.setText(_w.getName());
-                weaponHitDRInput.setText(_w.getHitDR());
-                weaponDmgDRInput.setText(_w.getDmgDR());
-                weaponRangeInput.setText(_w.getRange());
-                weaponDamageTypeInput.setText(_w.getDamageType());
-                weaponProficiencyInput.setText(Integer.toString(_w.getProficiency()));
-        }
+                // Check over
+                if (valid) {
+                        // Calculated fields
+                        getComponentValues();
+                        if (!s.getDmgDR().equals("0")) {
+                                s.setDmg(new Dice(s.getDmgDR()));
+                        }
+                        s.setHit(new Dice(s.getHitDR()));
 
-        public void getComponentValues() {
-                w.setName(weaponNameInput.getText());
-                w.setHitDR(weaponHitDRInput.getText());
-                w.setDmgDR(weaponDmgDRInput.getText());
-                w.setRange(weaponRangeInput.getText());
-                w.setDamageType(weaponDamageTypeInput.getText());
-                w.setProficiency(Integer.parseInt(weaponProficiencyInput.getText()));
+                        CharacterSheet c = new CharacterSheet();
+                        c.SaveSheet(p);
+                        c.loadUI(p);
+
+                        // Dispose of the window
+                        this.dispose();
+                }
         }
 
         private void delete() {
                 int input = JOptionPane.showConfirmDialog(this,
-                                "Are you sure you want to delete this weapon?\n(This cannot be undone)",
-                                "Delete " + w.getName() + "?", JOptionPane.OK_CANCEL_OPTION,
+                                "Are you sure you want to delete this spell?\n(This cannot be undone)",
+                                "Delete " + s.getName() + "?", JOptionPane.OK_CANCEL_OPTION,
                                 JOptionPane.WARNING_MESSAGE);
 
                 if (input == 0) {
-                        // Get list, delete this weapon, set list, save sheet
+                        // Get list, delete this spell, set list, save sheet
                         CharacterSheet c = new CharacterSheet();
-                        ArrayList<Weapon> wList = p.getWeaponsList();
-                        wList.remove(w);
-                        p.setWeaponsList(wList);
+                        ArrayList<Spell> sList = p.getSpellsList();
+                        sList.remove(s);
+                        p.setSpellsList(sList);
                         c.SaveSheet(p);
                         c.loadUI(p);
                         this.dispose();
@@ -137,39 +124,41 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 this.dispose();
         }
 
-        private void save() {
-
-                // Validation check
-                boolean valid = true;
-
-                // Check over
-                if (valid) {
-                        // Calculated fields
-                        getComponentValues();
-                        if (!w.getDmgDR().equals("0")) {
-                                w.setDmg(new Dice(w.getDmgDR()));
-                        }
-                        w.setHit(new Dice(w.getHitDR()));
-
-                        CharacterSheet c = new CharacterSheet();
-                        c.SaveSheet(p);
-                        c.loadUI(p);
-
-                        // Dispose of the window
-                        this.dispose();
-                }
+        /**
+         * @param None
+         */
+        public void setComponentValues() {
+                s = new Spell();
+                s.setName("Spell Name");
+                s.setHitDR("1d20");
+                s.setDmgDR("0");
+                s.setRange("0ft");
+                s.setDamageType("None");
+                s.setProficiency(p.getProf());
+                s.setSpellLevel(0);
         }
 
-        public static boolean isNumeric(String strNum) {
-                if (strNum == null) {
-                        return false;
-                }
-                try {
-                        double d = Double.parseDouble(strNum);
-                } catch (NumberFormatException nfe) {
-                        return false;
-                }
-                return true;
+        /**
+         * @param _s the spell to modify
+         */
+        public void setComponentValues(Spell _s) {
+                spellNameInput.setText(_s.getName());
+                spellHitDRInput.setText(_s.getHitDR());
+                spellDmgDRInput.setText(_s.getDmgDR());
+                spellRangeInput.setText(_s.getRange());
+                spellDamageTypeInput.setText(_s.getDamageType());
+                spellProficiencyInput.setText(Integer.toString(_s.getProficiency()));
+                spellLevelInput.setText(Integer.toString(_s.getSpellLevel()));
+        }
+
+        public void getComponentValues() {
+                s.setName(spellNameInput.getText());
+                s.setHitDR(spellHitDRInput.getText());
+                s.setDmgDR(spellDmgDRInput.getText());
+                s.setRange(spellRangeInput.getText());
+                s.setDamageType(spellDamageTypeInput.getText());
+                s.setProficiency(Integer.parseInt(spellProficiencyInput.getText()));
+                s.setSpellLevel(Integer.parseInt(spellLevelInput.getText()));
         }
 
         /**
@@ -186,18 +175,20 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 headerLabel = new javax.swing.JLabel();
                 subheadingLabel = new javax.swing.JLabel();
                 inputPanel = new javax.swing.JPanel();
-                weaponNameLabel = new javax.swing.JLabel();
-                weaponNameInput = new javax.swing.JTextField();
-                weaponHitDRLabel = new javax.swing.JLabel();
-                weaponHitDRInput = new javax.swing.JTextField();
-                weaponRangeLabel = new javax.swing.JLabel();
-                weaponRangeInput = new javax.swing.JTextField();
-                weaponDmgDRLabel = new javax.swing.JLabel();
-                weaponDmgDRInput = new javax.swing.JTextField();
-                weaponProficiency = new javax.swing.JLabel();
-                weaponProficiencyInput = new javax.swing.JTextField();
-                weaponDamageTypeLabel = new javax.swing.JLabel();
-                weaponDamageTypeInput = new javax.swing.JTextField();
+                spellNameLabel = new javax.swing.JLabel();
+                spellNameInput = new javax.swing.JTextField();
+                spellHitDRLabel = new javax.swing.JLabel();
+                spellHitDRInput = new javax.swing.JTextField();
+                spellRangeLabel = new javax.swing.JLabel();
+                spellRangeInput = new javax.swing.JTextField();
+                spellDmgDRLabel = new javax.swing.JLabel();
+                spellDmgDRInput = new javax.swing.JTextField();
+                spellProficiency = new javax.swing.JLabel();
+                spellProficiencyInput = new javax.swing.JTextField();
+                spellDamageTypeLabel = new javax.swing.JLabel();
+                spellDamageTypeInput = new javax.swing.JTextField();
+                spellLevelLabel = new javax.swing.JLabel();
+                spellLevelInput = new javax.swing.JTextField();
                 buttonPanel = new javax.swing.JPanel();
                 saveButton = new javax.swing.JButton();
                 cancelButton = new javax.swing.JButton();
@@ -256,41 +247,47 @@ public class weaponModifierUI extends javax.swing.JFrame {
 
                 inputPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-                weaponNameLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponNameLabel.setText("Name");
+                spellNameLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellNameLabel.setText("Name");
 
-                weaponNameInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponNameInput.setText("weaponName");
+                spellNameInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellNameInput.setText("spellName");
 
-                weaponHitDRLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponHitDRLabel.setText("Hit Dice");
+                spellHitDRLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellHitDRLabel.setText("Hit Dice");
 
-                weaponHitDRInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponHitDRInput.setText("weaponHitDice");
+                spellHitDRInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellHitDRInput.setText("spellHitDice");
 
-                weaponRangeLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponRangeLabel.setText("Range");
+                spellRangeLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellRangeLabel.setText("Range");
 
-                weaponRangeInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponRangeInput.setText("weaponRange");
+                spellRangeInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellRangeInput.setText("spellRange");
 
-                weaponDmgDRLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponDmgDRLabel.setText("Damage Dice");
+                spellDmgDRLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellDmgDRLabel.setText("Damage Dice");
 
-                weaponDmgDRInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponDmgDRInput.setText("weaponDamageDice");
+                spellDmgDRInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellDmgDRInput.setText("spellDamageDice");
 
-                weaponProficiency.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponProficiency.setText("Proficiency");
+                spellProficiency.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellProficiency.setText("Proficiency");
 
-                weaponProficiencyInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponProficiencyInput.setText("weaponProficiency");
+                spellProficiencyInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellProficiencyInput.setText("spellProficiency");
 
-                weaponDamageTypeLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponDamageTypeLabel.setText("Damage Type");
+                spellDamageTypeLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellDamageTypeLabel.setText("Damage Type");
 
-                weaponDamageTypeInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                weaponDamageTypeInput.setText("weaponDamageType");
+                spellDamageTypeInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellDamageTypeInput.setText("spellDamageType");
+
+                spellLevelLabel.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellLevelLabel.setText("Spell Level");
+
+                spellLevelInput.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                spellLevelInput.setText("spellLevel");
 
                 javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
                 inputPanel.setLayout(inputPanelLayout);
@@ -301,114 +298,135 @@ public class weaponModifierUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponNameLabel,
+                                                                                .addComponent(spellNameLabel,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponNameInput))
+                                                                                .addComponent(spellNameInput))
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponHitDRLabel,
+                                                                                .addComponent(spellHitDRLabel,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponHitDRInput))
+                                                                                .addComponent(spellHitDRInput))
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponDmgDRLabel,
+                                                                                .addComponent(spellDmgDRLabel,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponDmgDRInput))
+                                                                                .addComponent(spellDmgDRInput))
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponRangeLabel,
+                                                                                .addComponent(spellRangeLabel,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponRangeInput))
+                                                                                .addComponent(spellRangeInput))
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponDamageTypeLabel,
+                                                                                .addComponent(spellDamageTypeLabel,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponDamageTypeInput))
+                                                                                .addComponent(spellDamageTypeInput,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                343,
+                                                                                                Short.MAX_VALUE))
                                                                 .addGroup(inputPanelLayout
                                                                                 .createSequentialGroup()
-                                                                                .addComponent(weaponProficiency,
+                                                                                .addComponent(spellProficiency,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                                 172,
                                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addPreferredGap(
                                                                                                 javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(weaponProficiencyInput)))
+                                                                                .addComponent(spellProficiencyInput))
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                                inputPanelLayout.createSequentialGroup()
+                                                                                                .addComponent(spellLevelLabel,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                                172,
+                                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                                .addPreferredGap(
+                                                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                                .addComponent(spellLevelInput)))
                                                 .addContainerGap()));
                 inputPanelLayout.setVerticalGroup(inputPanelLayout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(inputPanelLayout.createSequentialGroup().addContainerGap()
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponNameLabel,
+                                                                .addComponent(spellNameLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponNameInput))
+                                                                .addComponent(spellNameInput))
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponHitDRLabel,
+                                                                .addComponent(spellHitDRLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponHitDRInput))
+                                                                .addComponent(spellHitDRInput))
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponDmgDRLabel,
+                                                                .addComponent(spellDmgDRLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponDmgDRInput))
+                                                                .addComponent(spellDmgDRInput))
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponRangeLabel,
+                                                                .addComponent(spellRangeLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponRangeInput))
+                                                                .addComponent(spellRangeInput))
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponDamageTypeLabel,
+                                                                .addComponent(spellDamageTypeLabel,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponDamageTypeInput))
+                                                                .addComponent(spellDamageTypeInput))
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(inputPanelLayout.createParallelGroup(
                                                                 javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(weaponProficiency,
+                                                                .addComponent(spellProficiency,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 47,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(weaponProficiencyInput))
+                                                                .addComponent(spellProficiencyInput))
+                                                .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(inputPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(spellLevelLabel,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                47,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(spellLevelInput))
                                                 .addContainerGap()));
 
                 buttonPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -522,15 +540,15 @@ public class weaponModifierUI extends javax.swing.JFrame {
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(inputPanel,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(buttonPanel,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap()));
+                                                .addContainerGap(43, Short.MAX_VALUE)));
 
                 mainScrollPane.setViewportView(mainPanel);
 
@@ -543,15 +561,12 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 layout.setVerticalGroup(layout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup().addContainerGap()
-                                                .addComponent(mainScrollPane,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                643, Short.MAX_VALUE)
-                                                .addContainerGap()));
+                                                .addComponent(mainScrollPane).addContainerGap()));
 
                 pack();
         }// </editor-fold>
 
-        // Variables declaration - do not modify//GEN-BEGIN:variables
+        // Variables declaration - do not modify
         private javax.swing.JPanel buttonPanel;
         private javax.swing.JButton cancelButton;
         private javax.swing.JButton deleteButton;
@@ -561,18 +576,20 @@ public class weaponModifierUI extends javax.swing.JFrame {
         private javax.swing.JPanel mainPanel;
         private javax.swing.JScrollPane mainScrollPane;
         private javax.swing.JButton saveButton;
+        private javax.swing.JTextField spellDamageTypeInput;
+        private javax.swing.JLabel spellDamageTypeLabel;
+        private javax.swing.JTextField spellDmgDRInput;
+        private javax.swing.JLabel spellDmgDRLabel;
+        private javax.swing.JTextField spellHitDRInput;
+        private javax.swing.JLabel spellHitDRLabel;
+        private javax.swing.JTextField spellLevelInput;
+        private javax.swing.JLabel spellLevelLabel;
+        private javax.swing.JTextField spellNameInput;
+        private javax.swing.JLabel spellNameLabel;
+        private javax.swing.JLabel spellProficiency;
+        private javax.swing.JTextField spellProficiencyInput;
+        private javax.swing.JTextField spellRangeInput;
+        private javax.swing.JLabel spellRangeLabel;
         private javax.swing.JLabel subheadingLabel;
-        private javax.swing.JTextField weaponDamageTypeInput;
-        private javax.swing.JLabel weaponDamageTypeLabel;
-        private javax.swing.JTextField weaponDmgDRInput;
-        private javax.swing.JLabel weaponDmgDRLabel;
-        private javax.swing.JTextField weaponHitDRInput;
-        private javax.swing.JLabel weaponHitDRLabel;
-        private javax.swing.JTextField weaponNameInput;
-        private javax.swing.JLabel weaponNameLabel;
-        private javax.swing.JLabel weaponProficiency;
-        private javax.swing.JTextField weaponProficiencyInput;
-        private javax.swing.JTextField weaponRangeInput;
-        private javax.swing.JLabel weaponRangeLabel;
-        // End of variables declaration//GEN-END:variables
+        // End of variables declaration
 }
