@@ -3,7 +3,6 @@ package com.rhodso.app;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class weaponModifierUI extends javax.swing.JFrame {
@@ -114,6 +113,10 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 w.setProficiency(Integer.parseInt(weaponProficiencyInput.getText()));
         }
 
+        private void delete() {
+
+        }
+
         private void cancel() {
                 CharacterSheet c = new CharacterSheet();
                 c.loadUI(p.getSheetFP());
@@ -187,6 +190,7 @@ public class weaponModifierUI extends javax.swing.JFrame {
                 buttonPanel = new javax.swing.JPanel();
                 saveButton = new javax.swing.JButton();
                 cancelButton = new javax.swing.JButton();
+                deleteButton = new javax.swing.JButton();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -416,6 +420,15 @@ public class weaponModifierUI extends javax.swing.JFrame {
                         }
                 });
 
+                deleteButton.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                deleteButton.setText("Delete");
+                deleteButton.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                                cancel();
+                        }
+                });
+
                 javax.swing.GroupLayout buttonPanelLayout =
                                 new javax.swing.GroupLayout(buttonPanel);
                 buttonPanel.setLayout(buttonPanelLayout);
@@ -522,6 +535,7 @@ public class weaponModifierUI extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel buttonPanel;
         private javax.swing.JButton cancelButton;
+        private javax.swing.JButton deleteButton;
         private javax.swing.JLabel headerLabel;
         private javax.swing.JPanel headerPanel;
         private javax.swing.JPanel inputPanel;

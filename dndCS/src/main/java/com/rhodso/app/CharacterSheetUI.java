@@ -924,24 +924,24 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                 JOptionPane.QUESTION_MESSAGE, null, weaponNameList.toArray(),
                                 weaponNameList.get(0));
                 if (selectedValue != null) {
-                        // if (selectedValue.equals("Create new weapon")) {
-                        // // If the player wants to create a new weapon, then create the
-                        // // object here
-                        // Weapon w = new Weapon();
-                        // wpnID = w.getID();
-                        // w.setName("Weapon name");
-                        // w.setHitDR("1d20");
-                        // w.setDmgDR("1d10");
-                        // w.setRange("30ft");
-                        // w.setDamageType("Piercing");
-                        // w.setProficiency(p.getProf());
+                        if (selectedValue.equals("Create new weapon")) {
+                                // If the player wants to create a new weapon, then create the
+                                // object here
+                                Weapon w = new Weapon();
+                                w.setName("Weapon Name");
+                                w.setHitDR("1d20");
+                                w.setDmgDR("1d10");
+                                w.setRange("30ft");
+                                w.setDamageType("Piercing");
+                                w.setProficiency(p.getProf());
 
-
-
-                        // } else {
+                                // Add to player weapon list
+                                ArrayList<Weapon> wList = p.getWeaponsList();
+                                wList.add(w);
+                        }
                         int selectedWpn = weaponNameList.indexOf(selectedValue);
                         wpnID = weaponIDList.get(selectedWpn);
-                        // }
+
                         setComponentValues(p);
                         c.SaveSheet(p);
                         c.launchWeaponModifier(wpnID, p);
@@ -1442,6 +1442,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                         Lvl1UpdateButton.setText("Update");
                         buttonspellSlotMap.put(Lvl1UpdateButton, spellLevel);
                         Lvl1UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                                         int thisSpellSlotLevel =
                                                         buttonspellSlotMap.get(evt.getSource());
@@ -1541,12 +1542,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                                 + newVal;
                                                                 p.setSpellSlotsLeft(
                                                                                 tmpSpellSlotsLeft);
-                                                                // FIXME: spell slots sometimes
-                                                                // updated when only 1 should be
                                                         }
                                                 }
-
-
                                                 try {
                                                         setComponentValues(p);
                                                         c.SaveSheet(p);
