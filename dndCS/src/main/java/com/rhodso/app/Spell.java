@@ -1,6 +1,8 @@
 package com.rhodso.app;
 
 public class Spell {
+    private static int count = 0;
+    private int weaponID;
     private String name;
     private String hitDR;
     private String dmgDR;
@@ -141,6 +143,8 @@ public class Spell {
      * 
      */
     public Spell() {
+        weaponID = count;
+        count++;
     }
 
     /**

@@ -336,6 +336,8 @@ public class CharacterSheet {
         wm.setVisible(true);
     }
 
+
+
     /*
      * @return the number formatted as a string
      */

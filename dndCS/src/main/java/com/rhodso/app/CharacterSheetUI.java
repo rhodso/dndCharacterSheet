@@ -909,7 +909,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_weaponResourceUpdateButtonActionPerformed
 
         private void weaponsUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_weaponsUpdateButtonActionPerformed
-                int wpnID = 0;
+                int wpnID = -1;
 
                 ArrayList<Integer> weaponIDList = new ArrayList<>();
                 ArrayList<String> weaponNameList = new ArrayList<>();
@@ -938,14 +938,22 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                 // Add to player weapon list
                                 ArrayList<Weapon> wList = p.getWeaponsList();
                                 wList.add(w);
+                                wpnID = w.getID();
+                        } else {
+                                int selectedWpn = weaponNameList.indexOf(selectedValue);
+                                wpnID = weaponIDList.get(selectedWpn);
                         }
-                        int selectedWpn = weaponNameList.indexOf(selectedValue);
-                        wpnID = weaponIDList.get(selectedWpn);
 
-                        setComponentValues(p);
-                        c.SaveSheet(p);
-                        c.launchWeaponModifier(wpnID, p);
-                        this.dispose();
+                        if (wpnID != -1) {
+                                setComponentValues(p);
+                                c.SaveSheet(p);
+                                c.launchWeaponModifier(wpnID, p);
+                                this.dispose();
+                        } else {
+                                JOptionPane.showMessageDialog(updateStrengthButton,
+                                                "Weapon could not be found in player weapon list",
+                                                "Something went wrong", JOptionPane.ERROR_MESSAGE);
+                        }
                 }
 
         }// GEN-LAST:event_weaponsUpdateButtonActionPerformed
