@@ -234,7 +234,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterRaceTextBox.setText(p.getRace());
                 infoCharacterBackgroundTextBox.setText(p.getBackground());
                 infoCharacterAlignmentTextBox.setText(p.getAlignment());
-                infoCharacterXPTextBox.setText(Integer.toString(p.getXp()));
+                infoCharacterLvlTextBox.setText(Integer.toString(p.getLvl()));
 
                 // Currecy
                 infoPPValueLabel.setText(Integer.toString(p.getPP()));
@@ -1162,8 +1162,8 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_infoCharacterClassTextBox5ActionPerformed
 
         private void infoCharacterClassTextBox6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_infoCharacterClassTextBox6ActionPerformed
-                p.setXp(Integer.parseInt(infoCharacterXPTextBox.getText()));
-                JOptionPane.showMessageDialog(updateStrengthButton, "Experience set");
+                p.setLvl(Integer.parseInt(infoCharacterLvlTextBox.getText()));
+                JOptionPane.showMessageDialog(updateStrengthButton, "Level set");
                 try {
                         setComponentValues(p);
                         c.SaveSheet(p);
@@ -1173,8 +1173,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         }// GEN-LAST:event_infoCharacterClassTextBox6ActionPerformed
 
         private void updateInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateInfoButtonActionPerformed
-                JOptionPane.showMessageDialog(updateStrengthButton,
-                                "This feature is not yet implimented"); // TODO
+                setComponentValues(p);
+                c.SaveSheet(p);
+                c.launchInfoModifier(p);
+                this.dispose();
         }// GEN-LAST:event_updateInfoButtonActionPerformed
 
         public ArrayList<JPanel> buildWeaponList() {
@@ -1977,7 +1979,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JTextField infoCharacterRaceTextBox;
         private javax.swing.JTextField infoCharacterBackgroundTextBox;
         private javax.swing.JTextField infoCharacterAlignmentTextBox;
-        private javax.swing.JTextField infoCharacterXPTextBox;
+        private javax.swing.JTextField infoCharacterLvlTextBox;
         private javax.swing.JPanel infoHeaderPanel;
         private javax.swing.JLabel informationCharacterName;
         private javax.swing.JLabel informationCharacterClass;
@@ -2437,7 +2439,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 infoCharacterAlignmentTextBox = new javax.swing.JTextField();
                 infoCharacterClassPanel6 = new javax.swing.JPanel();
                 infoCharacterClassLabel6 = new javax.swing.JLabel();
-                infoCharacterXPTextBox = new javax.swing.JTextField();
+                infoCharacterLvlTextBox = new javax.swing.JTextField();
                 jPanel2 = new javax.swing.JPanel();
                 jPanel3 = new javax.swing.JPanel();
                 jLabel1 = new javax.swing.JLabel();
@@ -7555,10 +7557,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
 
                 infoCharacterClassLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
                 infoCharacterClassLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                infoCharacterClassLabel6.setText("Experience");
+                infoCharacterClassLabel6.setText("Level");
 
-                infoCharacterXPTextBox.setText("characterExperience");
-                infoCharacterXPTextBox.addActionListener(new java.awt.event.ActionListener() {
+                infoCharacterLvlTextBox.setText("characterLevel");
+                infoCharacterLvlTextBox.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 infoCharacterClassTextBox6ActionPerformed(evt);
                         }
@@ -7578,7 +7580,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
-                                                                .addComponent(infoCharacterXPTextBox,
+                                                                .addComponent(infoCharacterLvlTextBox,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 122,
                                                                                 Short.MAX_VALUE))
@@ -7593,7 +7595,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(infoCharacterXPTextBox,
+                                                .addComponent(infoCharacterLvlTextBox,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 115, Short.MAX_VALUE)
                                                 .addContainerGap()));

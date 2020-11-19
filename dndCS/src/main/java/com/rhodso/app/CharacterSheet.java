@@ -355,6 +355,11 @@ public class CharacterSheet {
         sm.setVisible(true);
     }
 
+    public void launchInfoModifier(Player p) {
+        infoModifier im = new infoModifier(p);
+        im.setVisible(true);
+    }
+
 
 
     /*
