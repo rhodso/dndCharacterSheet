@@ -1172,10 +1172,10 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 }
         }// GEN-LAST:event_infoCharacterClassTextBox6ActionPerformed
 
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+        private void updateInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_updateInfoButtonActionPerformed
                 JOptionPane.showMessageDialog(updateStrengthButton,
                                 "This feature is not yet implimented"); // TODO
-        }// GEN-LAST:event_jButton1ActionPerformed
+        }// GEN-LAST:event_updateInfoButtonActionPerformed
 
         public ArrayList<JPanel> buildWeaponList() {
                 ArrayList<JPanel> weaponPanelList = new ArrayList<>();
@@ -1988,7 +1988,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
         private javax.swing.JPanel intelligencePanel;
         private javax.swing.JButton intimidationCheckButton;
         private javax.swing.JButton investigationCheck;
-        private javax.swing.JButton jButton1;
+        private javax.swing.JButton updateInfoButton;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel infoCPValueLabel;
         private javax.swing.JLabel jLabel11;
@@ -2454,7 +2454,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                 jPanel7 = new javax.swing.JPanel();
                 jLabel11 = new javax.swing.JLabel();
                 infoEPValueLabel = new javax.swing.JLabel();
-                jButton1 = new javax.swing.JButton();
+                updateInfoButton = new javax.swing.JButton();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 infoNotes = new javax.swing.JTextArea();
 
@@ -7874,11 +7874,11 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 62, Short.MAX_VALUE)
                                                 .addContainerGap()));
 
-                jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-                jButton1.setText("Update");
-                jButton1.addActionListener(new java.awt.event.ActionListener() {
+                updateInfoButton.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                updateInfoButton.setText("Update");
+                updateInfoButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jButton1ActionPerformed(evt);
+                                updateInfoButtonActionPerformed(evt);
                         }
                 });
 
@@ -7917,7 +7917,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(
                                                                 javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1,
+                                                .addComponent(updateInfoButton,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
@@ -7939,7 +7939,7 @@ public class CharacterSheetUI extends javax.swing.JFrame {
                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
-                                                .addComponent(jButton1,
+                                                .addComponent(updateInfoButton,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)

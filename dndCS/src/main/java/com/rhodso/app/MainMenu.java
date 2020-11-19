@@ -221,7 +221,7 @@ public class MainMenu extends javax.swing.JFrame {
                 JFileChooser jfc = new JFileChooser();
                 jfc.addChoosableFileFilter(new FileNameExtensionFilter("json files", ".json"));
                 // jfc.setCurrentDirectory(new File(Settings.getLastFile()));
-                jfc.setCurrentDirectory(new File("./dndCS/characters/"));
+                jfc.setCurrentDirectory(new File("."));
                 int result = jfc.showOpenDialog(MainPanel);
                 if (result == JFileChooser.APPROVE_OPTION) {
                         // If the user has chosen a file that fits, try to load it
