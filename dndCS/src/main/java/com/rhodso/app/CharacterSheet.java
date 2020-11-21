@@ -11,23 +11,15 @@ import org.json.simple.parser.JSONParser;
 public class CharacterSheet {
     private String sheetFP;
     private static CharacterSheetUI ui;
-    private static Weapon checkedWeapon;
 
-    public Weapon getCheckedWeapon() {
-        return checkedWeapon;
-    }
-
-    public void setCheckedWeapon(Weapon _checkedWeapon) {
-        checkedWeapon = _checkedWeapon;
-    }
-
+    // Load the sheet
     public Player loadSheet(String sheetFP) {
-        // Settings.setLastFile(sheetFP);
 
+        // Crreate new player to store info in
         Player p = new Player();
-
         p.setSheetFP(sheetFP);
 
+        // Create objects to store the JSON data
         JSONObject player = null;
         FileReader reader;
         JSONParser jsonParser = new JSONParser();
@@ -40,11 +32,12 @@ public class CharacterSheet {
 
         // Populate player with data from JSON
         try {
+            // Create reader object
             reader = new FileReader(sheetFP);
             Object obj = jsonParser.parse(reader);
             player = (JSONObject) obj;
 
-            // Assign player vars
+            // Assign player vars that can be directly read
             p.setName(player.get("name").toString());
             p.setRace(player.get("race").toString());
             p.setChrClass(player.get("class").toString());
@@ -158,7 +151,7 @@ public class CharacterSheet {
             p.setCP(Integer.parseInt((curr.get(3).toString())));
             p.setEP(Integer.parseInt((curr.get(4).toString())));
 
-            // Inferred types
+            // Generate player mod
             p.setStrMod(getModifier(p.getStr()));
             p.setDexMod(getModifier(p.getDex()));
             p.setConMod(getModifier(p.getCon()));
@@ -166,6 +159,7 @@ public class CharacterSheet {
             p.setWisMod(getModifier(p.getWis()));
             p.setChaMod(getModifier(p.getCha()));
 
+            // Generate player save
             p.setStrSave(p.getStrMod() + getSave("str", p));
             p.setDexSave(p.getDexMod() + getSave("dex", p));
             p.setConSave(p.getConMod() + getSave("con", p));
@@ -287,17 +281,22 @@ public class CharacterSheet {
             player.put("alignment", p.getAlignment());
             player.put("info", p.getNotes());
 
+            // Get string representation of the JSON object
             String playerStr = player.toString();
 
+            // Create the file path
             File fp = new File(sheetFP);
             String newfp = fp.getParent();
-            newfp = newfp + "/" + p.getName() + ".json"; // Add tmp for the moment
+            newfp = newfp + "/" + p.getName() + ".json";
+
+            // Check if the file exists. If it does then delete it
             File newFile = new File(newfp);
             if (newFile.exists()) {
                 newFile.delete();
             }
             newFile.createNewFile();
 
+            // Write to file, then close it
             FileOutputStream os = new FileOutputStream(newfp);
             byte[] strToBytes = playerStr.getBytes();
             os.write(strToBytes);
@@ -308,59 +307,63 @@ public class CharacterSheet {
         }
     }
 
-    public int getModifier(int base) {
-        int res = 0;
-
-        res = Math.floorDiv(base, 2);
-        res -= 5;
-
-        return res;
-    }
-
+    // Launch the weapon modifier
     public void launchWeaponModifier(int _weaponID, Player p) {
+
+        // Create a weapon object
         Weapon w = null;
+
+        // Match it to the selected weapon
         for (Weapon wpn : p.getWeaponsList()) {
             if (wpn.getID() == _weaponID) {
                 w = wpn;
                 break;
             }
         }
-        weaponModifierUI wm;
 
+        // Create instance of the UI, depending on if we're creating a new weapon or not
+        weaponModifierUI wm;
         if (w == null) {
             wm = new weaponModifierUI(p);
         } else {
             wm = new weaponModifierUI(p, w);
         }
 
+        // Set visible
         wm.setVisible(true);
     }
 
+    // Launch the spell modifier
     public void launchSpellModifier(int _spellID, Player p) {
+
+        // Create new spell to put it into
         Spell s = null;
+
+        // Then match the spell
         for (Spell spl : p.getSpellsList()) {
             if (spl.getID() == _spellID) {
                 s = spl;
                 break;
             }
         }
-        spellModifierUI sm;
 
+        // Create spell modifier UI
+        spellModifierUI sm;
         if (s == null) {
             sm = new spellModifierUI(p);
         } else {
             sm = new spellModifierUI(p, s);
         }
 
+        // Set visible
         sm.setVisible(true);
     }
 
+    // Info modifier doesn't need any fancy stuff
     public void launchInfoModifier(Player p) {
         infoModifier im = new infoModifier(p);
         im.setVisible(true);
     }
-
-
 
     /*
      * @return the number formatted as a string
@@ -373,14 +376,27 @@ public class CharacterSheet {
         }
     }
 
+    // Modifier goes up by +1 every two attribute levels, starting from 10
+    public int getModifier(int base) {
+        int res = 0;
+
+        res = Math.floorDiv(base, 2);
+        res -= 5;
+
+        return res;
+    }
+
     public int getSave(String stat, Player p) {
 
+        // Create vers for working it out
         int res = 0;
         String cls = p.getChrClass();
         int prof = p.getProf();
 
         cls = cls.toLowerCase();
 
+        // If the player's class matches, then add proficiency to matching stats
+        // If else, then do nothing
         if (cls.equals("barbarian")) {
             if (stat.equals("str") || stat.equals("con")) {
                 res += prof;
@@ -430,11 +446,13 @@ public class CharacterSheet {
         return res;
     }
 
+    // Load the UI with a sheet FP
     public void loadUI(String sheetFP) {
         ui = new CharacterSheetUI(loadSheet(sheetFP), this.sheetFP);
         ui.setVisible(true);
     }
 
+    // Load the UI with a player
     public void loadUI(Player p) {
         ui = new CharacterSheetUI(p, p.getSheetFP());
         ui.setVisible(true);
@@ -454,9 +472,7 @@ public class CharacterSheet {
         this.sheetFP = sheetFP;
     }
 
-    /**
-     *
-     */
+    // Blank constructor
     public CharacterSheet() {
     }
 

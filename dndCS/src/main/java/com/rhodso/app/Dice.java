@@ -7,9 +7,6 @@ public class Dice {
     private int sides;
     private int modifier;
 
-    /*
-     * @param _strDiceRep the DR to make a dice object from
-     */
     public Dice(String _strDiceRep) { // Formatted as XXdYY+/-ZZ
         String[] parts = _strDiceRep.split("d");
         String[] parts2 = parts[1].split("\\+");
@@ -100,12 +97,7 @@ public class Dice {
         return d.roll();
     }
 
-    /*
-     * Allow the user to set the modifier so that spellcasting ability can be added to spell hit
-     * rolls
-     */
     public void setMod(int _mod) {
         this.modifier = _mod;
     }
-
 }
