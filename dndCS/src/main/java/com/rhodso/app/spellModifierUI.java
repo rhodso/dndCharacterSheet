@@ -15,9 +15,6 @@ public class spellModifierUI extends javax.swing.JFrame {
         private Player p;
         private Spell s;
 
-        /**
-         * Creates new foModifier
-         */
         public spellModifierUI() {
                 // Override default close operation
                 this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

@@ -2,7 +2,11 @@ package com.rhodso.app;
 
 public class App {
     public static void main(String[] args) {
+
+        // Launch app
         try {
+
+            // Set look and feel
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
                     .getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -10,6 +14,8 @@ public class App {
                     break;
                 }
             }
+
+            // Catch erros and log them
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(MainMenu.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
@@ -23,6 +29,7 @@ public class App {
             java.util.logging.Logger.getLogger(MainMenu.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
+        // Create instance of main menu
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MainMenu m = new MainMenu();
