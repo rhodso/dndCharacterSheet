@@ -41,6 +41,7 @@ public class MainMenu extends javax.swing.JFrame {
                 rollDiceButton = new javax.swing.JButton();
                 loadCharButton = new javax.swing.JButton();
                 createCharButton = new javax.swing.JButton();
+                encounterTrackerButton = new javax.swing.JButton();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("DCS - Main");
@@ -82,15 +83,31 @@ public class MainMenu extends javax.swing.JFrame {
                         }
                 });
 
+                encounterTrackerButton.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+                encounterTrackerButton.setText("Encounter Tracker");
+                encounterTrackerButton.setToolTipText("");
+                encounterTrackerButton.setActionCommand("diceRoller");
+                encounterTrackerButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                encounterTrackerButtonActionPerformed(evt);
+                        }
+                });
+
                 javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
                 menuPanel.setLayout(menuPanelLayout);
                 menuPanelLayout.setHorizontalGroup(menuPanelLayout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(menuPanelLayout.createSequentialGroup().addContainerGap()
-                                                .addComponent(rollDiceButton,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
+                                                .addGroup(menuPanelLayout.createParallelGroup(
+                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(rollDiceButton,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE)
+                                                                .addComponent(encounterTrackerButton,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                Short.MAX_VALUE))
                                                 .addContainerGap())
                                 .addGroup(menuPanelLayout.createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +137,13 @@ public class MainMenu extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 57,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap())
+                                                                .addPreferredGap(
+                                                                                javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(encounterTrackerButton,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                57,
+                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(48, 48, 48))
                                 .addGroup(menuPanelLayout.createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(menuPanelLayout.createSequentialGroup()
@@ -129,7 +152,7 @@ public class MainMenu extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 57,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(155,
+                                                                .addContainerGap(260,
                                                                                 Short.MAX_VALUE)))
                                 .addGroup(menuPanelLayout.createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +162,7 @@ public class MainMenu extends javax.swing.JFrame {
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                                 57,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addContainerGap(82,
+                                                                .addContainerGap(187,
                                                                                 Short.MAX_VALUE))));
 
                 javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
@@ -178,37 +201,52 @@ public class MainMenu extends javax.swing.JFrame {
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(24, Short.MAX_VALUE)));
+                                                .addContainerGap(
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                Short.MAX_VALUE)));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(layout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 485, Short.MAX_VALUE)
+                                .addGap(0, 509, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(MainPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE))));
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                layout.createSequentialGroup()
+                                                                                .addContainerGap(
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(MainPanel,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addContainerGap(
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                Short.MAX_VALUE))));
                 layout.setVerticalGroup(layout
                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 383, Short.MAX_VALUE)
+                                .addGap(0, 531, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(
                                                 javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(MainPanel,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(0, 0, Short.MAX_VALUE))));
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                layout.createSequentialGroup()
+                                                                                .addContainerGap(27,
+                                                                                                Short.MAX_VALUE)
+                                                                                .addComponent(MainPanel,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addContainerGap(28,
+                                                                                                Short.MAX_VALUE))));
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
+
+        private void encounterTrackerButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_encounterTrackerButtonActionPerformed
+                encounterTracker e = new encounterTracker();
+                e.setVisible(true);
+        }// GEN-LAST:event_encounterTrackerButtonActionPerformed
 
         private void rollDiceButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rollDiceButtonActionPerformed
                 DiceRoller d = new DiceRoller();
@@ -240,6 +278,7 @@ public class MainMenu extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel MainPanel;
         private javax.swing.JButton createCharButton;
+        private javax.swing.JButton encounterTrackerButton;
         private javax.swing.JLabel headerLabel;
         private javax.swing.JButton loadCharButton;
         private javax.swing.JPanel menuPanel;
