@@ -61,8 +61,6 @@ public class encounterTracker extends javax.swing.JFrame {
         lowestHit = 20;
         dmgTaken = 0;
 
-        System.out.println("Doritos: Dew it right!");
-
         initComponents();
     }
 
