@@ -431,7 +431,6 @@ public class sessionBingo extends javax.swing.JPanel {
                 jButton21ActionPerformed(evt);
             }
         });
-
         buttonArray[22].addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);

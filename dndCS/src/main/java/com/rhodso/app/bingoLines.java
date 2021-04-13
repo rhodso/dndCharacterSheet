@@ -30,7 +30,11 @@ public class bingoLines {
         "Richie uses mage hand",
         "Richie uses mage hand to find traps",
         "Tangent",
-        "Jonah has fabric in camera background"
+        "Jonah has fabric in camera background",
+        "Racheal worries about Vapey Jack",
+        "Vapey Jack gets a belly rub",
+        "Sound issues",
+        "Someone makes a joke about Jonah's sexuality"
     };
 
     static String[] getLines(){ return bingoLines; }    
