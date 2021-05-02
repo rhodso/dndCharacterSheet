@@ -83,7 +83,6 @@ public class sessionBingo extends javax.swing.JPanel {
 
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
 
@@ -216,28 +215,28 @@ public class sessionBingo extends javax.swing.JPanel {
 
     // Change state of button
     // 0 - Set the button colour scheme to White background, Black text
-    // 1 - Set the button colour scheme to Red background, White text
+    // 1 - Set the button colour scheme to Green background, Black text
     // 2 - Set the button colour scheme to Orange background, White text
-    // 3 - Set the button colour scheme to Greed background, Black text
+    // 3 - Set the button colour scheme to Red background, White text
     void setButtonState(int idx) {
         // Set button colours
         switch (buttonState[idx]) {
-        case 0:
-            buttonArray[idx].setBackground(Color.WHITE);
-            buttonArray[idx].setForeground(Color.BLACK);
-            break;
-        case 1:
-            buttonArray[idx].setBackground(Color.RED);
-            buttonArray[idx].setForeground(Color.WHITE);
-            break;
-        case 2:
-            buttonArray[idx].setBackground(Color.ORANGE);
-            buttonArray[idx].setForeground(Color.WHITE);
-            break;
-        case 3:
-            buttonArray[idx].setBackground(Color.GREEN);
-            buttonArray[idx].setForeground(Color.BLACK);
-            break;
+            case 0:
+                buttonArray[idx].setBackground(Color.WHITE);
+                buttonArray[idx].setForeground(Color.BLACK);
+                break;
+            case 1:
+                buttonArray[idx].setBackground(Color.GREEN);
+                buttonArray[idx].setForeground(Color.BLACK);
+                break;
+            case 2:
+                buttonArray[idx].setBackground(Color.ORANGE);
+                buttonArray[idx].setForeground(Color.WHITE);
+                break;
+            case 3:
+                buttonArray[idx].setBackground(Color.RED);
+                buttonArray[idx].setForeground(Color.WHITE);
+                break;
         }
     }
 

@@ -2,6 +2,7 @@ package com.rhodso.app;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -36,7 +37,7 @@ public class infoModifier extends javax.swing.JFrame {
 
                         @Override
                         public void windowClosed(WindowEvent arg0) {
-                                ;
+                                //save();
                         }
 
                         @Override
@@ -91,7 +92,7 @@ public class infoModifier extends javax.swing.JFrame {
                         p.setRace(charRaceInput.getText());
                         p.setBackground(charBackgroundInput.getText());
                         p.setAlignment(charAlignmentInput.getText());
-                        p.setLvl(p.getLvl());
+                        p.setLvl(Integer.parseInt(charLevelInput.getText())); //FIXME
                 } else {
                         JOptionPane.showMessageDialog(mainPanel,
                                         "Unable to parse class. Please enter your class as \"[subclass] [class]\"",
