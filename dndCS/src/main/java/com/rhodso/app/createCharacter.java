@@ -72,8 +72,7 @@ public class createCharacter extends javax.swing.JFrame implements ItemListener 
                 p.setWisMod(c.getModifier(p.getWis()));
 
                 // Roll HP
-                Dice hpRoller = new Dice("1d" + hitDiceEntry.getText());
-                int hp = hpRoller.roll() + p.getConMod();
+                int hp = Integer.parseInt(hitDiceEntry.getText()) + p.getConMod();
                 p.setHp(hp);
                 p.setHpMax(hp);
 
