@@ -8,7 +8,6 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -48,7 +47,6 @@ public class MainMenu extends javax.swing.JFrame {
         }// GEN-LAST:event_rollDiceButtonActionPerformed
 
         private void loadCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loadCharButtonActionPerformed
-
                 // Create file choose, filter to JSON, and get the user to pick their JSON file
                 JFileChooser jfc = new JFileChooser();
                 jfc.addChoosableFileFilter(new FileNameExtensionFilter("json files", ".json"));
@@ -66,7 +64,8 @@ public class MainMenu extends javax.swing.JFrame {
         }// GEN-LAST:event_loadCharButtonActionPerformed
 
         private void createCharButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_createCharButtonActionPerformed
-                JOptionPane.showMessageDialog(MainPanel, "This feature is not yet implimented"); // TODO
+                createCharacter cc = new createCharacter();
+                cc.setVisible(true);
         }// GEN-LAST:event_createCharButtonActionPerformed
 
         private void bingoButtonActionPerformed(java.awt.event.ActionEvent evt) {
