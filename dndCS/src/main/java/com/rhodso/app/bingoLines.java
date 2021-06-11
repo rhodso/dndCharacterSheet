@@ -44,7 +44,8 @@ public class bingoLines {
         "Someone is clumsy",
         "Heist planning",
         "Riche uses a spell to be lazy",
-        "Someone mistypes a discord roll"
+        "Someone mistypes a discord roll",
+        "Richie writes some software to do something dnd related"
     };
 
     static String[] getLines(){ return bingoLines; }    

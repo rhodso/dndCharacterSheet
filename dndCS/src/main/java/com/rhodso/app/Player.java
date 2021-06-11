@@ -757,7 +757,6 @@ public class Player {
         this.arcana = arcana;
     }
 
-
     /**
      * @return the stealth
      */
@@ -1000,8 +999,8 @@ public class Player {
      * 
      */
     public Player() {
-        spellSlots = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
-        spellSlotsLeft = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        spellSlots = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        spellSlotsLeft = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 
     /**
@@ -1013,6 +1012,8 @@ public class Player {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;
+        spellSlots = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        spellSlotsLeft = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 
     /**
@@ -1048,12 +1049,11 @@ public class Player {
      * @param performance
      * @param persuasion
      */
-    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
-            int xp, int lvl, int str, int dex, int con, int wis, int cha, int athletics,
-            int acrobatics, int sleightOfHand, int stealth, int arcana, int history,
-            int investigation, int nature, int religion, int animalHandling, int insight,
-            int medicine, int perception, int survival, int deception, int intimidation,
-            int performance, int persuasion) {
+    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac, int xp, int lvl, int str,
+            int dex, int con, int wis, int cha, int athletics, int acrobatics, int sleightOfHand, int stealth,
+            int arcana, int history, int investigation, int nature, int religion, int animalHandling, int insight,
+            int medicine, int perception, int survival, int deception, int intimidation, int performance,
+            int persuasion) {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;
@@ -1085,6 +1085,8 @@ public class Player {
         this.intimidation = intimidation;
         this.performance = performance;
         this.persuasion = persuasion;
+        spellSlots = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        spellSlotsLeft = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 
     /**
@@ -1122,13 +1124,11 @@ public class Player {
      * @param weaponsList
      * @param spellsList
      */
-    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac,
-            int xp, int lvl, int str, int dex, int con, int wis, int cha, int athletics,
-            int acrobatics, int sleightOfHand, int stealth, int arcana, int history,
-            int investigation, int nature, int religion, int animalHandling, int insight,
-            int medicine, int perception, int survival, int deception, int intimidation,
-            int performance, int persuasion, ArrayList<Weapon> weaponsList,
-            ArrayList<Spell> spellsList) {
+    public Player(String name, String chrClass, String chrSubclass, int hp, int hpMax, int ac, int xp, int lvl, int str,
+            int dex, int con, int wis, int cha, int athletics, int acrobatics, int sleightOfHand, int stealth,
+            int arcana, int history, int investigation, int nature, int religion, int animalHandling, int insight,
+            int medicine, int perception, int survival, int deception, int intimidation, int performance,
+            int persuasion, ArrayList<Weapon> weaponsList, ArrayList<Spell> spellsList) {
         this.name = name;
         this.chrClass = chrClass;
         this.chrSubclass = chrSubclass;
@@ -1162,5 +1162,7 @@ public class Player {
         this.persuasion = persuasion;
         this.weaponsList = weaponsList;
         this.spellsList = spellsList;
+        spellSlots = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        spellSlotsLeft = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 }

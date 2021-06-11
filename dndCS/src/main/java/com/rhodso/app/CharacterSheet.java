@@ -30,7 +30,6 @@ public class CharacterSheet {
         JSONArray spellSlotsLeft;
         JSONArray curr;
 
-
         // Populate player with data from JSON
         try {
             // Create reader object
@@ -131,14 +130,14 @@ public class CharacterSheet {
 
             // player spell slots
             spellSlots = (JSONArray) player.get("spellSlots");
-            int[] ss = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+            int[] ss = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             for (int i = 0; i < 9; i++) {
                 ss[i] = Integer.parseInt(spellSlots.get(i).toString());
             }
             p.setSpellSlots(ss);
 
             spellSlotsLeft = (JSONArray) player.get("spellSlotsLeft");
-            int[] ssL = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+            int[] ssL = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             for (int i = 0; i < 9; i++) {
                 ssL[i] = Integer.parseInt(spellSlotsLeft.get(i).toString());
             }
@@ -174,7 +173,8 @@ public class CharacterSheet {
         return p;
     }
 
-    // Suppress unchecked warning about some haskmap thing. If it's stupid but it works then it's
+    // Suppress unchecked warning about some haskmap thing. If it's stupid but it
+    // works then it's
     // not stupid. Probably
     @SuppressWarnings("unchecked")
     public void SaveSheet(Player p) {
@@ -276,7 +276,6 @@ public class CharacterSheet {
             }
             player.put("spellSlotsLeft", ssL);
 
-
             // Add rest of info
             player.put("background", p.getBackground());
             player.put("alignment", p.getAlignment());
@@ -304,7 +303,7 @@ public class CharacterSheet {
             os.close();
 
         } catch (Exception e) {
-            // System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -483,6 +482,5 @@ public class CharacterSheet {
     public CharacterSheet(String sheetFP) {
         this.sheetFP = sheetFP;
     }
-
 
 }
