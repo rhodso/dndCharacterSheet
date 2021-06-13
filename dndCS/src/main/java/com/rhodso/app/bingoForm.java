@@ -68,7 +68,7 @@ public class bingoForm extends javax.swing.JFrame {
 
             String buttonText = "<html><center>";
 
-            if (i == 12) {
+            if (i == 13) {
                 buttonText += "Free Space";
             } else {
                 buttonText += lines[i];
