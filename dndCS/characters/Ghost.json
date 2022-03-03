@@ -1,1 +1,204 @@
-{"con":13,"hp":31,"speed":30,"perception":false,"hpMax":31,"spellAttack":7,"deception":true,"dex":10,"sleightOfHand":false,"stealth":false,"spellSlots":[0,2,0,0,0,0,0,0,0],"currency":[0,14,0,0,0],"spells":[{"name":"Eldritch Blast","dmgDR":"1d10+5","range":"120","hitDR":"1d20","damageType":"Force","spellLevel":0},{"name":"Guidance","dmgDR":"1d4","range":"0","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Mage Hand","dmgDR":"0","range":"30","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Mending","dmgDR":"0","range":"0","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Message","dmgDR":"0","range":"120","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Prestidigitation","dmgDR":"0","range":"10","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Spare the dying","dmgDR":"0","range":"0","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Thaumaturgy","dmgDR":"0","range":"30","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Toll the dead","dmgDR":"1d12","range":"60","hitDR":"1d20","damageType":"Util","spellLevel":0},{"name":"Vicious Mockery","dmgDR":"1d4","range":"60","hitDR":"1d20","damageType":"Psychological","spellLevel":0},{"name":"Faerie Fire","dmgDR":"0","range":"60","hitDR":"1d20","damageType":"Util","spellLevel":2},{"name":"Healing word","dmgDR":"2d4+7","range":"30","hitDR":"1d20","damageType":"Util","spellLevel":2},{"name":"Sleep","dmgDR":"7d8","range":"90","hitDR":"1d20","damageType":"Util","spellLevel":2},{"name":"Unseen Servant","dmgDR":"0","range":"60","hitDR":"1d20","damageType":"Util","spellLevel":2},{"name":"Misty Step","dmgDR":"0","range":"30","hitDR":"1d20","damageType":"Util","spellLevel":2},{"name":"Encore","dmgDR":"0","range":"30","hitDR":"1d20","damageType":"Util","spellLevel":2}],"class":"Warlock","cha":20,"info":"Feats:\n>Magic initate\n\nTiefling features:\n> Within 60 ft, treat dim light as bright, darkness as dim light\n> Fire resistance\n\nHermit feature:\n> I'm along ebcause fucking people man\n\nWarlock type: arch fey\n> As an action, you can make all creatures within 10 feet of you to make a Wis save, or become either charmed ir frightend for round (1\/rest)\n>Pact of the tome\n\nInvocations:\n>Agonizing Blast (Add charisma to eldritch blast)\n>Eyes of the rune keeper (Read all writing in any language)\n\nProficeint:\n>Light armor\n>Simple weapons\n>Herbalism kit\n\nLanguages:\n>Common\n>Infernal\n>Sylvan\n\nEquipment:\n>3 magical tomes from a demonologist\n>  1) Magic book with text to speech (sassy)\n>  2) Magically locked book\n>  3) Documentation of a devil known as \"Rażion\", new spells but in abyssal\n>Studded Leather armor\n>Weapons\n>20 bots\n>Arcane focus (Ring on my hand)\n>Dungoneers pack\n>Winter blacket\n>Herbalism kit\n>Set of common clothes\n\n>I'm here to spread my own wisdom and seek new wisdom out\n>Emotions mean nothing, only logic matters","wis":18,"ac":12,"lvl":5,"race":"Tiefling","weaponResource":69,"nature":false,"survival":false,"medicine":true,"spellDC":15,"history":false,"prof":4,"int":16,"acrobatics":false,"religion":true,"cLevel":0,"str":10,"persuasion":false,"insight":false,"hitDieDR":"1d8","performance":false,"background":"Hermit","name":"Ghost","subclass":"Archfey","xp":0,"arcana":true,"investigation":false,"spellSlotsLeft":[0,2,0,0,0,0,0,0,0],"athletics":false,"alignment":"Chaotic Neutral","intimidation":false,"weapons":[{"Proficiency":0,"name":"Scimitar","dmgDR":"1d6","range":"5","hitDR":"1d20","damageType":"Piercing"},{"Proficiency":2,"name":"Crossbow, light","dmgDR":"1d8","range":"80\/320","hitDR":"1d20","damageType":"Piercing"},{"Proficiency":2,"name":"Dagger, silvered","dmgDR":"1d4","range":"20\/60","hitDR":"1d20","damageType":"Piercng"}],"animalHandling":false}
+{
+  "con": 13,
+  "hp": 31,
+  "speed": 30,
+  "perception": false,
+  "hpMax": 31,
+  "spellAttack": 7,
+  "deception": true,
+  "dex": 10,
+  "sleightOfHand": false,
+  "stealth": false,
+  "spellSlots": [0, 2, 0, 0, 0, 0, 0, 0, 0],
+  "currency": [0, 14, 0, 0, 0],
+  "spells": [
+    {
+      "name": "Eldritch Blast",
+      "dmgDR": "1d10+5",
+      "range": "120",
+      "hitDR": "1d20",
+      "damageType": "Force",
+      "spellLevel": 0
+    },
+    {
+      "name": "Guidance",
+      "dmgDR": "1d4",
+      "range": "0",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Mage Hand",
+      "dmgDR": "0",
+      "range": "30",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Mending",
+      "dmgDR": "0",
+      "range": "0",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Message",
+      "dmgDR": "0",
+      "range": "120",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Prestidigitation",
+      "dmgDR": "0",
+      "range": "10",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Spare the dying",
+      "dmgDR": "0",
+      "range": "0",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Thaumaturgy",
+      "dmgDR": "0",
+      "range": "30",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Toll the dead",
+      "dmgDR": "1d12",
+      "range": "60",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 0
+    },
+    {
+      "name": "Vicious Mockery",
+      "dmgDR": "1d4",
+      "range": "60",
+      "hitDR": "1d20",
+      "damageType": "Psychological",
+      "spellLevel": 0
+    },
+    {
+      "name": "Faerie Fire",
+      "dmgDR": "0",
+      "range": "60",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Healing word",
+      "dmgDR": "2d4+7",
+      "range": "30",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Sleep",
+      "dmgDR": "7d8",
+      "range": "90",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Unseen Servant",
+      "dmgDR": "0",
+      "range": "60",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Misty Step",
+      "dmgDR": "0",
+      "range": "30",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Encore",
+      "dmgDR": "0",
+      "range": "30",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    }
+  ],
+  "class": "Warlock",
+  "cha": 20,
+  "info": "Feats:\n>Magic initate\n\nTiefling features:\n> Within 60 ft, treat dim light as bright, darkness as dim light\n> Fire resistance\n\nHermit feature:\n> I'm along ebcause fucking people man\n\nWarlock type: arch fey\n> As an action, you can make all creatures within 10 feet of you to make a Wis save, or become either charmed ir frightend for round (1/rest)\n>Pact of the tome\n\nInvocations:\n>Agonizing Blast (Add charisma to eldritch blast)\n>Eyes of the rune keeper (Read all writing in any language)\n\nProficeint:\n>Light armor\n>Simple weapons\n>Herbalism kit\n\nLanguages:\n>Common\n>Infernal\n>Sylvan\n\nEquipment:\n>3 magical tomes from a demonologist\n>  1) Magic book with text to speech (sassy)\n>  2) Magically locked book\n>  3) Documentation of a devil known as \"Rażion\", new spells but in abyssal\n>Studded Leather armor\n>Weapons\n>20 bots\n>Arcane focus (Ring on my hand)\n>Dungoneers pack\n>Winter blacket\n>Herbalism kit\n>Set of common clothes\n\n>I'm here to spread my own wisdom and seek new wisdom out\n>Emotions mean nothing, only logic matters",
+  "wis": 18,
+  "ac": 12,
+  "lvl": 5,
+  "race": "Tiefling",
+  "weaponResource": 69,
+  "nature": false,
+  "survival": false,
+  "medicine": true,
+  "spellDC": 15,
+  "history": false,
+  "prof": 4,
+  "int": 16,
+  "acrobatics": false,
+  "religion": true,
+  "cLevel": 0,
+  "str": 10,
+  "persuasion": false,
+  "insight": false,
+  "hitDieDR": "1d8",
+  "performance": false,
+  "background": "Hermit",
+  "name": "Ghost",
+  "subclass": "Archfey",
+  "xp": 0,
+  "arcana": true,
+  "investigation": false,
+  "spellSlotsLeft": [0, 2, 0, 0, 0, 0, 0, 0, 0],
+  "athletics": false,
+  "alignment": "Chaotic Neutral",
+  "intimidation": false,
+  "weapons": [
+    {
+      "Proficiency": 0,
+      "name": "Scimitar",
+      "dmgDR": "1d6",
+      "range": "5",
+      "hitDR": "1d20",
+      "damageType": "Piercing"
+    },
+    {
+      "Proficiency": 2,
+      "name": "Crossbow, light",
+      "dmgDR": "1d8",
+      "range": "80/320",
+      "hitDR": "1d20",
+      "damageType": "Piercing"
+    },
+    {
+      "Proficiency": 2,
+      "name": "Dagger, silvered",
+      "dmgDR": "1d4",
+      "range": "20/60",
+      "hitDR": "1d20",
+      "damageType": "Piercng"
+    }
+  ],
+  "animalHandling": false
+}
