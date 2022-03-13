@@ -1,3 +1,4 @@
 *.class
 commit.sh
 pull.sh
+target/*
