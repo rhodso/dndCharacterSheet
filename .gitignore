@@ -1,4 +1,4 @@
 *.class
 commit.sh
 pull.sh
-target/*
+dndCS/target/*
