@@ -13,6 +13,17 @@ public class CharacterSheet {
     private String sheetFP;
     private static CharacterSheetUI ui;
 
+    int getValue(boolean readValue, int thisMod, int proficiency){
+        if(readValue){
+            return thisMod + proficiency;
+        }
+        return thisMod;
+    }
+
+    boolean setValue(int attValue, int mod){
+        return attValue > mod;
+    }
+
     // Load the sheet
     public Player loadSheet(String sheetFP) {
 
@@ -47,31 +58,50 @@ public class CharacterSheet {
             p.setAc(Integer.parseInt((player.get("ac").toString())));
             p.setXp(Integer.parseInt((player.get("xp").toString())));
             p.setLvl(Integer.parseInt((player.get("lvl").toString())));
+            p.setProf(Integer.parseInt((player.get("prof")).toString()));
             p.setStr(Integer.parseInt((player.get("str").toString())));
             p.setDex(Integer.parseInt((player.get("dex")).toString()));
             p.setCon(Integer.parseInt((player.get("con")).toString()));
             p.setIntl(Integer.parseInt((player.get("int")).toString()));
             p.setWis(Integer.parseInt((player.get("wis")).toString()));
             p.setCha(Integer.parseInt((player.get("cha")).toString()));
-            p.setAthletics(Integer.parseInt((player.get("athletics")).toString()));
-            p.setAcrobatics(Integer.parseInt((player.get("acrobatics")).toString()));
-            p.setSleightOfHand(Integer.parseInt((player.get("sleightOfHand")).toString()));
-            p.setStealth(Integer.parseInt((player.get("stealth")).toString()));
-            p.setArcana(Integer.parseInt((player.get("arcana")).toString()));
-            p.setHistory(Integer.parseInt((player.get("history")).toString()));
-            p.setInvestigation(Integer.parseInt((player.get("investigation")).toString()));
-            p.setNature(Integer.parseInt((player.get("nature")).toString()));
-            p.setReligion(Integer.parseInt((player.get("religion")).toString()));
-            p.setAnimalHandling(Integer.parseInt((player.get("animalHandling")).toString()));
-            p.setInsight(Integer.parseInt((player.get("insight")).toString()));
-            p.setMedicine(Integer.parseInt((player.get("medicine")).toString()));
-            p.setPerception(Integer.parseInt((player.get("perception")).toString()));
-            p.setSurvival(Integer.parseInt((player.get("survival")).toString()));
-            p.setDeception(Integer.parseInt((player.get("deception")).toString()));
-            p.setIntimidation(Integer.parseInt((player.get("intimidation")).toString()));
-            p.setPerformance(Integer.parseInt((player.get("performance")).toString()));
-            p.setPersuasion(Integer.parseInt((player.get("persuasion")).toString()));
-            p.setProf(Integer.parseInt((player.get("prof")).toString()));
+
+            //Mods
+            p.setStrMod(getModifier(p.getStr()));
+            p.setDexMod(getModifier(p.getDex()));
+            p.setConMod(getModifier(p.getCon()));
+            p.setIntlMod(getModifier(p.getIntl()));
+            p.setWisMod(getModifier(p.getWis()));
+            p.setChaMod(getModifier(p.getCha()));
+
+            //Str
+            p.setAthletics(getValue(Boolean.parseBoolean(player.get("athletics").toString()), p.getStrMod(), p.getProf()));
+            
+            //Dex
+            p.setAcrobatics(getValue(Boolean.parseBoolean(player.get("acrobatics").toString()), p.getDexMod(), p.getProf()));
+            p.setSleightOfHand(getValue(Boolean.parseBoolean(player.get("sleightOfHand").toString()), p.getDexMod(), p.getProf()));
+            p.setStealth(getValue(Boolean.parseBoolean(player.get("stealth").toString()), p.getDexMod(), p.getProf()));
+            
+            //Intl
+            p.setArcana(getValue(Boolean.parseBoolean(player.get("arcana").toString()), p.getIntlMod(), p.getProf()));
+            p.setHistory(getValue(Boolean.parseBoolean(player.get("history").toString()), p.getIntlMod(), p.getProf()));
+            p.setInvestigation(getValue(Boolean.parseBoolean(player.get("investigation").toString()), p.getIntlMod(), p.getProf()));
+            p.setNature(getValue(Boolean.parseBoolean(player.get("nature").toString()), p.getIntlMod(), p.getProf()));
+            p.setReligion(getValue(Boolean.parseBoolean(player.get("religion").toString()), p.getIntlMod(), p.getProf()));
+            
+            //Wis
+            p.setAnimalHandling(getValue(Boolean.parseBoolean(player.get("animalHandling").toString()), p.getWisMod(), p.getProf()));
+            p.setInsight(getValue(Boolean.parseBoolean(player.get("insight").toString()), p.getWisMod(), p.getProf()));
+            p.setMedicine(getValue(Boolean.parseBoolean(player.get("medicine").toString()), p.getWisMod(), p.getProf()));
+            p.setPerception(getValue(Boolean.parseBoolean(player.get("perception").toString()), p.getWisMod(), p.getProf()));
+            p.setSurvival(getValue(Boolean.parseBoolean(player.get("survival").toString()), p.getWisMod(), p.getProf()));
+            
+            //Cha
+            p.setDeception(getValue(Boolean.parseBoolean(player.get("deception").toString()), p.getChaMod(), p.getProf()));
+            p.setIntimidation(getValue(Boolean.parseBoolean(player.get("intimidation").toString()), p.getChaMod(), p.getProf()));
+            p.setPerformance(getValue(Boolean.parseBoolean(player.get("performance").toString()), p.getChaMod(), p.getProf()));
+            p.setPersuasion(getValue(Boolean.parseBoolean(player.get("persuasion").toString()), p.getChaMod(), p.getProf()));
+            
             p.setHitDieDR(player.get("hitDieDR").toString());
             p.setSpeed(Integer.parseInt((player.get("speed").toString())));
             p.setWeaponResource(Integer.parseInt((player.get("weaponResource")).toString()));
@@ -198,24 +228,30 @@ public class CharacterSheet {
             player.put("int", p.getIntl());
             player.put("wis", p.getWis());
             player.put("cha", p.getCha());
-            player.put("athletics", p.getAthletics());
-            player.put("acrobatics", p.getAcrobatics());
-            player.put("sleightOfHand", p.getSleightOfHand());
-            player.put("stealth", p.getStealth());
-            player.put("arcana", p.getArcana());
-            player.put("history", p.getHistory());
-            player.put("investigation", p.getInvestigation());
-            player.put("nature", p.getNature());
-            player.put("religion", p.getReligion());
-            player.put("animalHandling", p.getAnimalHandling());
-            player.put("insight", p.getInsight());
-            player.put("medicine", p.getMedicine());
-            player.put("perception", p.getPerception());
-            player.put("survival", p.getSurvival());
-            player.put("deception", p.getDeception());
-            player.put("intimidation", p.getIntimidation());
-            player.put("performance", p.getPerformance());
-            player.put("persuasion", p.getPersuasion());
+
+            player.put("athletics", setValue(p.getAthletics(), p.getStrMod()));
+            
+            player.put("acrobatics", setValue(p.getAcrobatics(), p.getDexMod()));
+            player.put("sleightOfHand", setValue(p.getSleightOfHand(), p.getDexMod()));
+            player.put("stealth", setValue(p.getStealth(), p.getDexMod()));
+            
+            player.put("arcana", setValue(p.getArcana(), p.getIntlMod()));
+            player.put("history", setValue(p.getHistory(), p.getIntlMod()));
+            player.put("investigation", setValue(p.getInvestigation(), p.getIntlMod()));
+            player.put("nature", setValue(p.getNature(), p.getIntlMod()));
+            player.put("religion", setValue(p.getReligion(), p.getIntlMod()));
+            
+            player.put("animalHandling", setValue(p.getAnimalHandling(), p.getWisMod()));
+            player.put("insight", setValue(p.getInsight(), p.getWisMod()));
+            player.put("medicine", setValue(p.getMedicine(), p.getWisMod()));
+            player.put("perception", setValue(p.getPerception(), p.getWisMod()));
+            player.put("survival", setValue(p.getSurvival(), p.getWisMod()));
+            
+            player.put("deception", setValue(p.getDeception(), p.getChaMod()));
+            player.put("intimidation", setValue(p.getIntimidation(), p.getChaMod()));
+            player.put("performance", setValue(p.getPerformance(), p.getChaMod()));
+            player.put("persuasion", setValue(p.getPersuasion(), p.getChaMod()));
+            
             player.put("prof", p.getProf());
             player.put("hitDieDR", p.getHitDieDR());
             player.put("speed", p.getSpeed());
