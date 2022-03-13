@@ -1,21 +1,21 @@
 {
-  "con": 13,
-  "hp": 31,
+  "con": 16,
+  "hp": 69,
   "speed": 30,
-  "perception": false,
-  "hpMax": 31,
-  "spellAttack": 7,
-  "deception": true,
+  "perception": 4,
+  "hpMax": 69,
+  "spellAttack": 8,
+  "deception": 7,
   "dex": 10,
-  "sleightOfHand": false,
-  "stealth": false,
-  "spellSlots": [0, 2, 0, 0, 0, 0, 0, 0, 0],
-  "currency": [0, 14, 0, 0, 0],
+  "sleightOfHand": 0,
+  "stealth": 0,
+  "spellSlots": [4, 4, 3, 3, 0, 0, 0, 0, 0],
+  "currency": [73, 7, 3, 0, 0],
   "spells": [
     {
       "name": "Eldritch Blast",
       "dmgDR": "1d10+5",
-      "range": "120",
+      "range": "60",
       "hitDR": "1d20",
       "damageType": "Force",
       "spellLevel": 0
@@ -31,7 +31,7 @@
     {
       "name": "Mage Hand",
       "dmgDR": "0",
-      "range": "30",
+      "range": "60",
       "hitDR": "1d20",
       "damageType": "Util",
       "spellLevel": 0
@@ -45,14 +45,6 @@
       "spellLevel": 0
     },
     {
-      "name": "Message",
-      "dmgDR": "0",
-      "range": "120",
-      "hitDR": "1d20",
-      "damageType": "Util",
-      "spellLevel": 0
-    },
-    {
       "name": "Prestidigitation",
       "dmgDR": "0",
       "range": "10",
@@ -61,119 +53,127 @@
       "spellLevel": 0
     },
     {
-      "name": "Spare the dying",
+      "name": "Enlarge/Reduce",
+      "dmgDR": "0",
+      "range": "30ft",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 2
+    },
+    {
+      "name": "Heat Metal",
+      "dmgDR": "2d8",
+      "range": "60ft",
+      "hitDR": "1d20",
+      "damageType": "Fire",
+      "spellLevel": 2
+    },
+    {
+      "name": "Invisibility",
       "dmgDR": "0",
       "range": "0",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 0
+      "spellLevel": 2
     },
     {
-      "name": "Thaumaturgy",
+      "name": "Lesser Restoration",
       "dmgDR": "0",
-      "range": "30",
+      "range": "0",
       "hitDR": "1d20",
-      "damageType": "Util",
-      "spellLevel": 0
+      "damageType": "Healing",
+      "spellLevel": 2
     },
     {
-      "name": "Toll the dead",
-      "dmgDR": "1d12",
-      "range": "60",
-      "hitDR": "1d20",
-      "damageType": "Util",
-      "spellLevel": 0
-    },
-    {
-      "name": "Vicious Mockery",
-      "dmgDR": "1d4",
-      "range": "60",
-      "hitDR": "1d20",
-      "damageType": "Psychological",
-      "spellLevel": 0
-    },
-    {
-      "name": "Faerie Fire",
+      "name": "Detect Magic",
       "dmgDR": "0",
-      "range": "60",
+      "range": "0",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 2
+      "spellLevel": 1
     },
     {
-      "name": "Healing word",
-      "dmgDR": "2d4+7",
-      "range": "30",
+      "name": "Cure Wounds",
+      "dmgDR": "1d8",
+      "range": "0",
+      "hitDR": "1d20",
+      "damageType": "Healing",
+      "spellLevel": 1
+    },
+    {
+      "name": "Purify Food and Drink",
+      "dmgDR": "0",
+      "range": "10",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 2
+      "spellLevel": 1
     },
     {
-      "name": "Sleep",
-      "dmgDR": "7d8",
-      "range": "90",
-      "hitDR": "1d20",
-      "damageType": "Util",
-      "spellLevel": 2
-    },
-    {
-      "name": "Unseen Servant",
+      "name": "Feather Fall",
       "dmgDR": "0",
       "range": "60",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 2
+      "spellLevel": 1
     },
     {
-      "name": "Misty Step",
+      "name": "Revifify",
+      "dmgDR": "0",
+      "range": "0",
+      "hitDR": "1d20",
+      "damageType": "Util",
+      "spellLevel": 3
+    },
+    {
+      "name": "Create Food and Water",
       "dmgDR": "0",
       "range": "30",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 2
+      "spellLevel": 3
     },
     {
-      "name": "Encore",
+      "name": "Waterbreathing",
       "dmgDR": "0",
       "range": "30",
       "hitDR": "1d20",
       "damageType": "Util",
-      "spellLevel": 2
+      "spellLevel": 3
     }
   ],
-  "class": "Warlock",
-  "cha": 20,
-  "info": "Feats:\n>Magic initate\n\nTiefling features:\n> Within 60 ft, treat dim light as bright, darkness as dim light\n> Fire resistance\n\nHermit feature:\n> I'm along ebcause fucking people man\n\nWarlock type: arch fey\n> As an action, you can make all creatures within 10 feet of you to make a Wis save, or become either charmed ir frightend for round (1/rest)\n>Pact of the tome\n\nInvocations:\n>Agonizing Blast (Add charisma to eldritch blast)\n>Eyes of the rune keeper (Read all writing in any language)\n\nProficeint:\n>Light armor\n>Simple weapons\n>Herbalism kit\n\nLanguages:\n>Common\n>Infernal\n>Sylvan\n\nEquipment:\n>3 magical tomes from a demonologist\n>  1) Magic book with text to speech (sassy)\n>  2) Magically locked book\n>  3) Documentation of a devil known as \"Rażion\", new spells but in abyssal\n>Studded Leather armor\n>Weapons\n>20 bots\n>Arcane focus (Ring on my hand)\n>Dungoneers pack\n>Winter blacket\n>Herbalism kit\n>Set of common clothes\n\n>I'm here to spread my own wisdom and seek new wisdom out\n>Emotions mean nothing, only logic matters",
-  "wis": 18,
+  "class": "Artificer",
+  "cha": 13,
+  "info": "Feats:\nMagic initate\n> You learn two cantrips of your choice from that class\u2019s spell list.\n> And some other shit\n\nTelekinetic\n> As a bonus action you can shove a creature you can see within 30ft towards or away from you by 5ft, \n> target must succeed on a Strength saving throw (DC 8 + your proficiency bonus + the ability modifier \n> of the score increased by this feat). A creature can willingly fail this save.\n> Improved Wisdom by 1\n> Mage hand range +30ft\n\nPotions\nCommon healing potion: 2d4 + 2 \nCan consume as a bonus action\nCan give to someone else as an action\n\nCan get a +2 AC shield thing for 45 platinum at a cool shop somewhere in the underdark\n\nAliases:\nAgemar in Underdark\n\nMage of the mountain (Pronounced mage-eye)\n\nTeleportation coords:\nArmstess mines\nLibrary of Nass-tun\n\nTiefling features:\n> Within 60 ft, treat dim light as bright, darkness as dim light\n> Fire resistance\n\nHermit feature:\n> I'm along bcause fucking people man\n\nAnimal Messenger\nFold a paper into an origami swan, give it a target and it'll go there and deliver the message\n\nFar scribe names:\n\nProficeint:\n>Light armor\n>Medium amor\n>Sheilds\n>Simple weapons\n>Herbalism Pack\n>Tools: Theives', Tiker's\n\nLanguages:\n>Common\n>Infernal\n>Sylvan\n\n>Wand of flaring\n\n\nEquipment:\n> Bag of Holdin\n> Rye's ashes\n> Notebook Contents\n>  Runes of Renheim teleportation circle\n>3 magical tomes from a demonologist\n>  1) Magic book with text to speech (sassy), with info on demons and devils\n>  2) Genie Book\n>  3) Documentation of a devil known as \"Ra??ion\", new spells but in abyssal\n>Textbooks on magical poisons\n>Magic Quill that can write from a distance\n>Studded Leather armor\n>Weapons\n>20 bolts\n>Arcane focus (Ring on my hand) \n>Dungoneers pack\n>Winter blacket\n>Herbalism kit\n>Set of common clothes\n> Fireball necklace with 5 charges\n>Black hooded neophyte robes -  +1 to your spell save DC\n>Necklace of undead can't see me\n>Sea-Breeze Wave Resistant Beanie\n> 2x Scroll that can do any spell of 8th level or lower\n\n>I'm here to spread my own wisdom and seek new wisdom out\n>Emotions mean nothing, only logic matters",
+  "wis": 19,
   "ac": 12,
-  "lvl": 5,
-  "race": "Tiefling",
+  "lvl": 11,
+  "race": "Rock Gnome",
   "weaponResource": 69,
-  "nature": false,
-  "survival": false,
-  "medicine": true,
-  "spellDC": 15,
-  "history": false,
+  "nature": 3,
+  "survival": 4,
+  "medicine": 6,
+  "spellDC": 16,
+  "history": 3,
   "prof": 4,
-  "int": 16,
-  "acrobatics": false,
-  "religion": true,
+  "int": 20,
+  "acrobatics": 0,
+  "religion": 5,
   "cLevel": 0,
   "str": 10,
-  "persuasion": false,
-  "insight": false,
+  "persuasion": 5,
+  "insight": 4,
   "hitDieDR": "1d8",
-  "performance": false,
+  "performance": 5,
   "background": "Hermit",
   "name": "Ghost",
-  "subclass": "Archfey",
+  "subclass": "BS",
   "xp": 0,
-  "arcana": true,
-  "investigation": false,
-  "spellSlotsLeft": [0, 2, 0, 0, 0, 0, 0, 0, 0],
-  "athletics": false,
+  "arcana": 5,
+  "investigation": 3,
+  "spellSlotsLeft": [4, 2, 3, 2, 0, 0, 0, 0, 2],
+  "athletics": 0,
   "alignment": "Chaotic Neutral",
-  "intimidation": false,
+  "intimidation": 5,
   "weapons": [
     {
       "Proficiency": 0,
@@ -181,7 +181,7 @@
       "dmgDR": "1d6",
       "range": "5",
       "hitDR": "1d20",
-      "damageType": "Piercing"
+      "damageType": "Slashing"
     },
     {
       "Proficiency": 2,
@@ -198,7 +198,15 @@
       "range": "20/60",
       "hitDR": "1d20",
       "damageType": "Piercng"
+    },
+    {
+      "Proficiency": 0,
+      "name": "Sacrificial Fan",
+      "dmgDR": "1d4",
+      "range": "5",
+      "hitDR": "1d20",
+      "damageType": "Piercing"
     }
   ],
-  "animalHandling": false
+  "animalHandling": 4
 }
