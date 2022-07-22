@@ -5,8 +5,15 @@ package com.rhodso.app;
  */
 
 import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  *
@@ -66,8 +73,15 @@ public class MainMenu extends javax.swing.JFrame {
         }// GEN-LAST:event_createCharButtonActionPerformed
 
         private void bingoButtonActionPerformed(java.awt.event.ActionEvent evt) {
-                bingoForm bf = new bingoForm();
-                bf.setVisible(true);
+                if(Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)){
+                        try {
+                                Desktop.getDesktop().browse(new URI("https://richard.keithsoft.com/DiscordBingo/index.php?bingo_id=6"));
+                        } catch (IOException e) {
+                                JOptionPane.showMessageDialog(this, "IOException opening website", "Could not open website", JOptionPane.ERROR_MESSAGE);
+                        } catch (URISyntaxException e) {
+                                JOptionPane.showMessageDialog(this, "URI Syntax Incorrect", "Could not open website", JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
