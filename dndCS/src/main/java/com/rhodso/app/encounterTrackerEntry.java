@@ -27,7 +27,7 @@ public class encounterTrackerEntry {
     public String toString(){
         String str = "";
 
-        str += "RLL: " + this.hitRoll;
+        str += "HRL: " + this.hitRoll;
         
         if(this.successfulHit){
             str += " IH?: Y";
