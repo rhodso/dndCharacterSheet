@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class encounterTracker extends javax.swing.JFrame {
 
-        LinkedList<encounterTrackerEntry> actionsList = new LinkedList<>();
+        LinkedList<EncounterTrackerEntry> actionsList = new LinkedList<>();
 
         /**
          * Creates new form encounterTracker
@@ -59,13 +59,13 @@ public class encounterTracker extends javax.swing.JFrame {
 
         void updateTextAreaAndStats() {
                 ActionsTextArea.setText("");
-                for (encounterTrackerEntry e : actionsList) {
+                for (EncounterTrackerEntry e : actionsList) {
                         String s = e.toString();
                         ActionsTextArea.setText(ActionsTextArea.getText() + s + "\n");
                 }
 
                 if(actionsList.size() > 0){
-                        encounterTrackerEntry last = actionsList.getLast();
+                        EncounterTrackerEntry last = actionsList.getLast();
                         LowestHitLabel.setText("Lowest Hit: " + last.getLowestHit());
                         TotalDamageLabel.setText("Total Damage Done: " + last.getDmgTaken());
                         HighestMissLabel.setText("Highest Miss: " + last.getHighestMiss());
@@ -148,7 +148,7 @@ public class encounterTracker extends javax.swing.JFrame {
                 try {
                         if(actionsList.size() > 0){
                                 // Get current values from last entry in LL
-                                encounterTrackerEntry last = actionsList.getLast();
+                                EncounterTrackerEntry last = actionsList.getLast();
                                 theLowestHit = last.getLowestHit();
                                 theHighestMiss = last.getHighestMiss();
                                 theTotalDMG = last.getDmgTaken();
@@ -175,7 +175,7 @@ public class encounterTracker extends javax.swing.JFrame {
                         }
 
                         // Now create the entry
-                        encounterTrackerEntry entry = new encounterTrackerEntry(
+                        EncounterTrackerEntry entry = new EncounterTrackerEntry(
                                 theHighestMiss, theLowestHit, theTotalDMG, 
                                 currHit, currDmg, hit);
                         actionsList.add(entry);

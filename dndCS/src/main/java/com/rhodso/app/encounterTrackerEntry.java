@@ -1,6 +1,6 @@
 package com.rhodso.app;
 
-public class encounterTrackerEntry {
+public class EncounterTrackerEntry {
     // Global encounter vars
     private int highestMiss;
     private int lowestHit;
@@ -12,7 +12,7 @@ public class encounterTrackerEntry {
     private boolean successfulHit;
     
     // constructor
-    public encounterTrackerEntry(int highestMiss, int lowestHit, int dmgTaken, int hitRoll, int dmgRoll,
+    public EncounterTrackerEntry(int highestMiss, int lowestHit, int dmgTaken, int hitRoll, int dmgRoll,
     boolean successfulHit) {
         this.highestMiss = highestMiss;
         this.lowestHit = lowestHit;
