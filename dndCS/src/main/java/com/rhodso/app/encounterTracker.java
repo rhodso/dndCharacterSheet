@@ -10,10 +10,7 @@ import javax.swing.JOptionPane;
 
 public class encounterTracker extends javax.swing.JFrame {
 
-        LinkedList<String[]> actionsList = new LinkedList<String[]>();
-        private int highestMiss;
-        private int lowestHit;
-        private int dmgTaken;
+        LinkedList<encounterTrackerEntry> actionsList = new LinkedList<>();
 
         /**
          * Creates new form encounterTracker
@@ -57,12 +54,174 @@ public class encounterTracker extends javax.swing.JFrame {
                                 ;
                         }
                 });
-
-                highestMiss = 1;
-                lowestHit = 20;
-                dmgTaken = 0;
-
                 initComponents();
+        }
+
+        void updateTextAreaAndStats() {
+                ActionsTextArea.setText("");
+                for (encounterTrackerEntry e : actionsList) {
+                        String s = e.toString();
+                        ActionsTextArea.setText(ActionsTextArea.getText() + s + "\n");
+                }
+
+                if(actionsList.size() > 1){
+                        encounterTrackerEntry last = actionsList.getLast();
+                        LowestHitLabel.setText("Lowest Hit: " + last.getLowestHit());
+                        TotalDamageLabel.setText("Total Damage Done: " + last.getDmgTaken());
+                        HighestMissLabel.setText("Highest Miss: " + last.getHighestMiss());
+                } else {
+                        LowestHitLabel.setText("Lowest Hit: 20");
+                        TotalDamageLabel.setText("Total Damage Done: 0");
+                        HighestMissLabel.setText("Highest Miss: 0");
+                }
+        }
+
+        void updateList() {
+                
+                boolean process = false;
+                boolean hit = false;
+                // Check for errors / warnings
+                if (HitRollBox.getText().equals("") && DMGRollBox.getText().equals("")) {
+                        // No info entered, ignore
+                        ;
+                } else if (HitRollBox.getText().equals("")) {
+                        // Throw error because we've got no hit data
+                        JOptionPane.showMessageDialog(jPanel1, "Error: No Hit roll supplied", "No hit roll",
+                                        JOptionPane.ERROR_MESSAGE);
+                } else {
+                        if (isHitCheckbox.isSelected()) {
+                                if (DMGRollBox.getText().equals("")) {
+                                        // Did the user mean to add something to DMG Roll Box
+                                        JOptionPane.showMessageDialog(jPanel1,
+                                                        "Warning: No DMG Roll supplied, but hit box is checked",
+                                                        "No DMG roll", JOptionPane.WARNING_MESSAGE);
+                                } else {
+                                        process = true;
+                                        hit = true;
+                                }
+                        } else {
+                                if (DMGRollBox.getText().equals("")) {
+                                        process = true;
+                                        hit = false;
+                                } else {
+                                        // Did the user mean to check the hit box?
+                                        JOptionPane.showMessageDialog(jPanel1,
+                                                        "Warning: DMG Roll supplied, but hit box isn't checked",
+                                                        "DMG inconsistency", JOptionPane.WARNING_MESSAGE);
+                                }
+                        }
+                }
+
+                // Try to parse the hit and dmg entered to ensure they're integers
+                int currHit;
+                int currDmg;
+
+                try {
+                        if (HitRollBox.getText().equals("")) {
+                                currHit = 0;
+                        } else {
+                                currHit = Integer.parseInt(HitRollBox.getText());
+                        }
+
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(jPanel1, "Hit roll must be an integer", "Hit roll not valid",
+                                        JOptionPane.WARNING_MESSAGE);
+                        return;
+                }
+                try {
+                        if (DMGRollBox.getText().equals("")) {
+                                currDmg = 0;
+                        } else {
+                                currDmg = Integer.parseInt(DMGRollBox.getText());
+                        }
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(jPanel1, "DMG roll must be an integer", "DMG roll not valid",
+                                        JOptionPane.WARNING_MESSAGE);
+                        return;
+                }
+
+                // Get the output from the current form because it fucks up and I don't know why
+                // wheeee
+                int theLowestHit = 20;
+                int theHighestMiss = 0;
+                int theTotalDMG = 0;
+                try {
+                        if(actionsList.size() > 0){
+                                // Get current values from last entry in LL
+                                encounterTrackerEntry last = actionsList.getLast();
+                                theLowestHit = last.getLowestHit();
+                                theHighestMiss = last.getHighestMiss();
+                                theTotalDMG = last.getDmgTaken();
+                        }                        
+                } catch (Exception e) {
+                        JOptionPane.showMessageDialog(jPanel1,
+                                        "Error when adding to the tracker, no changes were saved",
+                                        "Error adding to tracker", JOptionPane.WARNING_MESSAGE);
+                        return;
+                }
+
+                // All is fine
+                if (process) {
+                        // Successful hit
+                        if(hit){
+                                if(theLowestHit > currHit){
+                                        theLowestHit = currHit; 
+                                }
+                                theTotalDMG += currDmg;
+
+                        // Miss
+                        } else {
+                                theHighestMiss = currHit;
+                        }
+
+                        // Now create the entry
+                        encounterTrackerEntry entry = new encounterTrackerEntry(
+                                theHighestMiss, theLowestHit, theTotalDMG, 
+                                currHit, currDmg, hit);
+                        actionsList.add(entry);
+                        updateTextAreaAndStats();
+
+                        // Now clean up
+                        HitRollBox.setText("");
+                        DMGRollBox.setText("");
+                        isHitCheckbox.setSelected(false);
+                }
+        }
+
+        private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {
+                // Confirmation dialogue
+                if(JOptionPane.showConfirmDialog(null, "Are you sue you want to reset the encounter tracker?\nThis can't be undone", "Reset encounter tracker?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                        actionsList.clear();
+                        updateTextAreaAndStats();        
+                }
+        }
+
+        private void UndoButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+                if(actionsList.size() > 0){
+                        // Remove last action from list
+                        actionsList.removeLast();
+                }
+
+                // Update text area
+                updateTextAreaAndStats();
+        }
+
+        private void HitRollBoxActionPerformed(java.awt.event.ActionEvent evt) {
+                ;
+        }
+
+        private void DMGRollBoxActionPerformed(java.awt.event.ActionEvent evt) {
+                ;
+        }
+
+        private void AddToTrackerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+                updateList();
+                updateTextAreaAndStats();
+        }
+
+        private void isHitCheckboxActionPerformed(java.awt.event.ActionEvent evt) {
+                ;
         }
 
         /**
@@ -263,7 +422,7 @@ public class encounterTracker extends javax.swing.JFrame {
                 TotalDamageLabel.setText("Total Damage Done: 0");
 
                 HighestMissLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-                HighestMissLabel.setText("Highest Miss: 1");
+                HighestMissLabel.setText("Highest Miss: 0");
 
                 javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
                 jPanel14.setLayout(jPanel14Layout);
@@ -604,215 +763,6 @@ public class encounterTracker extends javax.swing.JFrame {
 
                 pack();
         }// </editor-fold>
-
-        void updateTextArea() {
-                ActionsTextArea.setText("");
-                for (String[] s : actionsList) {
-                        ActionsTextArea.setText(ActionsTextArea.getText() + s[0] + "\n");
-                }
-        }
-
-        void updateList() {
-                boolean process = false;
-                boolean hit = false;
-                // Check for errors / warnings
-                if (HitRollBox.getText().equals("") && DMGRollBox.getText().equals("")) {
-                        // No info entered, ignore
-                        ;
-                } else if (HitRollBox.getText().equals("")) {
-                        // Throw error because we've got no hit data
-                        JOptionPane.showMessageDialog(jPanel1, "Error: No Hit roll supplied", "No hit roll",
-                                        JOptionPane.ERROR_MESSAGE);
-                } else {
-                        if (isHitCheckbox.isSelected()) {
-                                if (DMGRollBox.getText().equals("")) {
-                                        // Did the user mean to add something to DMG Roll Box
-                                        JOptionPane.showMessageDialog(jPanel1,
-                                                        "Warning: No DMG Roll supplied, but hit box is checked",
-                                                        "No DMG roll", JOptionPane.WARNING_MESSAGE);
-                                } else {
-                                        process = true;
-                                        hit = true;
-                                }
-                        } else {
-                                if (DMGRollBox.getText().equals("")) {
-                                        process = true;
-                                        hit = false;
-                                } else {
-                                        // Did the user mean to check the hit box?
-                                        JOptionPane.showMessageDialog(jPanel1,
-                                                        "Warning: DMG Roll supplied, but hit box isn't checked",
-                                                        "DMG inconsistency", JOptionPane.WARNING_MESSAGE);
-                                }
-
-                        }
-                }
-
-                // Try to parse the hit and dmg entered to ensure they're integers
-                int currHit;
-                int currDmg;
-
-                try {
-                        if (HitRollBox.getText().equals("")) {
-                                currHit = 0;
-                        } else {
-                                currHit = Integer.parseInt(HitRollBox.getText());
-                        }
-
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(jPanel1, "Hit roll must be an integer", "Hit roll not valid",
-                                        JOptionPane.WARNING_MESSAGE);
-                        return;
-                }
-                try {
-                        if (DMGRollBox.getText().equals("")) {
-                                currDmg = 0;
-                        } else {
-                                currDmg = Integer.parseInt(DMGRollBox.getText());
-                        }
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(jPanel1, "DMG roll must be an integer", "DMG roll not valid",
-                                        JOptionPane.WARNING_MESSAGE);
-                        return;
-                }
-
-                // Get the output from the current form because it fucks up and I don't know why
-                // wheeee
-                int theLowestHit;
-                int theHighestMiss;
-                int theTotalDMG;
-                try {
-                        theLowestHit = Integer.parseInt(LowestHitLabel.getText()
-                                        .split(" ")[(LowestHitLabel.getText().split(" ").length) - 1]);
-                        theHighestMiss = Integer.parseInt(HighestMissLabel.getText()
-                                        .split(" ")[(HighestMissLabel.getText().split(" ").length) - 1]);
-                        theTotalDMG = Integer.parseInt(TotalDamageLabel.getText()
-                                        .split(" ")[(TotalDamageLabel.getText().split(" ").length) - 1]);
-
-                } catch (Exception e) {
-                        JOptionPane.showMessageDialog(jPanel1,
-                                        "Error when adding to the tracker, no changes were saved",
-                                        "Error adding to tracker", JOptionPane.WARNING_MESSAGE);
-                        return;
-                }
-
-                // All is fine
-                if (process) {
-                        if (hit) {
-                                // Check if a hit was lower than the current hit
-                                if (theLowestHit > currHit) {
-                                        theLowestHit = currHit;
-                                        LowestHitLabel.setText("Lowest Hit: " + theLowestHit);
-                                }
-
-                                // Update dmg taken
-                                theTotalDMG += currDmg;
-                                TotalDamageLabel.setText("Total Damage Done: " + theTotalDMG);
-                        } else {
-                                // Check if miss was higher than the current miss
-                                if (theHighestMiss < currHit) {
-                                        theHighestMiss = currHit;
-                                        HighestMissLabel.setText("Highest Miss: " + theHighestMiss);
-                                }
-                        }
-
-                        String[] sArray = new String[4];
-                        sArray[0] = "Hit: " + currHit + ", DMG: " + currDmg + ", TDMG: " + theTotalDMG;
-                        sArray[1] = Integer.toString(theLowestHit);
-                        sArray[2] = Integer.toString(theHighestMiss);
-                        sArray[3] = Integer.toString(theTotalDMG);
-
-                        actionsList.add(sArray);
-                }
-        }
-
-        private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {
-                actionsList.clear();
-                highestMiss = 0;
-                lowestHit = 20;
-                dmgTaken = 0;
-                LowestHitLabel.setText("Lowest Hit: " + lowestHit);
-                TotalDamageLabel.setText("Total Damage Done: " + dmgTaken);
-                HighestMissLabel.setText("Highest Miss: " + highestMiss);
-                updateTextArea();
-        }
-
-        private void UndoButtonActionPerformed(java.awt.event.ActionEvent evt) {
-                // This doesn't work and I cba to fix it, but I'm keeping it here for now
-
-                // FIXME
-                // actionsList.removeLast();
-                // String[] sArray = actionsList.getLast();
-
-                // int prevLowestHit = 20;
-                // int prevHighestMiss = 0;
-                // int prevDmgTaken = 0;
-
-                // try {
-                // prevLowestHit = Integer.parseInt(sArray[1]);
-                // prevHighestMiss = Integer.parseInt(sArray[2]);
-                // prevDmgTaken = Integer.parseInt(sArray[3]);
-                // } catch (Exception e) {
-                // JOptionPane.showMessageDialog(jPanel1,
-                // "Error occured when rolling back changes\nStats may be innacurate",
-                // "Erorr with undo", JOptionPane.ERROR_MESSAGE);
-                // return;
-                // }
-
-                // // Get the output from the current form because it fucks up and I don't know
-                // why wheeee
-                // int theLowestHit;
-                // int theHighestMiss;
-                // int theTotalDMG;
-                // try {
-                // theLowestHit = Integer.parseInt(LowestHitLabel.getText()
-                // .split(" ")[(LowestHitLabel.getText().split(" ").length) - 1]);
-                // theHighestMiss = Integer.parseInt(HighestMissLabel.getText()
-                // .split(" ")[(HighestMissLabel.getText().split(" ").length) - 1]);
-                // theTotalDMG = Integer.parseInt(TotalDamageLabel.getText()
-                // .split(" ")[(TotalDamageLabel.getText().split(" ").length) - 1]);
-
-                // } catch (Exception e) {
-                // JOptionPane.showMessageDialog(jPanel1,
-                // "Error when adding to the tracker, no changes were saved",
-                // "Error adding to tracker", JOptionPane.WARNING_MESSAGE);
-                // return;
-                // }
-
-                // if (theLowestHit < prevLowestHit) {
-                // theLowestHit = prevLowestHit;
-                // }
-                // if (theHighestMiss > prevHighestMiss) {
-                // theHighestMiss = prevHighestMiss;
-                // }
-                // theTotalDMG = prevDmgTaken;
-
-                // updateTextArea();
-
-                JOptionPane.showMessageDialog(jPanel1, "This feature is not yet implimented");
-
-        }
-
-        private void HitRollBoxActionPerformed(java.awt.event.ActionEvent evt) {
-                ;
-        }
-
-        private void DMGRollBoxActionPerformed(java.awt.event.ActionEvent evt) {
-                ;
-        }
-
-        private void AddToTrackerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-                updateList();
-                highestMiss = 0;
-                lowestHit = 20;
-                dmgTaken = 0;
-                updateTextArea();
-        }
-
-        private void isHitCheckboxActionPerformed(java.awt.event.ActionEvent evt) {
-                // TODO
-
-        }
 
         // Variables declaration - do not modify
         private javax.swing.JTextPane ActionsTextArea;
