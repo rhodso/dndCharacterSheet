@@ -64,7 +64,7 @@ public class encounterTracker extends javax.swing.JFrame {
                         ActionsTextArea.setText(ActionsTextArea.getText() + s + "\n");
                 }
 
-                if(actionsList.size() > 1){
+                if(actionsList.size() > 0){
                         encounterTrackerEntry last = actionsList.getLast();
                         LowestHitLabel.setText("Lowest Hit: " + last.getLowestHit());
                         TotalDamageLabel.setText("Total Damage Done: " + last.getDmgTaken());
@@ -179,12 +179,6 @@ public class encounterTracker extends javax.swing.JFrame {
                                 theHighestMiss, theLowestHit, theTotalDMG, 
                                 currHit, currDmg, hit);
                         actionsList.add(entry);
-                        updateTextAreaAndStats();
-
-                        // Now clean up
-                        HitRollBox.setText("");
-                        DMGRollBox.setText("");
-                        isHitCheckbox.setSelected(false);
                 }
         }
 
@@ -216,8 +210,14 @@ public class encounterTracker extends javax.swing.JFrame {
         }
 
         private void AddToTrackerButtonActionPerformed(java.awt.event.ActionEvent evt) {
+                // Update lists
                 updateList();
                 updateTextAreaAndStats();
+
+                // Now clean up
+                HitRollBox.setText("");
+                DMGRollBox.setText("");
+                isHitCheckbox.setSelected(false);
         }
 
         private void isHitCheckboxActionPerformed(java.awt.event.ActionEvent evt) {
