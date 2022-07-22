@@ -4,19 +4,15 @@ package com.rhodso.app;
  * template file, choose Tools | Templates and open the template in the editor.
  */
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
